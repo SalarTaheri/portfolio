@@ -1,0 +1,138 @@
+%-------------------------
+% Resume for Salar Taheri — Android Developer
+%-------------------------
+\documentclass[letterpaper,10pt]{article}
+
+\usepackage[margin=0.6in]{geometry}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{xcolor}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\usepackage{parskip}
+
+% Colors
+\definecolor{accent}{HTML}{1A73E8}
+\definecolor{lightgray}{HTML}{666666}
+
+% Hyperlink style
+\hypersetup{
+  colorlinks=true,
+  urlcolor=accent,
+  linkcolor=accent
+}
+
+% Section formatting
+\titleformat{\section}
+  {\large\bfseries\color{accent}}
+  {}{0em}{}[\color{accent}\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+% Remove paragraph indent
+\setlength{\parindent}{0pt}
+
+% Custom commands
+\newcommand{\resumeItem}[1]{
+  \item\small{#1}
+}
+
+\newcommand{\jobEntry}[4]{
+  \textbf{#1} \hfill \textit{\small\color{lightgray}#3 -- #4} \\
+  \textit{\color{lightgray}#2}
+}
+
+\begin{document}
+
+%----------HEADER----------
+\begin{center}
+  {\Huge\bfseries SALAR TAHERI} \\[4pt]
+  {\large\color{lightgray} Senior Android Developer} \\[6pt]
+  \faPhone\ +98-937-698-9151 \quad
+  \faEnvelope\ \href{mailto:salar.taheri.mirani@gmail.com}{salar.taheri.mirani@gmail.com} \quad
+  \faLinkedin\ \href{https://www.linkedin.com/in/salar-taheri}{linkedin.com/in/salar-taheri} \quad
+  \faGithub\ \href{https://github.com/}{github.com/YOUR\_USERNAME} \quad % TODO: add your GitHub
+  \faMapMarker*\ Tehran, Iran
+\end{center}
+
+\vspace{2pt}
+
+%----------PROFILE----------
+\section{Profile}
+
+Android Developer specializing in fintech, POS systems, and enterprise mobile solutions. Built and shipped Payment SDKs for Android POS hardware, eKYC pipelines, and customer-facing apps now used by \textbf{2.5M+ users}. Comfortable across the full Android stack — from low-level ISO 8583 protocol integrations to modern Jetpack Compose UIs — with additional cross-platform experience in Flutter.
+
+%----------WORK EXPERIENCE----------
+\section{Work Experience}
+
+\jobEntry{Android Developer}{AvaParsi}{Mar 2023}{Present}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Developed and maintained Android applications supporting core business operations serving \textbf{2.5M+ users}.}
+  \resumeItem{Built \textbf{AmnPardaz Electronic Invoicing System} using Flutter — enables businesses to submit tax returns electronically via Android POS devices or smartphones.}
+  \resumeItem{Designed and implemented a comprehensive \textbf{Android POS System} for supermarkets, restaurants, and customer-facing businesses.}
+  \resumeItem{Integrated third-party APIs to enhance functionality and streamline data exchange; optimized app performance for seamless UX.}
+  \resumeItem{Managed large volumes of product data using Room persistence library.}
+\end{itemize}
+
+\vspace{4pt}
+\jobEntry{Android Developer}{Omidpay}{Sep 2022}{Mar 2023}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Developed \textbf{Payment SDK} for Android POS devices (A920Pro, Amp8000) to handle banking transactions with magnetic stripe cards.}
+  \resumeItem{Implemented \textbf{ISO 8583} protocol, JPOS integration, and TCP socket programming for secure payment processing.}
+  \resumeItem{Successfully completed a cybersecurity program aligned with national IT security agency standards.}
+\end{itemize}
+
+\vspace{4pt}
+\jobEntry{Android Developer}{UID}{Sep 2018}{Sep 2022}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Implemented \textbf{eKYC Android SDK} leveraging Camera API for secure video streaming and analysis via WebSocket and REST API.}
+  \resumeItem{Developed \textbf{Nanino} online bakery app (customer and baker clients).}
+  \resumeItem{Developed \textbf{Ravis} — a municipal waste collection platform with Maps API integration.}
+  \resumeItem{Developed \textbf{Taxi Receipt} app for uploading, downloading, and printing violation receipts using Bixolon thermal printer API (canvas-to-Bitmap rendering).}
+  \resumeItem{Refactored legacy Java/MVP codebase to \textbf{Kotlin/MVVM}, improving maintainability and reducing external library dependencies.}
+  \resumeItem{Configured \textbf{ProGuard} rules for code obfuscation and security hardening.}
+\end{itemize}
+
+\vspace{4pt}
+\jobEntry{Android Developer (Freelance \& Personal Projects)}{}{2016}{Present}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{\textbf{Dolme} — Word game published on CafeBazaar. Built entirely with native Java/Kotlin; implemented custom Views and animations without a game engine.}
+  \resumeItem{\textbf{Android POS Banking App} (Sep 2024 -- Mar 2025) — Independently designed and developed a full-featured banking transaction application for Android POS devices. Implemented card-based transactions including balance inquiry, purchase, bill payment, mobile top-up, and food subsidy voucher (Kala Barg) payments. Integrated \textbf{NFC-based contactless payments} using the \textbf{Kehroba protocol} (Shaparak standard).}
+  \resumeItem{\textbf{Taj} — E-commerce Android app.}
+  \resumeItem{\textbf{Toolbox} — Handy utility app for software engineers.}
+  \resumeItem{\textbf{Kababe Nab} — Restaurant online ordering app.}
+\end{itemize}
+
+%----------SKILLS----------
+\section{Technical Skills}
+
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{\textbf{Languages:} Kotlin, Java, Dart}
+  \resumeItem{\textbf{Core Android:} Jetpack Compose, MVVM, LiveData, ViewModel, Room, Navigation Component, DataBinding, Dependency Injection (Hilt), Kotlin Coroutines, Kotlin Flows, Gradle, Android AIDL}
+  \resumeItem{\textbf{Frameworks \& Libraries:} Flutter, Flutter BLoC, Retrofit, Ktor, RxJava, Firebase, Protobuf, Sentry}
+  \resumeItem{\textbf{API \& Protocols:} REST API, ISO 8583, JPOS, TCP Socket, WebSocket, NFC (Kehroba/Shaparak)}
+  \resumeItem{\textbf{Testing:} % TODO: Add testing skills (e.g. JUnit, Espresso, Mockito) if applicable
+  JUnit, Espresso (add if applicable)}
+  \resumeItem{\textbf{Tools \& Processes:} Git, ProGuard, Multi-threading, Linux, Agile/Scrum}
+\end{itemize}
+
+%----------EDUCATION----------
+\section{Education}
+
+\textbf{B.Sc. Software Engineering} \hfill \textit{\color{lightgray}2013 -- 2018} \\
+University of Guilan, Iran
+
+%----------CERTIFICATIONS----------
+\section{Certifications}
+
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Google Associate Android Developer — \textit{(add if obtained, or remove this section)}} % TODO
+  \resumeItem{Kotlin Certified Developer — \textit{(add if obtained, or remove this section)}} % TODO
+\end{itemize}
+
+%----------LANGUAGES----------
+\section{Languages}
+
+\textbf{Persian} — Native \quad | \quad \textbf{English} — Professional Working Proficiency
+
+\end{document}
