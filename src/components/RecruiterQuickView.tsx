@@ -14,6 +14,7 @@ import {
   Github,
   Sparkles,
   UserCheck,
+  Mail,
 } from 'lucide-react';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
@@ -23,13 +24,13 @@ export default function RecruiterQuickView() {
   const rqv = content[locale].recruiterQuickView;
   const profile = content[locale].profile;
 
-  const [copiedField, setCopiedField] = useState<'email' | 'phone' | null>(null);
+  const [copiedEmail, setCopiedEmail] = useState(false);
 
-  const copyToClipboard = async (text: string, field: 'email' | 'phone') => {
+  const copyEmailToClipboard = async () => {
     try {
-      await navigator.clipboard.writeText(text);
-      setCopiedField(field);
-      setTimeout(() => setCopiedField(null), 2200);
+      await navigator.clipboard.writeText(profile.email);
+      setCopiedEmail(true);
+      setTimeout(() => setCopiedEmail(false), 2200);
     } catch (err) {
       console.error('Failed to copy to clipboard', err);
     }
@@ -181,7 +182,7 @@ export default function RecruiterQuickView() {
               {/* Copy Email Button */}
               <button
                 type="button"
-                onClick={() => copyToClipboard(profile.email, 'email')}
+                onClick={copyEmailToClipboard}
                 className="w-full group flex items-center justify-between p-3 rounded-xl bg-surface border border-border hover:border-accent-blue/40 hover:bg-surface-2 transition-all duration-200 text-left"
                 aria-label={rqv.actions.copyEmail}
               >
@@ -192,7 +193,7 @@ export default function RecruiterQuickView() {
                   </div>
                 </div>
                 <div className="flex-shrink-0 p-1.5 rounded-lg bg-surface-2 text-text-muted group-hover:text-accent-blue transition-colors">
-                  {copiedField === 'email' ? (
+                  {copiedEmail ? (
                     <Check size={15} className="text-emerald-500" />
                   ) : (
                     <Copy size={15} />
@@ -200,30 +201,27 @@ export default function RecruiterQuickView() {
                 </div>
               </button>
 
-              {/* Copy Phone Button */}
-              <button
-                type="button"
-                onClick={() => copyToClipboard(profile.phone, 'phone')}
+              {/* Direct Mailto Link */}
+              <a
+                href={`mailto:${profile.email}`}
                 className="w-full group flex items-center justify-between p-3 rounded-xl bg-surface border border-border hover:border-accent-cyan/40 hover:bg-surface-2 transition-all duration-200 text-left"
-                aria-label={rqv.actions.copyPhone}
+                aria-label={locale === 'fa' ? 'ارسال ایمیل مستقیم' : 'Send Direct Email'}
               >
                 <div className="min-w-0 pr-2">
-                  <div className="text-[11px] text-text-muted font-medium">{rqv.actions.copyPhone}</div>
-                  <div className="text-xs font-mono text-text-primary dir-ltr">
-                    {profile.phone}
+                  <div className="text-[11px] text-text-muted font-medium">
+                    {locale === 'fa' ? 'ارسال ایمیل مستقیم' : 'Direct Email'}
+                  </div>
+                  <div className="text-xs font-mono text-text-primary truncate">
+                    {profile.email}
                   </div>
                 </div>
                 <div className="flex-shrink-0 p-1.5 rounded-lg bg-surface-2 text-text-muted group-hover:text-accent-cyan transition-colors">
-                  {copiedField === 'phone' ? (
-                    <Check size={15} className="text-emerald-500" />
-                  ) : (
-                    <Copy size={15} />
-                  )}
+                  <Mail size={15} />
                 </div>
-              </button>
+              </a>
 
               {/* Toast feedback */}
-              {copiedField && (
+              {copiedEmail && (
                 <div className="text-center py-1 text-xs font-medium text-emerald-500 animate-fade-in">
                   ✓ {rqv.actions.copied}
                 </div>

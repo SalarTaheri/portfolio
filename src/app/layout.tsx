@@ -86,7 +86,6 @@ const jsonLdPerson = {
   jobTitle: profile.title,
   url: seoMeta.url,
   email: profile.email,
-  telephone: profile.phone,
   address: {
     '@type': 'PostalAddress',
     addressLocality: 'Tehran',

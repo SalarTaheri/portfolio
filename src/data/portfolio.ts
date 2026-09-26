@@ -74,7 +74,7 @@ export interface RecruiterQuickViewContent {
   actions: {
     downloadResume: string;
     copyEmail: string;
-    copyPhone: string;
+    copyPhone?: string;
     copied: string;
     viewLinkedin: string;
     viewGithub: string;
@@ -102,7 +102,7 @@ export interface PortfolioContent {
     crashFree: string;
     location: string;
     email: string;
-    phone: string;
+    phone?: string;
     linkedin: string;
     github: string;
     resumePdf: string;
@@ -195,7 +195,6 @@ export const content: Record<'en' | 'fa', PortfolioContent> = {
       crashFree: 'Crash-Free',
       location: 'Tehran, Iran',
       email: 'salar.taheri.mirani@gmail.com',
-      phone: '+98-937-698-9151',
       linkedin: 'https://www.linkedin.com/in/salar-taheri',
       github: 'https://github.com/salartaheri',
       resumePdf: '/resume.pdf',
@@ -238,7 +237,6 @@ export const content: Record<'en' | 'fa', PortfolioContent> = {
       actions: {
         downloadResume: 'Download ATS Resume (PDF)',
         copyEmail: 'Copy Email',
-        copyPhone: 'Copy Phone',
         copied: 'Copied to clipboard!',
         viewLinkedin: 'LinkedIn Profile',
         viewGithub: 'GitHub Profile',
@@ -804,7 +802,6 @@ export const content: Record<'en' | 'fa', PortfolioContent> = {
       crashFree: 'بدون کرش',
       location: 'تهران، ایران',
       email: 'salar.taheri.mirani@gmail.com',
-      phone: '+98-937-698-9151',
       linkedin: 'https://www.linkedin.com/in/salar-taheri',
       github: 'https://github.com/salartaheri',
       resumePdf: '/resume.pdf',
@@ -847,7 +844,6 @@ export const content: Record<'en' | 'fa', PortfolioContent> = {
       actions: {
         downloadResume: 'دانلود رزومه استاندارد (PDF)',
         copyEmail: 'کپی ایمیل',
-        copyPhone: 'کپی شماره تماس',
         copied: 'در حافظه کپی شد!',
         viewLinkedin: 'پروفایل لینکدین',
         viewGithub: 'پروفایل گیت‌هاب',

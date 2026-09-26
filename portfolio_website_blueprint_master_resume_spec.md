@@ -11,10 +11,9 @@
 * **Professional Headline:** Senior Android & Embedded POS Engineer
 * **Location:** Tehran, Iran
 * **Contact:**
-  * Phone: `+98-937-698-9151`
   * Email: `salar.taheri.mirani@gmail.com`
   * LinkedIn: `https://www.linkedin.com/in/salar-taheri`
-  * GitHub: `[Add your GitHub URL]`
+  * GitHub: `https://github.com/salartaheri`
 * **Value Proposition:** 10+ years building mission-critical Android solutions, low-level POS hardware architectures (ISO 8583, Shaparak Kehroba NFC), biometric eKYC SDKs powering 2.5M+ active users, and high-performance cross-platform enterprise tools.
 
 ---
@@ -200,7 +199,6 @@ Antigravity can ingest the following JSON structure directly to generate the por
     "yearsOfExperience": "10+",
     "location": "Tehran, Iran",
     "email": "salar.taheri.mirani@gmail.com",
-    "phone": "+98-937-698-9151",
     "linkedin": "https://www.linkedin.com/in/salar-taheri",
     "github": "https://github.com/",
     "stats": [
