@@ -45,51 +45,38 @@ export default function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
         {/* Logo */}
-        <motion.a
+        <a
           href="#"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5 }}
           className="flex items-center gap-2.5 group"
           aria-label="Home"
         >
-          <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-accent-blue to-accent-cyan flex items-center justify-center shadow-glow-blue group-hover:shadow-glow-cyan transition-shadow duration-300">
-            <span className="font-mono font-bold text-sm text-white tracking-tight">ST</span>
+          <div className="w-8 h-8 rounded-lg bg-accent-blue flex items-center justify-center transition-colors">
+            <span className="font-mono font-bold text-xs text-white tracking-tight">ST</span>
           </div>
           <span className="hidden sm:block font-semibold text-text-primary text-sm">
             {currentProfile.name}
           </span>
-        </motion.a>
+        </a>
 
         {/* Desktop nav */}
-        <motion.div
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="hidden md:flex items-center gap-1"
-        >
+        <div className="hidden md:flex items-center gap-1">
           {navLinks.map((link) => (
             <button
               key={link.href}
               onClick={() => handleNavClick(link.href)}
-              className="px-4 py-2 text-sm font-medium text-text-secondary hover:text-text-primary rounded-lg hover:bg-surface transition-all duration-200"
+              className="px-3.5 py-1.5 text-sm font-medium text-text-secondary hover:text-text-primary rounded-lg hover:bg-surface-2 transition-colors duration-150"
             >
               {link.label}
             </button>
           ))}
-        </motion.div>
+        </div>
 
         {/* Actions (Theme Toggle + Language Switcher + Download CV CTA + Hamburger) */}
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-center gap-2 sm:gap-2.5"
-        >
+        <div className="flex items-center gap-2 sm:gap-2.5">
           {/* Theme Toggle Button */}
           <button
             onClick={toggleTheme}
-            className="flex items-center justify-center w-8 h-8 rounded-lg border border-border hover:border-accent-blue/40 bg-surface/80 text-text-secondary hover:text-text-primary transition-all duration-200 shadow-sm"
+            className="flex items-center justify-center w-8 h-8 rounded-lg border border-border bg-surface text-text-secondary hover:text-text-primary transition-colors duration-150"
             title={
               theme === 'dark'
                 ? locale === 'fa'
@@ -102,21 +89,21 @@ export default function Navbar() {
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
-              <Sun size={15} className="text-amber-400 hover:rotate-45 transition-transform duration-300" />
+              <Sun size={15} className="text-amber-400" />
             ) : (
-              <Moon size={15} className="text-indigo-600 hover:-rotate-12 transition-transform duration-300" />
+              <Moon size={15} className="text-indigo-600" />
             )}
           </button>
 
           {/* Language Switcher Button */}
           <button
             onClick={toggleLocale}
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-border hover:border-accent-blue/40 bg-surface/80 text-xs font-mono transition-all duration-200 shadow-sm"
+            className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-lg border border-border bg-surface text-xs font-mono transition-colors duration-150"
             title={locale === 'en' ? 'تغییر زبان به فارسی' : 'Switch to English'}
             aria-label="Toggle language"
           >
-            <Globe size={13} className="text-accent-cyan" />
-            <span className={locale === 'fa' ? 'text-accent-cyan font-bold' : 'text-text-muted'}>
+            <Globe size={13} className="text-accent-blue" />
+            <span className={locale === 'fa' ? 'text-accent-blue font-bold' : 'text-text-muted'}>
               فا
             </span>
             <span className="text-text-muted/60">/</span>
@@ -128,7 +115,7 @@ export default function Navbar() {
           <a
             href={currentProfile.resumePdf}
             download="Salar_Taheri_Resume.pdf"
-            className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-lg bg-accent-blue hover:bg-accent-blue-light text-white text-sm font-semibold transition-all duration-200 shadow-glow-blue hover:shadow-glow-cyan"
+            className="hidden sm:flex items-center gap-2 px-3.5 py-1.5 rounded-lg bg-accent-blue hover:bg-accent-blue-dark text-white text-sm font-medium transition-colors duration-150 shadow-sm"
           >
             <Download size={14} />
             {t.downloadCv}
@@ -137,12 +124,12 @@ export default function Navbar() {
           {/* Mobile hamburger */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface transition-all duration-200"
+            className="md:hidden p-2 rounded-lg text-text-secondary hover:text-text-primary hover:bg-surface-2 transition-colors duration-150"
             aria-label={menuOpen ? 'Close menu' : 'Open menu'}
           >
             {menuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
-        </motion.div>
+        </div>
       </nav>
 
       {/* Mobile menu */}

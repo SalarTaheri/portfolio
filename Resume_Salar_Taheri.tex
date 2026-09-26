@@ -1,20 +1,25 @@
 %-------------------------
 % Resume for Salar Taheri — Senior Android & Mobile Systems Engineer
+% Layout: Optimized for ATS + human readability (2-page, 7-section)
 %-------------------------
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage[margin=0.6in]{geometry}
+\usepackage[margin=0.45in, top=0.4in, bottom=0.4in]{geometry}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
 \usepackage{xcolor}
 \usepackage{fontawesome5}
-\usepackage{multicol}
 \usepackage{parskip}
+\usepackage{tabularx}
+\usepackage{tikz}
 
 % Colors
 \definecolor{accent}{HTML}{1A73E8}
 \definecolor{lightgray}{HTML}{555555}
+\definecolor{metricbg}{HTML}{F0F4FA}
+\definecolor{metricborder}{HTML}{D0DAE8}
+\definecolor{darktext}{HTML}{1A1A1A}
 
 % Hyperlink style
 \hypersetup{
@@ -25,12 +30,15 @@
 
 % Section formatting
 \titleformat{\section}
-  {\large\bfseries\color{accent}}
+  {\normalsize\bfseries\color{accent}}
   {}{0em}{}[\color{accent}\titlerule]
-\titlespacing{\section}{0pt}{8pt}{4pt}
+\titlespacing{\section}{0pt}{6pt}{3pt}
 
 % Remove paragraph indent
 \setlength{\parindent}{0pt}
+
+% Tighter paragraph spacing
+\setlength{\parskip}{0pt}
 
 % Custom commands
 \newcommand{\resumeItem}[1]{
@@ -42,64 +50,68 @@
   \textit{\color{lightgray}#2}
 }
 
+% Metric box command for Key Highlights — compact version
+\newcommand{\metricBox}[2]{%
+  \begin{tikzpicture}[baseline=(current bounding box.center)]
+    \node[
+      draw=metricborder,
+      fill=metricbg,
+      rounded corners=2pt,
+      minimum width=3.1cm,
+      minimum height=0.85cm,
+      inner sep=3pt,
+      align=center
+    ] {
+      \begin{tabular}{c}
+        {\normalsize\bfseries\color{accent}#1} \\[-3pt]
+        {\tiny\color{lightgray}#2}
+      \end{tabular}
+    };
+  \end{tikzpicture}%
+}
+
 \begin{document}
 
-%----------HEADER----------
+%==========================================================
+% 1. HEADER
+%==========================================================
 \begin{center}
-  {\Huge\bfseries SALAR TAHERI} \\[4pt]
+  {\Huge\bfseries\color{darktext} SALAR TAHERI} \\[4pt]
   {\large\color{lightgray} Senior Android \& Mobile Systems Engineer} \\[6pt]
   \faEnvelope\ \href{mailto:salar.taheri.mirani@gmail.com}{salar.taheri.mirani@gmail.com} \quad
   \faLinkedin\ \href{https://www.linkedin.com/in/salar-taheri}{linkedin.com/in/salar-taheri} \quad
-  \faGithub\ \href{https://github.com/salartaheri}{github.com/salartaheri} \quad
-  \faMapMarker*\ Tehran, Iran
+  \faGithub\ \href{https://github.com/salartaheri}{github.com/salartaheri} \\[2pt]
+  \faMapMarker*\ Tehran, Iran {\color{lightgray}\small(Open to Relocation)} \quad
+  \faGlobe\ \href{https://salartaheri.dev}{salartaheri.dev}
 \end{center}
 
+\vspace{1pt}
+
+%==========================================================
+% 2. PROFESSIONAL SUMMARY
+%==========================================================
+\section{Professional Summary}
+
+Senior Android \& Mobile Systems Engineer with over 10 years of production engineering experience specializing in Fintech, Android POS hardware integration, and high-scale enterprise applications. Demonstrated track record in developing secure payment SDKs, biometric eKYC pipelines serving \textbf{2.5M+ active users}, and real-time transaction processing compliant with national central banking standards (ISO 8583, Shaparak Kehroba contactless NFC). Proven mastery of modern Android architectures (Jetpack Compose, Kotlin Coroutines \& Flow, Clean Architecture, Domain-Driven Design) combined with low-level peripheral communication (AIDL, serial/thermal printers, smart card readers, Java Card applets).
+
+%==========================================================
+% 3. KEY HIGHLIGHTS
+%==========================================================
 \vspace{2pt}
+\begin{center}
+  \metricBox{10+ Years}{Engineering Experience}
+  \hspace{4pt}
+  \metricBox{2.5M+ Users}{Biometric eKYC SDK}
+  \hspace{4pt}
+  \metricBox{5+ Platforms}{POS Hardware}
+  \hspace{4pt}
+  \metricBox{99.8\%}{Crash-Free Rate}
+\end{center}
+\vspace{1pt}
 
-%----------PROFILE----------
-\section{Profile}
-
-Senior Android \& Mobile Systems Engineer with over 10 years of software engineering experience specializing in Fintech, Android POS hardware integration, and high-scale enterprise applications. Demonstrated track record in developing secure payment SDKs, biometric eKYC pipelines serving \textbf{2.5M+ active users}, and real-time transaction processing compliant with national central banking standards (ISO 8583, Shaparak Kehroba contactless NFC). Proven mastery of modern Android architectures (Jetpack Compose, Kotlin Coroutines \& Flow, Clean Architecture, Domain-Driven Design) combined with low-level peripheral communication (AIDL, serial/thermal printers, smart card readers, Java Card applets).
-
-%----------WORK EXPERIENCE----------
-\section{Work Experience}
-
-\jobEntry{Senior Android Developer}{AvaParsi}{Mar 2023}{Present}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Architected and scaled an offline-first Android POS application for supermarkets and restaurants, utilizing \textbf{Room Persistence} and multi-tier local caching to manage large product catalogs with zero-latency lookups.}
-  \resumeItem{Engineered \textbf{AmnPardaz Electronic Invoicing System} in \textbf{Flutter} enabling corporate merchants to submit cryptographically signed tax invoices directly to the national tax authority via smart POS terminals and Android smartphones (50k+ invoices submitted).}
-  \resumeItem{Designed queue management and ticketing workflows by interfacing with weight scales, barcode scanners, and thermal receipt printers via \textbf{AIDL} and serial protocols.}
-  \resumeItem{Led architectural refactoring toward \textbf{Domain-Driven Design (DDD)} and modular packaging, sustaining a \textbf{99.8\% crash-free rate} across fragmented Android POS device vendors.}
-\end{itemize}
-
-\vspace{4pt}
-\jobEntry{Android Developer (Fintech \& POS)}{Omidpay}{Sep 2022}{Mar 2023}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Developed low-level banking transaction SDKs for Android smart POS terminals (Pax A920Pro, Amp8000), supporting magnetic stripe cards, smart IC cards, and secure PIN-pad interaction.}
-  \resumeItem{Implemented strict \textbf{ISO 8583} protocol decoders/encoders, JPOS standards, and low-level asynchronous \textbf{TCP Socket} streaming, achieving \textbf{sub-200ms latency} for high-reliability interbank transaction clearance.}
-  \resumeItem{Delivered the Android POS client for the \textbf{Nanino Smart Bakery Platform}, empowering thousands of bakeries across the country to execute government-subsidized bread transactions at massive scale (100k+ daily transactions with zero data loss).}
-  \resumeItem{Hardened payment applications against tampering, reverse-engineering, and cryptographic injection, successfully passing national cybersecurity audits (\textbf{AFTA}).}
-\end{itemize}
-
-\vspace{4pt}
-\jobEntry{Android Developer}{UID}{Sep 2018}{Sep 2022}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Engineered the core client SDK for Iran's premier digital identity verification platform, enabling automated liveness detection, AI-driven facial verification, and real-time video streaming over \textbf{WebSockets} and REST APIs for \textbf{2.5M+ active users} across major banks and brokerage firms (Sejam).}
-  \resumeItem{Spearheaded legacy refactoring from Java/MVP to \textbf{Kotlin/MVVM}, reducing APK footprint by \textbf{35\%} and drastically reducing external runtime dependencies.}
-  \resumeItem{Configured custom \textbf{ProGuard/R8} obfuscation rules, anti-hooking detection, and Android Keystore payload encryption to protect biometric data in transit and at rest.}
-\end{itemize}
-
-\newpage
-\jobEntry{Android Developer (Freelance \& Selected Projects)}{Independent \& Client Systems}{2016}{Present}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{\textbf{Android POS Banking \& Kehroba System} (Sep 2024 -- Mar 2025): Independently engineered an end-to-end banking application for smart POS terminals. Implemented ISO 8583 banking protocols, Java Card APDU smart card authorization, and Shaparak Kehroba contactless NFC payments.}
-  \resumeItem{\textbf{Tonekabon Municipal Taxi System} (Softwaria): Built violation ticketing mobile client; designed an in-memory Canvas rendering engine streaming dynamic receipts as bitmaps over Bluetooth/Serial to \textbf{Bixolon thermal printers} ($<$800ms print latency).}
-  \resumeItem{\textbf{Dolme Word Puzzle Game}: Published native Persian game on CafeBazaar; achieved smooth \textbf{60 FPS} gameplay by engineering custom Canvas Views and animation loops completely natively without external game engines (50k+ downloads, 4.7/5 rating).}
-  \resumeItem{\textbf{\href{https://linuxnetwork.ir}{LinuxNetwork.ir}} (2025): Developed high-performance bilingual web toolbox (React, TypeScript, Tailwind CSS) for Linux kernel tuning (\texttt{sysctl}, BBR TCP congestion), WireGuard VPN configurations, and CIDR subnet calculation (100/100 Lighthouse score, Cloudflare Pages edge delivery, thousands of monthly DevOps visitors).}
-  \resumeItem{\textbf{Vira Document Image Processing Service} (2025): Engineered an intelligent client-side document photo standardization web platform using HTML5 Canvas and WebAssembly ($<$50ms in-browser latency); processed \textbf{20,000+ applicant photos}, slashing rejection rate from 18\% to \textbf{$<$0.2\%}.}
-\end{itemize}
-
-%----------SKILLS----------
+%==========================================================
+% 4. TECHNICAL SKILLS
+%==========================================================
 \section{Technical Skills}
 
 \begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
@@ -111,13 +123,71 @@ Senior Android \& Mobile Systems Engineer with over 10 years of software enginee
   \resumeItem{\textbf{Security, DevOps \& Tools:} ProGuard/R8, Android Keystore, Anti-Tamper/Root Detection, Git, Linux, Docker, CI/CD, Sentry}
 \end{itemize}
 
-%----------EDUCATION----------
+%==========================================================
+% 5. PROFESSIONAL EXPERIENCE
+%==========================================================
+\section{Professional Experience}
+
+\jobEntry{Senior Android Developer}{AvaParsi}{Mar 2023}{Present}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Architected and scaled an offline-first Android POS application for supermarkets and restaurants, utilizing \textbf{Room Persistence} and multi-tier local caching to manage large product catalogs with zero-latency lookups.}
+  \resumeItem{Engineered \textbf{AmnPardaz Electronic Invoicing System} in \textbf{Flutter}, enabling corporate merchants to submit cryptographically signed tax invoices to the national tax authority via smart POS terminals and smartphones (\textbf{50k+ invoices} submitted with 100\% acceptance).}
+  \resumeItem{Designed queue management and ticketing workflows by interfacing with weight scales, barcode scanners, and thermal receipt printers via \textbf{AIDL} and serial protocols.}
+  \resumeItem{Led architectural refactoring toward \textbf{Domain-Driven Design (DDD)} and modular packaging, sustaining a \textbf{99.8\% crash-free rate} across fragmented Android POS device vendors.}
+\end{itemize}
+
+\vspace{3pt}
+\jobEntry{Android Developer (Fintech \& POS)}{Omidpay}{Sep 2022}{Mar 2023}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Developed low-level banking transaction SDKs for Android smart POS terminals (Pax A920Pro, Amp8000), supporting magnetic stripe cards, smart IC cards, and secure PIN-pad interaction.}
+  \resumeItem{Implemented strict \textbf{ISO 8583} protocol decoders/encoders, JPOS standards, and asynchronous \textbf{TCP Socket} streaming, achieving \textbf{sub-200ms latency} for high-reliability interbank transaction clearance.}
+  \resumeItem{Delivered the Android POS client for the \textbf{Nanino Smart Bakery Platform}, empowering thousands of bakeries to execute government-subsidized transactions at scale (\textbf{100k+ daily transactions}, zero data loss).}
+  \resumeItem{Hardened payment applications against tampering and reverse-engineering, successfully passing national cybersecurity audits (\textbf{AFTA}).}
+\end{itemize}
+
+\vspace{3pt}
+\jobEntry{Android Developer}{UID}{Sep 2018}{Sep 2022}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Engineered the core client SDK for Iran's premier digital identity verification platform, enabling automated liveness detection, AI-driven facial verification, and real-time video streaming over \textbf{WebSockets} for \textbf{2.5M+ active users} across major banks and brokerage firms (Sejam).}
+  \resumeItem{Spearheaded legacy refactoring from Java/MVP to \textbf{Kotlin/MVVM}, reducing APK footprint by \textbf{35\%} and drastically cutting external runtime dependencies.}
+  \resumeItem{Configured custom \textbf{ProGuard/R8} obfuscation rules, anti-hooking detection, and Android Keystore payload encryption to protect biometric data in transit and at rest.}
+\end{itemize}
+
+\vspace{3pt}
+\jobEntry{Android Developer}{Freelance (Softwaria / Varna Marlik)}{2016}{2018}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
+  \resumeItem{Built the \textbf{Tonekabon Municipal Taxi System}: in-memory Canvas rendering engine streaming dynamic receipts as bitmaps over Bluetooth/Serial to Bixolon thermal printers (\textbf{$<$800ms} print latency, 100\% field adoption).}
+  \resumeItem{Designed and shipped \textbf{Dolme} — a native Persian puzzle game on CafeBazaar with \textbf{60 FPS} gameplay via custom Canvas Views and animation loops without external game engines (50k+ downloads, 4.7/5 rating).}
+  \resumeItem{Built and deployed on-demand food ordering, classifieds, and developer utility applications for client businesses.}
+\end{itemize}
+
+%==========================================================
+% 6. KEY PROJECTS
+%==========================================================
+\section{Key Projects}
+
+\textbf{Android POS Banking \& Kehroba Contactless System} \hfill \textit{\small\color{lightgray}Sep 2024 -- Mar 2025} \\
+{\small Independently engineered a full-featured banking application for smart POS terminals. Implemented ISO 8583 binary protocol over raw TCP sockets, Java Card APDU smart card authorization, and Shaparak Kehroba contactless NFC payments via Host Card Emulation (HCE). Achieved \textbf{sub-200ms transaction latency} and \textbf{100\% central banking compliance}.}
+
+\vspace{4pt}
+\textbf{\href{https://linuxnetwork.ir}{LinuxNetwork.ir} — Linux Network \& Kernel Tuning Toolbox} \hfill \textit{\small\color{lightgray}2025} \\
+{\small High-performance bilingual web toolbox (React, TypeScript, Tailwind CSS) for Linux kernel tuning (\texttt{sysctl}, BBR TCP congestion), WireGuard VPN configuration, and CIDR subnet calculation. \textbf{100/100 Lighthouse score}, sub-100ms edge delivery via Cloudflare Pages, thousands of monthly DevOps visitors.}
+
+\vspace{4pt}
+\textbf{\href{https://vira.linuxnetwork.ir}{Vira} — Smart Document Image Processing Service} \hfill \textit{\small\color{lightgray}2025} \\
+{\small Intelligent client-side document photo standardization platform using HTML5 Canvas. Processed \textbf{20,000+ applicant photos} for educational institutions, reducing rejection rate from 18\% to \textbf{$<$0.2\%} ($<$50ms in-browser latency, zero server upload).}
+
+%==========================================================
+% 7. EDUCATION
+%==========================================================
 \section{Education}
 
 \textbf{Bachelor of Science in Software Engineering} \hfill \textit{\color{lightgray}2013 -- 2018} \\
 University of Guilan, Iran
 
-%----------CERTIFICATIONS & COMPLIANCE----------
+%==========================================================
+% 8. CERTIFICATIONS & COMPLIANCE
+%==========================================================
 \section{Certifications \& Compliance}
 
 \begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
@@ -125,7 +195,9 @@ University of Guilan, Iran
   \resumeItem{\textbf{Central Banking Payment Standards:} Verified implementation of Shaparak Kehroba contactless NFC payment protocol and ISO 8583 banking switch integrations.}
 \end{itemize}
 
-%----------LANGUAGES----------
+%==========================================================
+% 9. LANGUAGES
+%==========================================================
 \section{Languages}
 
 \textbf{Persian} — Native \quad | \quad \textbf{English} — Professional Working Proficiency

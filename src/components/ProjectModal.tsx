@@ -80,25 +80,15 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
           >
             <div className="pointer-events-auto relative w-full max-w-3xl max-h-[88vh] overflow-y-auto glass-card rounded-2xl border border-border shadow-2xl">
               {/* Header */}
-              <div
-                className={`sticky top-0 z-10 px-6 pt-6 pb-4 rounded-t-2xl backdrop-blur-md bg-surface/95 border-b border-border ${
-                  localizedProject.accentColor === 'blue'
-                    ? 'bg-gradient-to-r from-accent-blue/10 to-transparent'
-                    : 'bg-gradient-to-r from-accent-cyan/10 to-transparent'
-                }`}
-              >
+              <div className="sticky top-0 z-10 px-6 pt-6 pb-4 rounded-t-2xl bg-surface border-b border-border">
                 <div className="flex items-start justify-between gap-4">
                   <div className="flex-1 min-w-0">
                     {/* Category badges */}
-                    <div className="flex flex-wrap gap-2 mb-3">
+                    <div className="flex flex-wrap gap-1.5 mb-3">
                       {localizedProject.categories.map((cat) => (
                         <span
                           key={cat}
-                          className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-medium ${
-                            localizedProject.accentColor === 'blue'
-                              ? 'bg-accent-blue/15 text-accent-blue-light dark:text-accent-blue-light text-blue-600 border border-accent-blue/25'
-                              : 'bg-accent-cyan/15 text-accent-cyan-light dark:text-accent-cyan-light text-cyan-600 border border-accent-cyan/25'
-                          }`}
+                          className="px-2.5 py-0.5 rounded text-xs font-medium bg-surface-2 text-text-secondary border border-border"
                         >
                           {cat}
                         </span>
@@ -107,17 +97,13 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <h2 className="text-xl sm:text-2xl font-bold text-text-primary leading-tight">
                       {localizedProject.title}
                     </h2>
-                    <p
-                      className={`mt-1 text-sm font-medium ${
-                        localizedProject.accentColor === 'blue' ? 'text-accent-blue' : 'text-accent-cyan'
-                      }`}
-                    >
+                    <p className="mt-1 text-sm font-medium text-text-secondary">
                       {localizedProject.tagline}
                     </p>
                   </div>
                   <button
                     onClick={onClose}
-                    className="flex-shrink-0 p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-2 transition-all duration-200 mt-1"
+                    className="flex-shrink-0 p-2 rounded-lg text-text-muted hover:text-text-primary hover:bg-surface-2 transition-colors mt-1"
                     aria-label="Close modal"
                   >
                     <X size={20} />
@@ -131,14 +117,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     <span>{localizedProject.period}</span>
                   </div>
                   {localizedProject.keyMetric && (
-                    <div
-                      className={`flex items-center gap-1.5 text-xs font-mono font-semibold px-2.5 py-1 rounded-lg ${
-                        localizedProject.accentColor === 'blue'
-                          ? 'bg-accent-blue/10 text-accent-blue-light dark:text-accent-blue-light text-blue-600 border border-accent-blue/20'
-                          : 'bg-accent-cyan/10 text-accent-cyan-light dark:text-accent-cyan-light text-cyan-600 border border-accent-cyan/20'
-                      }`}
-                    >
-                      ★ {localizedProject.keyMetric}
+                    <div className="text-xs font-medium px-2.5 py-1 rounded-md bg-surface-2 border border-border text-text-primary">
+                      {localizedProject.keyMetric}
                     </div>
                   )}
                 </div>
@@ -148,10 +128,10 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
               <div className="px-6 py-6 space-y-6">
                 {localizedProject.star ? (
                   /* ================= STAR FRAMEWORK VIEW ================= */
-                  <div className="space-y-6">
+                  <div className="space-y-4">
                     {/* Situation (S) */}
-                    <div className="p-4 rounded-xl bg-surface-2/60 border border-border">
-                      <div className="flex items-center gap-2 mb-2 text-xs font-mono font-bold uppercase tracking-wider text-accent-blue-light dark:text-accent-blue-light text-blue-600">
+                    <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                      <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-text-primary">
                         <Target size={15} className="text-accent-blue" />
                         <span>{starLabels.situation}</span>
                       </div>
@@ -161,9 +141,9 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </div>
 
                     {/* Task (T) */}
-                    <div className="p-4 rounded-xl bg-surface-2/60 border border-border">
-                      <div className="flex items-center gap-2 mb-2 text-xs font-mono font-bold uppercase tracking-wider text-accent-cyan-light dark:text-accent-cyan-light text-cyan-600">
-                        <Compass size={15} className="text-accent-cyan" />
+                    <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                      <div className="flex items-center gap-2 mb-2 text-xs font-semibold text-text-primary">
+                        <Compass size={15} className="text-accent-blue" />
                         <span>{starLabels.task}</span>
                       </div>
                       <p className="text-sm text-text-secondary leading-relaxed">
@@ -172,8 +152,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </div>
 
                     {/* Action (A) */}
-                    <div className="p-4 rounded-xl bg-surface-2/60 border border-border">
-                      <div className="flex items-center gap-2 mb-3 text-xs font-mono font-bold uppercase tracking-wider text-accent-blue-light dark:text-accent-blue-light text-blue-600">
+                    <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                      <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-text-primary">
                         <Cpu size={15} className="text-accent-blue" />
                         <span>{starLabels.action}</span>
                       </div>
@@ -182,11 +162,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           <li key={i} className="flex items-start gap-3 text-sm text-text-secondary">
                             <CheckCircle2
                               size={16}
-                              className={`flex-shrink-0 mt-0.5 ${
-                                localizedProject.accentColor === 'blue'
-                                  ? 'text-accent-blue'
-                                  : 'text-accent-cyan'
-                              }`}
+                              className="flex-shrink-0 mt-0.5 text-accent-blue"
                             />
                             <span className="leading-relaxed">{actionPoint}</span>
                           </li>
@@ -195,14 +171,8 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                     </div>
 
                     {/* Result (R) */}
-                    <div
-                      className={`p-4 rounded-xl border ${
-                        localizedProject.accentColor === 'blue'
-                          ? 'bg-accent-blue/5 border-accent-blue/30'
-                          : 'bg-accent-cyan/5 border-accent-cyan/30'
-                      }`}
-                    >
-                      <div className="flex items-center gap-2 mb-3 text-xs font-mono font-bold uppercase tracking-wider text-emerald-500">
+                    <div className="p-4 rounded-xl bg-surface-2 border border-border">
+                      <div className="flex items-center gap-2 mb-3 text-xs font-semibold text-emerald-600 dark:text-emerald-400">
                         <TrendingUp size={15} />
                         <span>{starLabels.result}</span>
                       </div>
@@ -220,14 +190,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                   /* ================= FALLBACK VIEW ================= */
                   <>
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono mb-3">
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
                         {t.theProblem}
                       </h3>
                       <p className="text-text-secondary text-sm leading-relaxed">{localizedProject.problem}</p>
                     </div>
 
                     <div>
-                      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono mb-3">
+                      <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
                         {t.engineeringSolution}
                       </h3>
                       <ul className="space-y-3">
@@ -235,11 +205,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                           <li key={i} className="flex items-start gap-3 text-sm text-text-secondary">
                             <CheckCircle2
                               size={16}
-                              className={`flex-shrink-0 mt-0.5 ${
-                                localizedProject.accentColor === 'blue'
-                                  ? 'text-accent-blue'
-                                  : 'text-accent-cyan'
-                              }`}
+                              className="flex-shrink-0 mt-0.5 text-accent-blue"
                             />
                             <span className="leading-relaxed">{point}</span>
                           </li>
@@ -251,18 +217,14 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
 
                 {/* Tech Stack */}
                 <div className="pt-2 border-t border-border">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted font-mono mb-3">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-text-muted mb-3">
                     {t.techStack}
                   </h3>
                   <div className="flex flex-wrap gap-2 dir-ltr">
                     {localizedProject.stack.map((tech) => (
                       <span
                         key={tech}
-                        className={`px-3 py-1 rounded-full text-xs font-mono font-medium border ${
-                          localizedProject.accentColor === 'blue'
-                            ? 'bg-accent-blue/10 border-accent-blue/25 text-accent-blue-light dark:text-accent-blue-light text-blue-600'
-                            : 'bg-accent-cyan/10 border-accent-cyan/25 text-accent-cyan-light dark:text-accent-cyan-light text-cyan-600'
-                        }`}
+                        className="px-2.5 py-1 rounded text-xs font-medium border border-border bg-surface-2 text-text-secondary"
                       >
                         {tech}
                       </span>
@@ -277,11 +239,7 @@ export default function ProjectModal({ project, onClose }: ProjectModalProps) {
                       href={localizedProject.url}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-semibold border transition-all duration-200 hover:scale-105 ${
-                        localizedProject.accentColor === 'blue'
-                          ? 'bg-accent-blue/10 border-accent-blue/30 text-accent-blue-light dark:text-accent-blue-light text-blue-600 hover:bg-accent-blue/20 hover:shadow-glow-blue'
-                          : 'bg-accent-cyan/10 border-accent-cyan/30 text-accent-cyan-light dark:text-accent-cyan-light text-cyan-600 hover:bg-accent-cyan/20 hover:shadow-glow-cyan'
-                      }`}
+                      className="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium bg-accent-blue hover:bg-accent-blue-dark text-white transition-colors"
                     >
                       <ExternalLink size={15} />
                       {t.visitLiveSite}

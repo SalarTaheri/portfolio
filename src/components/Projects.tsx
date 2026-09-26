@@ -37,32 +37,18 @@ export default function Projects() {
       <section id="projects" className="py-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-6xl mx-auto">
           {/* Header */}
-          <motion.div
-            key={locale + '-header'}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: '-60px' }}
-            transition={{ duration: 0.6 }}
-            className="text-center mb-12"
-          >
-            <p className="text-accent-cyan font-mono text-sm font-medium tracking-wider uppercase mb-3">
-              {section.badge}
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight">
               {section.title}
             </h2>
-            <p className="mt-3 text-text-secondary max-w-xl mx-auto">
+            <p className="mt-2 text-text-secondary max-w-xl mx-auto text-base">
               {section.subtitle}
             </p>
-          </motion.div>
+          </div>
 
           {/* Filter tabs */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5, delay: 0.1 }}
-            className="flex flex-wrap justify-center gap-2 mb-10"
+          <div
+            className="flex flex-wrap justify-center gap-1.5 mb-10"
             role="tablist"
             aria-label="Filter projects by category"
           >
@@ -72,21 +58,21 @@ export default function Projects() {
                 onClick={() => handleFilterChange(filter.id)}
                 role="tab"
                 aria-selected={activeFilter === filter.id}
-                className={`px-5 py-2 rounded-xl text-sm font-semibold transition-all duration-200 ${
+                className={`px-4 py-1.5 rounded-lg text-xs sm:text-sm font-medium transition-colors duration-150 ${
                   activeFilter === filter.id
-                    ? 'bg-accent-blue text-white shadow-glow-blue'
-                    : 'border border-border text-text-secondary hover:border-accent-blue/50 hover:text-text-primary hover:bg-surface'
+                    ? 'bg-accent-blue text-white'
+                    : 'border border-border text-text-secondary hover:text-text-primary hover:bg-surface-2'
                 }`}
               >
                 {filter.label}
                 {activeFilter === filter.id && (
-                  <span className="ms-2 text-xs bg-white/20 px-1.5 py-0.5 rounded-full">
+                  <span className="ms-1.5 text-xs bg-white/20 px-1.5 py-0.2 rounded-full">
                     {filtered.length}
                   </span>
                 )}
               </button>
             ))}
-          </motion.div>
+          </div>
 
           {/* Project grid */}
           <AnimatePresence mode="popLayout">
@@ -119,7 +105,7 @@ export default function Projects() {
             >
               <button
                 onClick={() => setShowAll(!showAll)}
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border bg-surface hover:bg-surface-2 text-text-primary hover:border-accent-blue/50 text-sm font-semibold transition-all duration-200 shadow-sm hover:shadow-md cursor-pointer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-border bg-surface hover:bg-surface-2 text-text-primary text-sm font-medium transition-colors duration-150 cursor-pointer"
               >
                 <span>
                   {showAll

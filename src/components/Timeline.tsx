@@ -15,69 +15,53 @@ export default function Timeline() {
     <section id="experience" className="py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <motion.div
-          key={locale + '-header'}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-14"
-        >
-          <p className="text-accent-blue font-mono text-sm font-medium tracking-wider uppercase mb-3">
-            {section.badge}
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-text-primary">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight">
             {section.title}
           </h2>
-          <p className="mt-3 text-text-secondary max-w-xl mx-auto">
+          <p className="mt-2 text-text-secondary max-w-xl mx-auto text-base">
             {section.subtitle}
           </p>
-        </motion.div>
+        </div>
 
         {/* Timeline */}
         <div className="relative">
           {/* Vertical line with RTL/LTR adaptivity */}
           <div
-            className="absolute start-6 sm:start-8 top-0 bottom-0 w-px bg-gradient-to-b from-accent-blue via-accent-cyan/50 to-transparent"
+            className="absolute start-6 sm:start-8 top-0 bottom-0 w-px bg-border"
             aria-hidden="true"
           />
 
           <div className="space-y-4">
-            {section.timeline.map((entry, i) => {
+            {section.timeline.map((entry) => {
               const isExpanded = expandedId === entry.id;
 
               return (
-                <motion.div
+                <div
                   key={entry.id + locale}
-                  initial={{ opacity: 0, x: locale === 'fa' ? 30 : -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: '-40px' }}
-                  transition={{ duration: 0.55, delay: i * 0.1 }}
-                  className="relative ps-16 sm:ps-20"
+                  className="relative ps-14 sm:ps-18"
                 >
                   {/* Timeline dot */}
                   <div
-                    className={`absolute start-4 sm:start-6 top-5 -translate-x-1/2 rtl:translate-x-1/2 w-5 h-5 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                    className={`absolute start-4 sm:start-6 top-5 -translate-x-1/2 rtl:translate-x-1/2 w-4 h-4 rounded-full border-2 flex items-center justify-center transition-colors ${
                       entry.current
-                        ? 'border-accent-cyan bg-accent-cyan/20 shadow-glow-cyan'
+                        ? 'border-accent-blue bg-surface'
                         : isExpanded
-                        ? 'border-accent-blue bg-accent-blue/20 shadow-glow-blue'
-                        : 'border-border bg-surface-2'
+                        ? 'border-accent-blue bg-surface'
+                        : 'border-border bg-surface'
                     }`}
                     aria-hidden="true"
                   >
                     {entry.current && (
-                      <span className="w-2 h-2 rounded-full bg-accent-cyan animate-pulse" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent-blue" />
                     )}
                   </div>
 
                   {/* Card */}
                   <div
-                    className={`glass-card rounded-2xl overflow-hidden transition-all duration-300 ${
+                    className={`glass-card rounded-xl overflow-hidden transition-colors ${
                       isExpanded
-                        ? entry.current
-                          ? 'border-accent-cyan/30 shadow-glow-cyan'
-                          : 'border-accent-blue/30 shadow-glow-blue'
+                        ? 'border-border-bright'
                         : 'hover:border-border-bright cursor-pointer'
                     }`}
                   >
@@ -93,7 +77,7 @@ export default function Timeline() {
                             {entry.company}
                           </span>
                           {entry.current && (
-                            <span className="px-2 py-0.5 rounded-full text-xs font-medium bg-accent-cyan/15 text-accent-cyan border border-accent-cyan/25">
+                            <span className="px-2 py-0.5 rounded text-xs font-medium bg-accent-blue/10 text-accent-blue border border-accent-blue/20">
                               {section.current}
                             </span>
                           )}
@@ -102,7 +86,7 @@ export default function Timeline() {
                           {entry.role}
                         </div>
                         <div className="flex flex-wrap items-center gap-3 mt-2">
-                          <span className="text-xs font-mono text-text-muted">{entry.period}</span>
+                          <span className="text-xs text-text-muted">{entry.period}</span>
                           <span className="flex items-center gap-1 text-xs text-text-muted">
                             <MapPin size={11} />
                             {entry.location}
@@ -110,7 +94,7 @@ export default function Timeline() {
                         </div>
                       </div>
                       <div className="flex-shrink-0 mt-1 text-text-muted">
-                        {isExpanded ? <ChevronUp size={18} /> : <ChevronDown size={18} />}
+                        {isExpanded ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
                       </div>
                     </button>
 
@@ -122,27 +106,22 @@ export default function Timeline() {
                           initial={{ height: 0, opacity: 0 }}
                           animate={{ height: 'auto', opacity: 1 }}
                           exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+                          transition={{ duration: 0.2, ease: 'easeOut' }}
                           className="overflow-hidden"
                         >
                           <div className="px-5 pb-5 border-t border-border/50">
-                            <ul className="space-y-3 mt-4">
+                            <ul className="space-y-2.5 mt-3">
                               {entry.highlights.map((point, pi) => (
-                                <motion.li
+                                <li
                                   key={pi}
-                                  initial={{ opacity: 0, x: locale === 'fa' ? 10 : -10 }}
-                                  animate={{ opacity: 1, x: 0 }}
-                                  transition={{ delay: pi * 0.06, duration: 0.3 }}
-                                  className="flex items-start gap-3 text-sm text-text-secondary"
+                                  className="flex items-start gap-2.5 text-xs sm:text-sm text-text-secondary"
                                 >
                                   <CheckCircle2
                                     size={15}
-                                    className={`flex-shrink-0 mt-0.5 ${
-                                      entry.current ? 'text-accent-cyan' : 'text-accent-blue'
-                                    }`}
+                                    className="flex-shrink-0 mt-0.5 text-accent-blue"
                                   />
                                   <span className="leading-relaxed">{point}</span>
-                                </motion.li>
+                                </li>
                               ))}
                             </ul>
                           </div>
@@ -150,7 +129,7 @@ export default function Timeline() {
                       )}
                     </AnimatePresence>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>

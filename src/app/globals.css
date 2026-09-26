@@ -5,32 +5,30 @@
 @layer base {
   /* ── Light Theme (default when .dark is absent) ─────────── */
   :root {
-    --color-background: 248 250 252;       /* #F8FAFC slate-50 */
+    --color-background: 250 250 250;       /* #FAFAFA neutral-50 */
     --color-surface: 255 255 255;          /* #FFFFFF white */
-    --color-surface-2: 241 245 249;        /* #F1F5F9 slate-100 */
-    --color-border: 226 232 240;           /* #E2E8F0 slate-200 */
-    --color-border-bright: 203 213 225;    /* #CBD5E1 slate-300 */
-    --color-text-primary: 15 23 42;        /* #0F172A slate-900 */
-    --color-text-secondary: 71 85 105;     /* #475569 slate-600 */
-    --color-text-muted: 148 163 184;       /* #94A3B8 slate-400 */
-    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
-    --shadow-glass: 0 4px 20px -2px rgba(0, 0, 0, 0.05), 0 2px 6px -1px rgba(0, 0, 0, 0.03);
-    --mesh-grid-opacity: 0.04;
+    --color-surface-2: 244 244 245;        /* #F4F4F5 zinc-100 */
+    --color-border: 228 228 231;           /* #E4E4E7 zinc-200 */
+    --color-border-bright: 212 212 216;    /* #D4D4D8 zinc-300 */
+    --color-text-primary: 24 24 27;        /* #18181B zinc-900 */
+    --color-text-secondary: 82 82 91;      /* #52525B zinc-600 */
+    --color-text-muted: 161 161 170;       /* #A1A1AA zinc-400 */
+    --shadow-card: 0 1px 2px rgba(0, 0, 0, 0.05);
+    --shadow-glass: 0 1px 3px rgba(0, 0, 0, 0.05);
   }
 
   /* ── Dark Theme (active when .dark class is on html) ────── */
   .dark {
-    --color-background: 11 15 25;          /* #0B0F19 deep obsidian */
-    --color-surface: 17 24 39;             /* #111827 slate-900 */
-    --color-surface-2: 26 34 53;           /* #1a2235 */
-    --color-border: 30 45 61;              /* #1E2D3D */
-    --color-border-bright: 46 74 106;      /* #2E4A6A */
-    --color-text-primary: 240 244 255;     /* #F0F4FF */
-    --color-text-secondary: 148 163 184;   /* #94A3B8 */
-    --color-text-muted: 100 116 139;       /* #64748B */
-    --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.5);
-    --shadow-glass: 0 4px 24px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.04);
-    --mesh-grid-opacity: 0.04;
+    --color-background: 24 24 27;          /* #18181B zinc-900 (deep charcoal zinc) */
+    --color-surface: 39 39 42;             /* #27272A zinc-800 */
+    --color-surface-2: 52 52 56;           /* #343438 */
+    --color-border: 63 63 70;              /* #3F3F46 zinc-700 */
+    --color-border-bright: 82 82 91;       /* #52525B zinc-600 */
+    --color-text-primary: 250 250 250;     /* #FAFAFA zinc-50 */
+    --color-text-secondary: 161 161 170;   /* #A1A1AA zinc-400 */
+    --color-text-muted: 113 113 122;       /* #71717A zinc-500 */
+    --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.3);
+    --shadow-glass: 0 1px 3px rgba(0, 0, 0, 0.2);
   }
 }
 
@@ -45,7 +43,7 @@ body {
   background-color: rgb(var(--color-background));
   color: rgb(var(--color-text-primary));
   overflow-x: hidden;
-  transition: background-color 0.25s ease, color 0.25s ease;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
 html[dir="rtl"] body {
@@ -65,89 +63,40 @@ html[dir="rtl"] body {
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3B82F6;
+  background: #4F46E5;
 }
 
-/* ── Mesh grid overlay ────────────────────────────────────── */
-.bg-mesh-grid {
-  background-image:
-    linear-gradient(rgba(59, 130, 246, var(--mesh-grid-opacity)) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(59, 130, 246, var(--mesh-grid-opacity)) 1px, transparent 1px);
-  background-size: 48px 48px;
-}
-
-/* ── Glassmorphism card ───────────────────────────────────── */
+/* ── Clean Card styling (replaces flashy glassmorphism) ───── */
 .glass-card {
-  background: rgb(var(--color-surface) / 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgb(var(--color-surface));
   border: 1px solid rgb(var(--color-border));
-  box-shadow: var(--shadow-glass);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-card);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
-:root:not(.dark) .glass-card:hover {
-  border-color: rgba(59, 130, 246, 0.35);
-  box-shadow: 0 8px 30px -4px rgba(59, 130, 246, 0.08), 0 2px 6px -1px rgba(0, 0, 0, 0.04);
+.glass-card:hover {
+  border-color: rgb(var(--color-border-bright));
 }
 
-.dark .glass-card:hover {
-  border-color: rgba(59, 130, 246, 0.3);
-  box-shadow:
-    0 4px 24px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(59, 130, 246, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04);
-}
-
-/* ── Glow text ────────────────────────────────────────────── */
-.text-glow-blue {
-  text-shadow: 0 0 20px rgba(59, 130, 246, 0.5), 0 0 40px rgba(59, 130, 246, 0.2);
-}
-.text-glow-cyan {
-  text-shadow: 0 0 20px rgba(6, 182, 212, 0.5), 0 0 40px rgba(6, 182, 212, 0.2);
-}
-
-/* ── Gradient text ────────────────────────────────────────── */
+/* ── Typography & Accent text ─────────────────────────────── */
 .gradient-text {
-  background: linear-gradient(135deg, #2563EB 0%, #0891B2 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #4F46E5;
 }
 
 .dark .gradient-text {
-  background: linear-gradient(135deg, #3B82F6 0%, #06B6D4 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ── Shimmer animation for loading / accent bars ─────────── */
-.shimmer-bar {
-  background: linear-gradient(90deg,
-    rgba(59, 130, 246, 0.1) 0%,
-    rgba(6, 182, 212, 0.3) 50%,
-    rgba(59, 130, 246, 0.1) 100%
-  );
-  background-size: 200% 100%;
-  animation: shimmer 2.5s linear infinite;
-}
-
-@keyframes shimmer {
-  0% { background-position: -200% 0; }
-  100% { background-position: 200% 0; }
+  color: #818CF8;
 }
 
 /* ── Focus ring (accessibility) ───────────────────────────── */
 :focus-visible {
-  outline: 2px solid #3B82F6;
-  outline-offset: 3px;
+  outline: 2px solid #4F46E5;
+  outline-offset: 2px;
   border-radius: 4px;
 }
 
 /* ── Selection color ──────────────────────────────────────── */
 ::selection {
-  background: rgba(59, 130, 246, 0.25);
+  background: rgba(79, 70, 229, 0.2);
   color: rgb(var(--color-text-primary));
 }
 
