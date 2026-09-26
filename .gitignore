@@ -41,3 +41,9 @@ Thumbs.db
 *.njsproj
 *.sln
 *.sw?
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+Resume_Salar_Taheri.pdf

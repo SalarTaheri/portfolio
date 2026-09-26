@@ -7,6 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "build:resume": "bash scripts/build-resume.sh",
     "deploy": "next build && wrangler pages deploy out",
     "deploy:quick": "wrangler pages deploy out"
   },

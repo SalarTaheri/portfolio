@@ -23,7 +23,7 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
       viewport={{ once: true, margin: '-60px' }}
       transition={{ duration: 0.55, delay: (index % 3) * 0.1, ease: [0.25, 0.46, 0.45, 0.94] }}
       whileHover={{ y: -6 }}
-      className="group glass-card rounded-2xl p-6 cursor-pointer flex flex-col h-full"
+      className="group glass-card rounded-2xl p-6 cursor-pointer flex flex-col h-full relative"
       onClick={onClick}
       role="button"
       tabIndex={0}
@@ -37,8 +37,8 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
             key={cat}
             className={`px-2.5 py-0.5 rounded-full text-xs font-mono font-medium ${
               project.accentColor === 'blue'
-                ? 'bg-accent-blue/10 text-accent-blue-light border border-accent-blue/20'
-                : 'bg-accent-cyan/10 text-accent-cyan-light border border-accent-cyan/20'
+                ? 'bg-accent-blue/10 text-blue-600 dark:text-accent-blue-light border border-accent-blue/20'
+                : 'bg-accent-cyan/10 text-cyan-600 dark:text-accent-cyan-light border border-accent-cyan/20'
             }`}
           >
             {cat}
@@ -47,7 +47,7 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
       </div>
 
       {/* Title */}
-      <h3 className="text-lg font-bold text-text-primary mb-2 leading-snug group-hover:text-accent-blue-light transition-colors duration-200">
+      <h3 className="text-lg font-bold text-text-primary mb-2 leading-snug group-hover:text-accent-blue transition-colors duration-200">
         {project.title}
       </h3>
 
@@ -56,16 +56,17 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
         {project.tagline}
       </p>
 
-      {/* Impact (if any) */}
-      {project.impact && (
+      {/* Key Metric / Impact */}
+      {(project.keyMetric || project.impact) && (
         <div
-          className={`mb-4 px-3 py-2 rounded-lg text-xs font-medium border ${
+          className={`mb-4 px-3 py-2 rounded-xl text-xs font-medium border flex items-center gap-1.5 ${
             project.accentColor === 'blue'
-              ? 'bg-accent-blue/8 border-accent-blue/20 text-accent-blue-light'
-              : 'bg-accent-cyan/8 border-accent-cyan/20 text-accent-cyan-light'
+              ? 'bg-accent-blue/10 border-accent-blue/25 text-blue-600 dark:text-accent-blue-light'
+              : 'bg-accent-cyan/10 border-accent-cyan/25 text-cyan-600 dark:text-accent-cyan-light'
           }`}
         >
-          ★ {project.impact}
+          <span className="font-bold text-accent-cyan">★</span>
+          <span className="font-mono font-semibold">{project.keyMetric || project.impact}</span>
         </div>
       )}
 
@@ -111,8 +112,8 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
             onClick={(e) => e.stopPropagation()}
             className={`flex items-center gap-1 px-2.5 py-1 rounded-lg border text-xs font-mono transition-all duration-200 ${
               project.accentColor === 'blue'
-                ? 'border-accent-blue/30 text-accent-blue-light hover:bg-accent-blue/10'
-                : 'border-accent-cyan/30 text-accent-cyan-light hover:bg-accent-cyan/10'
+                ? 'border-accent-blue/30 text-blue-600 dark:text-accent-blue-light hover:bg-accent-blue/10'
+                : 'border-accent-cyan/30 text-cyan-600 dark:text-accent-cyan-light hover:bg-accent-cyan/10'
             }`}
           >
             <ExternalLink size={11} />
@@ -127,7 +128,6 @@ export default function ProjectCard({ project, index, onClick }: ProjectCardProp
           project.accentColor === 'blue' ? 'border-accent-blue/40' : 'border-accent-cyan/40'
         }`}
         aria-hidden="true"
-        style={{ position: 'absolute' }}
       />
     </motion.article>
   );

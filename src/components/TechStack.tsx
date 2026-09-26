@@ -72,7 +72,7 @@ export default function TechStack() {
                   activeCategory === cat.id
                     ? cat.color === 'blue'
                       ? 'bg-accent-blue text-white shadow-glow-blue'
-                      : 'bg-accent-cyan text-background shadow-glow-cyan'
+                      : 'bg-accent-cyan text-slate-900 dark:text-background shadow-glow-cyan'
                     : 'border border-border text-text-secondary hover:border-accent-blue/50 hover:text-text-primary'
                 }`}
               >
@@ -129,8 +129,8 @@ export default function TechStack() {
                         transition={{ delay: catIndex * 0.05 + skillIndex * 0.02 }}
                         className={`px-3 py-1 rounded-full text-xs font-mono font-medium border transition-all duration-200 cursor-default hover:scale-105 ${
                           category.color === 'blue'
-                            ? 'bg-accent-blue/10 border-accent-blue/25 text-accent-blue-light hover:bg-accent-blue/20 hover:border-accent-blue/50'
-                            : 'bg-accent-cyan/10 border-accent-cyan/25 text-accent-cyan-light hover:bg-accent-cyan/20 hover:border-accent-cyan/50'
+                            ? 'bg-accent-blue/10 border-accent-blue/25 text-blue-600 dark:text-accent-blue-light hover:bg-accent-blue/20 hover:border-accent-blue/50'
+                            : 'bg-accent-cyan/10 border-accent-cyan/25 text-cyan-600 dark:text-accent-cyan-light hover:bg-accent-cyan/20 hover:border-accent-cyan/50'
                         }`}
                       >
                         {skill}

@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
+  darkMode: 'class',
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -9,11 +10,11 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: '#0B0F19',
-        surface: '#111827',
-        'surface-2': '#1a2235',
-        border: '#1E2D3D',
-        'border-bright': '#2E4A6A',
+        background: 'rgb(var(--color-background) / <alpha-value>)',
+        surface: 'rgb(var(--color-surface) / <alpha-value>)',
+        'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
+        border: 'rgb(var(--color-border) / <alpha-value>)',
+        'border-bright': 'rgb(var(--color-border-bright) / <alpha-value>)',
         accent: {
           blue: '#3B82F6',
           'blue-light': '#60A5FA',
@@ -23,9 +24,9 @@ const config: Config = {
           'cyan-dark': '#0891B2',
         },
         text: {
-          primary: '#F0F4FF',
-          secondary: '#94A3B8',
-          muted: '#64748B',
+          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
+          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
+          muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
         },
       },
       fontFamily: {

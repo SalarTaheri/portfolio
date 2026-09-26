@@ -90,7 +90,7 @@ export default function Contact() {
                 </div>
                 <div>
                   <div className="text-xs font-medium text-text-muted mb-0.5">{social.label}</div>
-                  <div className="text-sm font-semibold text-text-primary group-hover:text-accent-blue-light transition-colors duration-200 flex items-center justify-center gap-1 dir-ltr">
+                  <div className="text-sm font-semibold text-text-primary group-hover:text-accent-blue transition-colors duration-200 flex items-center justify-center gap-1 dir-ltr">
                     <span className="truncate max-w-[160px] font-mono text-xs">{social.text}</span>
                     {social.external && <ExternalLink size={11} className="flex-shrink-0 opacity-60" />}
                   </div>

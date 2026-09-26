@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Download, Menu, X, Globe } from 'lucide-react';
+import { Download, Menu, X, Globe, Sun, Moon } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
+import { useTheme } from '@/context/ThemeContext';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const { locale, toggleLocale } = useLanguage();
+  const { theme, toggleTheme } = useTheme();
 
   const t = content[locale].nav;
   const currentProfile = content[locale].profile;
@@ -77,13 +79,35 @@ export default function Navbar() {
           ))}
         </motion.div>
 
-        {/* Actions (Language Switcher + Download CV CTA + Hamburger) */}
+        {/* Actions (Theme Toggle + Language Switcher + Download CV CTA + Hamburger) */}
         <motion.div
           initial={{ opacity: 0, x: 20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex items-center gap-2.5 sm:gap-3"
+          className="flex items-center gap-2 sm:gap-2.5"
         >
+          {/* Theme Toggle Button */}
+          <button
+            onClick={toggleTheme}
+            className="flex items-center justify-center w-8 h-8 rounded-lg border border-border hover:border-accent-blue/40 bg-surface/80 text-text-secondary hover:text-text-primary transition-all duration-200 shadow-sm"
+            title={
+              theme === 'dark'
+                ? locale === 'fa'
+                  ? 'تغییر به حالت روشن'
+                  : 'Switch to light mode'
+                : locale === 'fa'
+                ? 'تغییر به حالت تیره'
+                : 'Switch to dark mode'
+            }
+            aria-label="Toggle theme"
+          >
+            {theme === 'dark' ? (
+              <Sun size={15} className="text-amber-400 hover:rotate-45 transition-transform duration-300" />
+            ) : (
+              <Moon size={15} className="text-indigo-600 hover:-rotate-12 transition-transform duration-300" />
+            )}
+          </button>
+
           {/* Language Switcher Button */}
           <button
             onClick={toggleLocale}

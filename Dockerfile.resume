@@ -1,0 +1,11 @@
+FROM alpine:latest
+RUN apk add --no-cache texlive texmf-dist-latexextra
+COPY scripts/latex/fontawesome5/tex/ /usr/share/texmf-dist/tex/latex/fontawesome5/
+COPY scripts/latex/fontawesome5/type1/ /usr/share/texmf-dist/fonts/type1/fontawesome5/
+COPY scripts/latex/fontawesome5/tfm/ /usr/share/texmf-dist/fonts/tfm/fontawesome5/
+COPY scripts/latex/fontawesome5/enc/ /usr/share/texmf-dist/fonts/enc/dvips/fontawesome5/
+COPY scripts/latex/fontawesome5/map/ /usr/share/texmf-dist/fonts/map/dvips/fontawesome5/
+COPY scripts/latex/fontawesome5/opentype/ /usr/share/texmf-dist/fonts/opentype/fontawesome5/
+RUN mktexlsr && updmap-sys --enable Map=fontawesome5.map
+WORKDIR /work
+CMD ["pdflatex", "-interaction=nonstopmode", "Resume_Salar_Taheri.tex"]

@@ -3,6 +3,7 @@ import localFont from 'next/font/local';
 import './globals.css';
 import { seoMeta, profile, projects } from '@/data/portfolio';
 import { LanguageProvider } from '@/context/LanguageContext';
+import { ThemeProvider } from '@/context/ThemeContext';
 
 const jakarta = localFont({
   src: [
@@ -122,7 +123,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="alternate icon" href="/favicon.ico" />
@@ -142,7 +143,9 @@ export default function RootLayout({
         className={`${jakarta.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} font-sans bg-background text-text-primary antialiased`}
       >
         <LanguageProvider>
-          {children}
+          <ThemeProvider>
+            {children}
+          </ThemeProvider>
         </LanguageProvider>
       </body>
     </html>

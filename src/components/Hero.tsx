@@ -38,25 +38,25 @@ export default function Hero() {
         <div className="absolute top-1/2 right-1/4 w-60 h-60 rounded-full bg-accent-cyan/5 blur-3xl animate-pulse-glow [animation-delay:1.5s]" />
       </div>
 
-      {/* Floating animated dots */}
+      {/* Floating animated dots (subtle ambient) */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
-        {[...Array(20)].map((_, i) => (
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}
             className="absolute w-1 h-1 rounded-full"
             style={{
-              left: `${5 + (i * 4.7) % 90}%`,
-              top: `${10 + (i * 6.3) % 80}%`,
-              backgroundColor: i % 2 === 0 ? 'rgba(59,130,246,0.4)' : 'rgba(6,182,212,0.3)',
+              left: `${8 + (i * 11.7) % 85}%`,
+              top: `${12 + (i * 10.3) % 75}%`,
+              backgroundColor: i % 2 === 0 ? 'rgba(59,130,246,0.3)' : 'rgba(6,182,212,0.25)',
             }}
             animate={{
-              y: [0, -20, 0],
-              opacity: [0.3, 0.7, 0.3],
+              y: [0, -16, 0],
+              opacity: [0.2, 0.5, 0.2],
             }}
             transition={{
-              duration: 4 + (i % 3),
+              duration: 5 + (i % 3),
               repeat: Infinity,
-              delay: (i * 0.37) % 3,
+              delay: (i * 0.5) % 3,
               ease: 'easeInOut',
             }}
           />
