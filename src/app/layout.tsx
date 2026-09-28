@@ -133,6 +133,28 @@ export default function RootLayout({
         <link rel="alternate icon" href="/favicon.ico" />
         <meta name="color-scheme" content="dark light" />
         <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              try {
+                var savedTheme = localStorage.getItem('portfolio_theme');
+                var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
+                document.documentElement.setAttribute('data-theme', theme);
+                if (theme === 'dark') {
+                  document.documentElement.classList.add('dark');
+                  document.documentElement.classList.remove('light');
+                } else {
+                  document.documentElement.classList.add('light');
+                  document.documentElement.classList.remove('dark');
+                }
+                var savedLocale = localStorage.getItem('portfolio_locale');
+                var locale = (savedLocale === 'en' || savedLocale === 'fa') ? savedLocale : 'fa';
+                document.documentElement.lang = locale;
+                document.documentElement.dir = locale === 'fa' ? 'rtl' : 'ltr';
+              } catch (e) {}
+            `,
+          }}
+        />
+        <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
         />

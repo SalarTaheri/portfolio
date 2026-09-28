@@ -91,20 +91,37 @@ html[dir="rtl"] body {
   font-family: var(--font-vazirmatn), 'Vazirmatn', system-ui, sans-serif;
 }
 
-/* Custom scrollbar */
-::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+/* Modern text-wrap & legibility (modern-web-guidance) */
+h1, h2, h3, h4 {
+  text-wrap: balance;
 }
-::-webkit-scrollbar-track {
-  background: var(--bg);
+
+p, li {
+  text-wrap: pretty;
 }
-::-webkit-scrollbar-thumb {
-  background: var(--border-light);
-  border-radius: 3px;
+
+/* Standard scrollbar styling (modern-web-guidance) */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-light) var(--bg);
+  accent-color: var(--accent);
 }
-::-webkit-scrollbar-thumb:hover {
-  background: var(--accent);
+
+@supports not (scrollbar-color: auto) {
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: var(--bg);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--border-light);
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+  }
 }
 
 /* Pulse glow keyframe */
