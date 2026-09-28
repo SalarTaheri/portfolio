@@ -1,15 +1,17 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
 import { useTheme } from '@/context/ThemeContext';
+import CommandPalette from '@/components/CommandPalette';
 
 export default function Navbar() {
   const [activeSection, setActiveSection] = useState('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isCommandOpen, setIsCommandOpen] = useState(false);
   const { locale, toggleLocale, isRTL } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
@@ -22,6 +24,18 @@ export default function Navbar() {
     { href: '#projects', label: t.projects, id: 'projects' },
     { href: '#contact', label: t.contact, id: 'contact' },
   ];
+
+  // Cmd+K / Ctrl+K keyboard shortcut
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
+        e.preventDefault();
+        setIsCommandOpen((prev) => !prev);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,8 +117,23 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Controls: Language, Theme, CTA, Mobile Menu */}
-        <div className="flex items-center gap-3">
+        {/* Action Controls: Command Palette, Language, Theme, CTA, Mobile Menu */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Command Palette Trigger */}
+          <button
+            type="button"
+            onClick={() => setIsCommandOpen(true)}
+            className="inline-flex items-center gap-1.5 h-[38px] px-2.5 sm:px-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[12.5px] font-mono transition-all duration-200 hover:-translate-y-0.5"
+            title={locale === 'fa' ? 'پالت دستورات سریع (Cmd+K)' : 'Command Palette (Cmd+K)'}
+            aria-label="Open command palette"
+          >
+            <Search className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span className="hidden xl:inline text-[12px]">{locale === 'fa' ? 'دستورات' : 'Search'}</span>
+            <kbd className="hidden sm:inline-flex items-center text-[10.5px] font-mono px-1 py-0.5 rounded bg-[var(--bg)] border border-[var(--border)] text-[var(--muted)] [direction:ltr]">
+              ⌘K
+            </kbd>
+          </button>
+
           {/* Language Switcher */}
           <button
             onClick={toggleLocale}
@@ -191,6 +220,17 @@ export default function Navbar() {
               ))}
 
               <div className="pt-3 border-t border-[var(--border)] flex flex-col gap-2">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setMobileMenuOpen(false);
+                    setIsCommandOpen(true);
+                  }}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius)] bg-[var(--surface-hover)] border border-[var(--border)] text-[var(--fg)] text-[14px] font-medium"
+                >
+                  <Search className="w-4 h-4 text-[var(--accent)]" />
+                  <span>{locale === 'fa' ? 'جستجو و پالت دستورات (⌘K)' : 'Command Palette (⌘K)'}</span>
+                </button>
                 <a
                   href="/resume.pdf"
                   download="Salar_Taheri_Resume.pdf"
@@ -215,6 +255,9 @@ export default function Navbar() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      {/* Global Command Palette Dialog */}
+      <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} />
     </header>
   );
 }

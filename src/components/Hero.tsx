@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowUpRight,
@@ -26,6 +26,22 @@ export default function Hero() {
 
   const [activeTab, setActiveTab] = useState<TabType>('profile');
   const [copied, setCopied] = useState(false);
+  const [timeStr, setTimeStr] = useState('');
+
+  useEffect(() => {
+    const updateTime = () => {
+      const now = new Date();
+      const time = now.toLocaleTimeString(locale === 'fa' ? 'fa-IR' : 'en-US', {
+        hour: '2-digit',
+        minute: '2-digit',
+        timeZone: 'Asia/Tehran',
+      });
+      setTimeStr(time);
+    };
+    updateTime();
+    const timer = setInterval(updateTime, 10000);
+    return () => clearInterval(timer);
+  }, [locale]);
 
   const handleCopyEmail = async () => {
     try {
@@ -54,12 +70,22 @@ export default function Hero() {
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
             className="flex flex-col items-start"
           >
-            {/* Status Pill */}
-            <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[var(--surface-glass)] border border-[var(--border)] backdrop-blur-md mb-6 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent)] animate-pulse-glow" />
-              <span className="text-[13px] font-medium text-[var(--fg-soft)]">
-                {hero.status}
-              </span>
+            {/* Status Pill with Live Time & Geo */}
+            <div className="inline-flex flex-wrap items-center gap-2 sm:gap-2.5 px-3.5 py-1.5 rounded-full bg-[var(--surface-glass)] border border-[var(--border)] backdrop-blur-md mb-6 shadow-sm text-[12.5px] sm:text-[13px]">
+              <div className="flex items-center gap-2">
+                <span className="w-2 h-2 rounded-full bg-[var(--accent)] shadow-[0_0_10px_var(--accent)] animate-pulse-glow" />
+                <span className="font-medium text-[var(--fg-soft)]">
+                  {hero.status}
+                </span>
+              </div>
+              {timeStr && (
+                <>
+                  <span className="text-[var(--border-light)] hidden sm:inline">•</span>
+                  <span className="font-mono text-[var(--muted)] text-[12px] [direction:ltr]">
+                    Tehran (UTC+3:30) · {timeStr}
+                  </span>
+                </>
+              )}
             </div>
 
             {/* Title with Gradient Name */}

@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
 import SpotlightCard from '@/components/SpotlightCard';
+import AndroidFrameBudget from '@/components/AndroidFrameBudget';
 
 export default function StatsGrid() {
   const { locale } = useLanguage();
@@ -41,6 +42,9 @@ export default function StatsGrid() {
             </motion.div>
           ))}
         </div>
+
+        {/* Android Choreographer & 120 FPS Frame Budget Telemetry */}
+        <AndroidFrameBudget />
       </div>
     </section>
   );
