@@ -49,15 +49,6 @@ export interface StatItem {
   label: string;
 }
 
-export interface LabAction {
-  id: 'tap_card' | 'balance' | 'print' | 'reset';
-  label: string;
-  subLabel: string;
-  icon: string;
-  badgeColor: string;
-  logs: { text: string; color: string; delay: number }[];
-}
-
 export interface PortfolioContent {
   meta: {
     title: string;
@@ -68,7 +59,6 @@ export interface PortfolioContent {
     skills: string;
     experience: string;
     projects: string;
-    simulator: string;
     contact: string;
     collaborate: string;
   };
@@ -108,19 +98,6 @@ export interface PortfolioContent {
     subtitle: string;
     projects: Project[];
   };
-  labSection: {
-    eyebrow: string;
-    title: string;
-    subtitle: string;
-    controlsTitle: string;
-    controlsDesc: string;
-    terminalDevice: string;
-    initialStatus: string;
-    initialNfc: string;
-    initialPrompt: string;
-    actions: LabAction[];
-    resetLabel: string;
-  };
   contactSection: {
     eyebrow: string;
     title: string;
@@ -153,7 +130,6 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       skills: 'مهارت‌ها',
       experience: 'تجربه کاری',
       projects: 'پروژه‌های شاخص',
-      simulator: 'آزمایشگاه سخت‌افزار',
       contact: 'تماس',
       collaborate: 'همکاری',
     },
@@ -535,67 +511,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
         },
       ],
     },
-    labSection: {
-      eyebrow: 'آزمایشگاه سخت‌افزار و پروتکل‌های لایه‌پایین',
-      title: 'شبیه‌ساز ارتباطات سخت‌افزاری و پروتکل‌های بانکی',
-      subtitle: 'نمایش تسلط بر ارتباط با تجهیزات جانبی، درایورهای AIDL، پردازش بسته‌های باینری و سوکت‌های پرسرعت.',
-      controlsTitle: 'ارسال فرمان به لایه سخت‌افزار',
-      controlsDesc: 'دستور دلخواه را انتخاب کنید تا تبادل داده با درایور AIDL، فیلد مغناطیسی NFC یا جریان باینری ISO 8583 شبیه‌سازی شود:',
-      terminalDevice: 'PAX A920PRO / AIDL DAEMON',
-      initialStatus: '[STATUS] System Initialized. AIDL peripheral listener listening.',
-      initialNfc: '[NFC] Contactless RF Field: READY',
-      initialPrompt: 'یکی از گزینه‌های بالا را برای شبیه‌سازی پروتکل انتخاب کنید...',
-      resetLabel: 'پاک‌سازی لاگ‌های ترمینال',
-      actions: [
-        {
-          id: 'tap_card',
-          label: 'ارتباط بدون تماس NFC و چیپ هوشمند',
-          subLabel: 'APDU 00A40400',
-          icon: '💳',
-          badgeColor: 'var(--accent)',
-          logs: [
-            { text: '[RF FIELD] Contactless Card Detected (ISO/IEC 14443 Type A)', color: '#10b981', delay: 100 },
-            { text: '[AIDL] Dispatching Kehroba APDU payload: 00A4040008A0000000031010', color: '#06b6d4', delay: 350 },
-            { text: '[CRYPTO] Applet Response: 9000 (Success) | Cryptogram Generated', color: '#f59e0b', delay: 600 },
-            { text: '[SUCCESS] NFC Kehroba Card Read completed in 142ms. Ready to send ISO packet.', color: '#10b981', delay: 850 },
-          ],
-        },
-        {
-          id: 'balance',
-          label: 'سوییچ تبادل بانکی شتاب (ISO 8583 MTI 0100)',
-          subLabel: '< 180ms Latency',
-          icon: '⚡',
-          badgeColor: 'var(--cyan)',
-          logs: [
-            { text: '[SWITCH] Packaging ISO 8583 MTI: 0100 (Balance Inquiry Request)', color: '#06b6d4', delay: 100 },
-            { text: '[SOCKET] Streaming packet over persistent TCP keepalive socket pool...', color: '#94a3b8', delay: 250 },
-            { text: '[SWITCH] Received ISO 8583 MTI: 0110 (Response Code: 00 Approved)', color: '#10b981', delay: 450 },
-            { text: '[DATA] Ledger Balance Retrieved: ********* IRR | Latency: 168ms', color: '#f59e0b', delay: 650 },
-          ],
-        },
-        {
-          id: 'print',
-          label: 'استریم چاپگر حرارتی و پردازش گرافیک کانواس (ESC/POS)',
-          subLabel: 'Canvas Bitmap Stream',
-          icon: '🧾',
-          badgeColor: 'var(--amber)',
-          logs: [
-            { text: '[PRINTER] Rendering rasterized 1-bit monochrome bitmap on Canvas...', color: '#f59e0b', delay: 100 },
-            { text: '[AIDL/SERIAL] Opening Bluetooth SPP /dev/rfcomm0 -> Bixolon ESC/POS', color: '#06b6d4', delay: 300 },
-            { text: '[STREAM] Pushing 384-dot ESC/POS bitmap buffers (0x1B 0x2A)...', color: '#94a3b8', delay: 550 },
-            { text: '[SUCCESS] Receipt cut command executed (0x1D 0x56). Print job finished.', color: '#10b981', delay: 800 },
-          ],
-        },
-        {
-          id: 'reset',
-          label: 'پاک‌سازی لاگ‌های ترمینال',
-          subLabel: '',
-          icon: '🔄',
-          badgeColor: 'var(--muted)',
-          logs: [],
-        },
-      ],
-    },
+
     contactSection: {
       eyebrow: 'آغاز ارتباط و همکاری',
       title: 'علاقه‌مند به خلق محصولات مقیاس‌پذیر هستید؟',
@@ -627,7 +543,6 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       skills: 'Skills',
       experience: 'Experience',
       projects: 'Projects',
-      simulator: 'Hardware Lab',
       contact: 'Contact',
       collaborate: 'Collaborate',
     },
@@ -1009,67 +924,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
         },
       ],
     },
-    labSection: {
-      eyebrow: 'Hardware & Embedded Protocols Lab',
-      title: 'Low-Level Hardware & Payment Protocols Simulator',
-      subtitle: 'Demonstrating low-level capabilities across TCP sockets, AIDL peripheral drivers, and binary protocol frames.',
-      controlsTitle: 'Send Commands to Hardware Layer Daemon',
-      controlsDesc: 'Select an operation to transmit low-level commands and simulate AIDL drivers, contactless RF fields, or ISO 8583 streams:',
-      terminalDevice: 'PAX A920PRO / AIDL DAEMON',
-      initialStatus: '[STATUS] System Initialized. AIDL peripheral listener listening.',
-      initialNfc: '[NFC] Contactless RF Field: READY',
-      initialPrompt: 'Select an action above to simulate low-level event stream...',
-      resetLabel: 'Clear Terminal Logs',
-      actions: [
-        {
-          id: 'tap_card',
-          label: 'NFC Contactless & Smart Card APDU Handshake',
-          subLabel: 'APDU 00A40400',
-          icon: '💳',
-          badgeColor: 'var(--accent)',
-          logs: [
-            { text: '[RF FIELD] Contactless Card Detected (ISO/IEC 14443 Type A)', color: '#10b981', delay: 100 },
-            { text: '[AIDL] Dispatching Kehroba APDU payload: 00A4040008A0000000031010', color: '#06b6d4', delay: 350 },
-            { text: '[CRYPTO] Applet Response: 9000 (Success) | Cryptogram Generated', color: '#f59e0b', delay: 600 },
-            { text: '[SUCCESS] NFC Card Read completed in 142ms. Ready to send ISO packet.', color: '#10b981', delay: 850 },
-          ],
-        },
-        {
-          id: 'balance',
-          label: 'Interbank Switch Socket Stream (ISO 8583 MTI 0100)',
-          subLabel: '< 180ms Latency',
-          icon: '⚡',
-          badgeColor: 'var(--cyan)',
-          logs: [
-            { text: '[SWITCH] Packaging ISO 8583 MTI: 0100 (Balance Inquiry Request)', color: '#06b6d4', delay: 100 },
-            { text: '[SOCKET] Streaming packet over persistent TCP keepalive socket pool...', color: '#94a3b8', delay: 250 },
-            { text: '[SWITCH] Received ISO 8583 MTI: 0110 (Response Code: 00 Approved)', color: '#10b981', delay: 450 },
-            { text: '[DATA] Ledger Balance Retrieved: ********* IRR | Latency: 168ms', color: '#f59e0b', delay: 650 },
-          ],
-        },
-        {
-          id: 'print',
-          label: 'Print Thermal Receipt via Bixolon (ESC/POS)',
-          subLabel: 'Canvas Bitmap Stream',
-          icon: '🧾',
-          badgeColor: 'var(--amber)',
-          logs: [
-            { text: '[PRINTER] Rendering rasterized 1-bit monochrome bitmap on Canvas...', color: '#f59e0b', delay: 100 },
-            { text: '[AIDL/SERIAL] Opening Bluetooth SPP /dev/rfcomm0 -> Bixolon ESC/POS', color: '#06b6d4', delay: 300 },
-            { text: '[STREAM] Pushing 384-dot ESC/POS bitmap buffers (0x1B 0x2A)...', color: '#94a3b8', delay: 550 },
-            { text: '[SUCCESS] Receipt cut command executed (0x1D 0x56). Print job finished.', color: '#10b981', delay: 800 },
-          ],
-        },
-        {
-          id: 'reset',
-          label: 'Clear Terminal Logs',
-          subLabel: '',
-          icon: '🔄',
-          badgeColor: 'var(--muted)',
-          logs: [],
-        },
-      ],
-    },
+
     contactSection: {
       eyebrow: 'Initiate Collaboration',
       title: 'Interested in building scalable products together?',

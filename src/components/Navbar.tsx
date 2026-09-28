@@ -20,13 +20,12 @@ export default function Navbar() {
     { href: '#skills', label: t.skills, id: 'skills' },
     { href: '#experience', label: t.experience, id: 'experience' },
     { href: '#projects', label: t.projects, id: 'projects' },
-    { href: '#simulator', label: t.simulator, id: 'simulator' },
     { href: '#contact', label: t.contact, id: 'contact' },
   ];
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['about', 'skills', 'experience', 'projects', 'simulator', 'contact'];
+      const sections = ['about', 'skills', 'experience', 'projects', 'contact'];
       const scrollPosition = window.scrollY + 140;
 
       for (const sectionId of sections) {

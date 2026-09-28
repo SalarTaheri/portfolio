@@ -5,7 +5,6 @@ import StatsGrid from '@/components/StatsGrid';
 import SkillsMatrix from '@/components/SkillsMatrix';
 import ExperienceTimeline from '@/components/ExperienceTimeline';
 import FeaturedProjects from '@/components/FeaturedProjects';
-import POSLabSimulator from '@/components/POSLabSimulator';
 import Contact from '@/components/Contact';
 import Footer from '@/components/Footer';
 
@@ -20,7 +19,6 @@ export default function Home() {
         <SkillsMatrix />
         <ExperienceTimeline />
         <FeaturedProjects />
-        <POSLabSimulator />
         <Contact />
       </main>
       <Footer />
