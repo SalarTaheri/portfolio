@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Shield, Zap, CreditCard, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, Mail, Shield, Smartphone, Layers, CheckCircle2, Terminal, Code2 } from 'lucide-react';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
 
@@ -11,17 +11,7 @@ export default function Hero() {
   const hero = content[locale].hero;
   const contact = content[locale].contactSection;
 
-  // Simulator state inside POS terminal
-  const [simState, setSimState] = useState<'ready' | 'processing' | 'success'>('ready');
-
-  const handleSimTap = () => {
-    if (simState === 'processing') return;
-    setSimState('processing');
-
-    setTimeout(() => {
-      setSimState('success');
-    }, 650);
-  };
+  const [activeTab, setActiveTab] = useState<'code' | 'architecture'>('code');
 
   return (
     <section id="about" className="relative pt-10 sm:pt-14 md:pt-20 pb-16 md:pb-24 overflow-hidden">
@@ -32,7 +22,7 @@ export default function Hero() {
       />
 
       <div className="max-w-[var(--container)] mx-auto px-6 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-14 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-14 items-center">
           {/* Left Column: Text & Content */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -49,7 +39,7 @@ export default function Hero() {
             </div>
 
             {/* Title with Gradient Name */}
-            <h1 className="text-3xl sm:text-5xl lg:text-[56px] font-extrabold leading-[1.18] tracking-tight mb-4 text-[var(--fg)]">
+            <h1 className="text-3xl sm:text-5xl lg:text-[54px] font-extrabold leading-[1.18] tracking-tight mb-4 text-[var(--fg)]">
               <span>{hero.greeting} </span>
               <span className="text-gradient">{hero.name}</span>
               <span> {hero.titleSuffix}</span>
@@ -110,22 +100,11 @@ export default function Hero() {
                     <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
                   </svg>
                 </a>
-
-                <a
-                  href={contact.websiteUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="Live Portfolio Website"
-                  className="inline-flex items-center justify-center w-11 h-11 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--muted)] hover:text-[var(--accent)] hover:border-[var(--accent)] hover:shadow-[0_4px_12px_var(--accent-glow)] hover:-translate-y-0.5 transition-all duration-200"
-                  title="salartaheri.dev"
-                >
-                  <ExternalLink className="w-5 h-5" />
-                </a>
               </div>
             </div>
           </motion.div>
 
-          {/* Right Column: Interactive POS Terminal Mockup */}
+          {/* Right Column: Android Architecture & Kotlin Studio Window */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -135,14 +114,14 @@ export default function Hero() {
             {/* Floating Metric Badge 1 (Top-Right on LTR, Top-Left on RTL) */}
             <div className="hidden sm:flex absolute -top-5 -end-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow">
               <div className="w-9 h-9 rounded-lg bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center">
-                <Shield className="w-5 h-5" />
+                <Smartphone className="w-5 h-5" />
               </div>
               <div>
-                <div className="font-mono font-bold text-lg text-[var(--fg)] leading-none">
-                  99.8%
+                <div className="font-mono font-bold text-lg text-[var(--fg)] leading-none dir-ltr">
+                  {hero.badgeUsers}
                 </div>
                 <div className="text-[11px] text-[var(--muted)] mt-1 font-medium">
-                  {hero.badgeCrashfree}
+                  {hero.badgeUsersSub}
                 </div>
               </div>
             </div>
@@ -150,19 +129,19 @@ export default function Hero() {
             {/* Floating Metric Badge 2 (Bottom-Left on LTR, Bottom-Right on RTL) */}
             <div className="hidden sm:flex absolute -bottom-5 -start-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow [animation-delay:2s]">
               <div className="w-9 h-9 rounded-lg bg-[var(--cyan-soft)] text-[var(--cyan)] flex items-center justify-center">
-                <Zap className="w-5 h-5" />
+                <Shield className="w-5 h-5" />
               </div>
               <div>
                 <div className="font-mono font-bold text-lg text-[var(--fg)] leading-none dir-ltr">
-                  &lt; 200ms
+                  {hero.badgeStability}
                 </div>
                 <div className="text-[11px] text-[var(--muted)] mt-1 font-medium">
-                  {hero.badgeLatency}
+                  {hero.badgeStabilitySub}
                 </div>
               </div>
             </div>
 
-            {/* POS Terminal Window */}
+            {/* Android Studio / Kotlin Architecture Window */}
             <div className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border-light)] hover:border-[rgba(var(--accent-rgb),0.4)] shadow-[var(--card-shadow)] hover:shadow-[0_20px_40px_-15px_var(--accent-glow)] overflow-hidden transition-all duration-300">
               {/* Window Header */}
               <div className="px-4 py-3 bg-[var(--bg-elevated)] border-b border-[var(--border)] flex items-center justify-between">
@@ -171,65 +150,83 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full bg-[#f59e0b]" />
                   <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
                 </div>
-                <div className="text-[12px] font-mono text-[var(--muted)] [direction:ltr]">
-                  {hero.terminalTitle}
+
+                {/* Editor File Tab */}
+                <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[12px] font-mono [direction:ltr]">
+                  <span className="w-2 h-2 rounded-full bg-[#a855f7]" />
+                  <span className="text-[var(--fg-soft)] font-medium">{hero.studioTab}</span>
                 </div>
-                <div className="text-[11px] font-mono text-[var(--accent)] font-semibold">
-                  {hero.terminalStatus}
+
+                {/* Build Status Indicator */}
+                <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[var(--accent)] font-semibold [direction:ltr]">
+                  <CheckCircle2 className="w-3.5 h-3.5" />
+                  <span>{hero.studioStatus}</span>
                 </div>
               </div>
 
-              {/* Terminal Body */}
-              <div className="p-5 font-mono text-[13px] [direction:ltr] text-left leading-relaxed">
-                {/* Command prompt line */}
-                <div className="flex items-center gap-2 mb-2">
-                  <span className="text-[var(--accent)] font-bold">$</span>
-                  <span className="text-[var(--cyan)] break-all">{hero.terminalCommand}</span>
+              {/* Window Body: Clean Kotlin Architecture Snippet */}
+              <div className="p-5 font-mono text-[12.5px] sm:text-[13px] [direction:ltr] text-left leading-relaxed overflow-x-auto">
+                <div className="text-[#64748b]">{'// Android Clean Architecture & Compose Stack'}</div>
+                <div className="mt-1">
+                  <span className="text-[#f59e0b]">@Composable</span>
+                </div>
+                <div>
+                  <span className="text-[#06b6d4]">fun</span>{' '}
+                  <span className="text-[var(--fg)] font-semibold">MobileArchitectProfile</span>() {'{'}
                 </div>
 
-                {/* Command output items */}
-                <div className="ps-3 border-s-2 border-[var(--border)] my-2 space-y-1 text-[var(--fg-soft)] text-[12px]">
-                  {hero.terminalOutputs.map((line, idx) => (
-                    <div key={idx} className="break-all">{line}</div>
-                  ))}
+                <div className="ps-4 space-y-0.5 my-1 text-[var(--fg-soft)]">
+                  <div>
+                    <span className="text-[#64748b]">val</span> uiState <span className="text-[#06b6d4]">by</span> viewModel.state.<span className="text-[#10b981]">collectAsStateWithLifecycle</span>()
+                  </div>
+
+                  <div className="pt-1.5">
+                    <span className="text-[var(--accent)] font-semibold">CleanArchitectureStack</span>(
+                  </div>
+                  <div className="ps-4 space-y-0.5 text-[12px]">
+                    <div>
+                      <span className="text-[#06b6d4]">ui</span> = JetpackCompose + Material3,
+                    </div>
+                    <div>
+                      <span className="text-[#06b6d4]">core</span> = Coroutines + StateFlow + MVI,
+                    </div>
+                    <div>
+                      <span className="text-[#06b6d4]">domain</span> = UseCases + DomainDrivenDesign,
+                    </div>
+                    <div>
+                      <span className="text-[#06b6d4]">data</span> = RoomDB + KtorClient + OfflineFirst,
+                    </div>
+                    <div>
+                      <span className="text-[#06b6d4]">scale</span> = ProductionScale(
+                    </div>
+                    <div className="ps-4 text-[11.5px] text-[var(--muted)]">
+                      <div>verifiedUsers = <span className="text-[#10b981]">&quot;2.5M+ Active&quot;</span>,</div>
+                      <div>stabilityRate = <span className="text-[#10b981]">&quot;99.8% Crash-Free&quot;</span>,</div>
+                      <div>security = AndroidKeystore + R8</div>
+                    </div>
+                    <div>)</div>
+                  </div>
+                  <div>)</div>
                 </div>
 
-                {/* Live Kehroba NFC / APDU Simulator Box */}
-                <div className="mt-4 p-3.5 rounded-[var(--radius)] bg-[var(--bg)] border border-dashed border-[var(--border-light)]">
-                  <div className="flex items-center justify-between text-[12px] text-[var(--muted)] mb-3">
-                    <span className="font-sans font-medium text-[var(--muted)]">{hero.simHeader}</span>
-                    <span
-                      className={`px-2 py-0.5 rounded text-[11px] font-bold uppercase transition-colors ${
-                        simState === 'ready'
-                          ? 'bg-[var(--accent-soft)] text-[var(--accent)]'
-                          : simState === 'processing'
-                          ? 'bg-[var(--amber-soft)] text-[var(--amber)]'
-                          : 'bg-[var(--accent-soft)] text-[var(--accent)]'
-                      }`}
-                    >
-                      {simState === 'ready' ? hero.simBadge : simState === 'processing' ? 'BUSY' : 'APPROVED'}
-                    </span>
-                  </div>
+                <div>{'}'}</div>
 
-                  <button
-                    onClick={handleSimTap}
-                    className="w-full py-2.5 px-3 rounded-lg bg-gradient-to-r from-[rgba(16,185,129,0.15)] to-[rgba(6,182,212,0.15)] hover:bg-[var(--accent)] text-[var(--fg)] hover:text-white border border-[var(--accent)] text-[12.5px] font-mono font-medium flex items-center justify-center gap-2 transition-all duration-200 active:scale-[0.98]"
-                  >
-                    <CreditCard className="w-4 h-4 text-[var(--accent)] group-hover:text-white" />
-                    <span>{hero.simBtn}</span>
-                  </button>
+                {/* Telemetry Architecture Badges */}
+                <div className="mt-4 pt-3.5 border-t border-[var(--border)] flex flex-wrap gap-2 text-[11px] font-sans">
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--accent-soft)] text-[var(--accent)] border border-[rgba(var(--accent-rgb),0.2)] font-medium">
+                    <Code2 className="w-3.5 h-3.5" />
+                    <span>Jetpack Compose</span>
+                  </span>
 
-                  <div className="text-[11.5px] font-mono mt-2 min-h-[20px] transition-colors">
-                    {simState === 'ready' && (
-                      <span className="text-[var(--muted)]">{hero.simReady}</span>
-                    )}
-                    {simState === 'processing' && (
-                      <span className="text-[var(--cyan)] animate-pulse">{hero.simProcessing}</span>
-                    )}
-                    {simState === 'success' && (
-                      <span className="text-[var(--accent)] font-semibold">{hero.simSuccess}</span>
-                    )}
-                  </div>
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--cyan-soft)] text-[var(--cyan)] border border-[rgba(6,182,212,0.2)] font-medium">
+                    <Layers className="w-3.5 h-3.5" />
+                    <span>Clean Architecture & MVI</span>
+                  </span>
+
+                  <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--bg)] text-[var(--fg-soft)] border border-[var(--border)] font-medium">
+                    <Shield className="w-3.5 h-3.5" />
+                    <span>Keystore & R8 Hardened</span>
+                  </span>
                 </div>
               </div>
             </div>

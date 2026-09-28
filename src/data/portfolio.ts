@@ -81,18 +81,12 @@ export interface PortfolioContent {
     bio: string;
     btnProjects: string;
     btnEmail: string;
-    badgeCrashfree: string;
-    badgeLatency: string;
-    terminalTitle: string;
-    terminalStatus: string;
-    terminalCommand: string;
-    terminalOutputs: string[];
-    simHeader: string;
-    simBadge: string;
-    simBtn: string;
-    simReady: string;
-    simProcessing: string;
-    simSuccess: string;
+    badgeUsers: string;
+    badgeUsersSub: string;
+    badgeStability: string;
+    badgeStabilitySub: string;
+    studioTab: string;
+    studioStatus: string;
   };
   stats: StatItem[];
   skillsSection: {
@@ -159,36 +153,25 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       skills: 'مهارت‌ها',
       experience: 'تجربه کاری',
       projects: 'پروژه‌های شاخص',
-      simulator: 'آزمایشگاه پوز',
+      simulator: 'آزمایشگاه سخت‌افزار',
       contact: 'تماس',
       collaborate: 'همکاری',
     },
     hero: {
-      status: 'آماده همکاری و رلوکیشن (Remote / Hybrid / Relocation)',
+      status: 'آماده همکاری و موقعیت‌های ارشد (Remote / Hybrid / Relocation)',
       greeting: 'سلام، من',
       name: 'سالار طاهری',
       titleSuffix: 'هستم.',
-      role: 'مهندس ارشد اندروید و سیستم‌های موبایل و فین‌تک',
-      bio: 'بیش از ۱۰ سال تجربه مهندسی در توسعه اکوسیستم‌های پرداخت، پایانه‌های فروش هوشمند (Smart POS)، ادغام سخت‌افزار با تراشه و کارت‌خوان، و پایپ‌لاین‌های احراز هویت بیومتریک (eKYC) در مقیاس ملی برای بیش از ۲.۵ میلیون کاربر فعال بانکی و بورسی (سجام).',
+      role: 'مهندس ارشد اندروید و معمار سیستم‌های موبایل',
+      bio: 'بیش از ۱۰ سال تجربه تخصصی در توسعه اپلیکیشن‌های مدرن اندروید با کاتلین و Jetpack Compose، طراحی و پیاده‌سازی معماری Clean و MVI، و رهبری پایپ‌لاین‌های بیومتریک (eKYC) برای بیش از ۲.۵ میلیون کاربر فعال، در کنار تخصص عمیق در لایه‌های سخت‌افزاری و ارتباطات امن.',
       btnProjects: 'مشاهده پروژه‌ها',
       btnEmail: 'ارسال ایمیل',
-      badgeCrashfree: 'پایداری بدون کرش در POS',
-      badgeLatency: 'تأخیر سوییچ شتاب (ISO 8583)',
-      terminalTitle: 'kehreba-pos-daemon :: AIDL /dev/ttyS1',
-      terminalStatus: 'ONLINE',
-      terminalCommand: 'connect-pos --device Pax-A920Pro --protocol ISO8583',
-      terminalOutputs: [
-        '[INFO] AIDL Service Bound: com.pax.service.AIDLService',
-        '[INFO] Shaparak Kehroba NFC: HCE Listener Attached',
-        '[INFO] TCP Socket Pool: KeepAlive sub-200ms to Switch',
-        '[INFO] Cryptogram: Java Card APDU 00A4040008A0000000031010',
-      ],
-      simHeader: 'تست شبیه‌ساز تراکنش بانکی / NFC',
-      simBadge: 'READY',
-      simBtn: 'تپ کارت کهربا (NFC Tap & EMV)',
-      simReady: '> آماده دریافت بسته تراکنش...',
-      simProcessing: '> پردازش بسته APDU کارت کهربا...',
-      simSuccess: '> تراکنش شتاب تایید شد [ISO 8583 0210 RC:00] (148ms)',
+      badgeUsers: '۲.۵M+ کاربر فعال',
+      badgeUsersSub: 'احراز هویت بیومتریک در مقیاس ملی',
+      badgeStability: '۹۹.۸% پایداری بدون کرش',
+      badgeStabilitySub: 'در بیش از ۱۰۰۰ مدل تلفن همراه و سخت‌افزار',
+      studioTab: 'MobileArchitecture.kt',
+      studioStatus: 'BUILD SUCCESSFUL',
     },
     stats: [
       {
@@ -553,20 +536,20 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       ],
     },
     labSection: {
-      eyebrow: 'آزمایشگاه تعاملی سخت‌افزار و پوز',
-      title: 'شبیه‌ساز زنده پروتکل‌های پرداخت',
-      subtitle: 'می‌توانید دستورات مبادله پکت‌های بانکی، تپ کارت هوشمند و چاپ حرارتی را به صورت زنده آزمایش کنید.',
-      controlsTitle: 'ارسال دستور به ترمینال شبیه‌سازی',
-      controlsDesc: 'دستور دلخواه را انتخاب کنید تا فرمان مربوطه به لایه سخت‌افزاری ارسال شده و بسته ISO 8583 یا استریم باینری تولید شود:',
-      terminalDevice: 'PAX A920PRO',
+      eyebrow: 'آزمایشگاه سخت‌افزار و پروتکل‌های لایه‌پایین',
+      title: 'شبیه‌ساز ارتباطات سخت‌افزاری و پروتکل‌های بانکی',
+      subtitle: 'نمایش تسلط بر ارتباط با تجهیزات جانبی، درایورهای AIDL، پردازش بسته‌های باینری و سوکت‌های پرسرعت.',
+      controlsTitle: 'ارسال فرمان به لایه سخت‌افزار',
+      controlsDesc: 'دستور دلخواه را انتخاب کنید تا تبادل داده با درایور AIDL، فیلد مغناطیسی NFC یا جریان باینری ISO 8583 شبیه‌سازی شود:',
+      terminalDevice: 'PAX A920PRO / AIDL DAEMON',
       initialStatus: '[STATUS] System Initialized. AIDL peripheral listener listening.',
-      initialNfc: '[NFC] Kehroba Contactless RF Field: READY',
-      initialPrompt: 'یکی از گزینه‌های بالا را برای شبیه‌سازی انتخاب کنید...',
+      initialNfc: '[NFC] Contactless RF Field: READY',
+      initialPrompt: 'یکی از گزینه‌های بالا را برای شبیه‌سازی پروتکل انتخاب کنید...',
       resetLabel: 'پاک‌سازی لاگ‌های ترمینال',
       actions: [
         {
           id: 'tap_card',
-          label: 'تپ کارت هوشمند کهربا (NFC Contactless)',
+          label: 'ارتباط بدون تماس NFC و چیپ هوشمند',
           subLabel: 'APDU 00A40400',
           icon: '💳',
           badgeColor: 'var(--accent)',
@@ -579,7 +562,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
         },
         {
           id: 'balance',
-          label: 'استعلام موجودی سوییچ شتاب (ISO 8583 MTI 0100)',
+          label: 'سوییچ تبادل بانکی شتاب (ISO 8583 MTI 0100)',
           subLabel: '< 180ms Latency',
           icon: '⚡',
           badgeColor: 'var(--cyan)',
@@ -592,7 +575,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
         },
         {
           id: 'print',
-          label: 'چاپ رسید حرارتی درایور Bixolon (ESC/POS)',
+          label: 'استریم چاپگر حرارتی و پردازش گرافیک کانواس (ESC/POS)',
           subLabel: 'Canvas Bitmap Stream',
           icon: '🧾',
           badgeColor: 'var(--amber)',
@@ -644,36 +627,25 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       skills: 'Skills',
       experience: 'Experience',
       projects: 'Projects',
-      simulator: 'POS Lab',
+      simulator: 'Hardware Lab',
       contact: 'Contact',
       collaborate: 'Collaborate',
     },
     hero: {
-      status: 'Available for Opportunities (Remote / Hybrid / Relocation)',
+      status: 'Available for Senior & Lead Roles (Remote / Hybrid / Relocation)',
       greeting: "Hi, I'm",
       name: 'Salar Taheri',
       titleSuffix: '.',
       role: 'Senior Android & Mobile Systems Engineer',
-      bio: 'Over 10 years of engineering experience developing payment ecosystems, Smart POS terminals, hardware integration with smart IC chips & card readers, and biometric eKYC pipelines serving 2.5M+ active users across banking institutions and the stock exchange.',
+      bio: 'Over 10 years of production engineering experience architecting modern Android applications with Kotlin & Jetpack Compose, implementing Clean Architecture & MVI, and engineering biometric eKYC pipelines serving 2.5M+ active users, alongside deep expertise in peripheral hardware orchestration and banking switches.',
       btnProjects: 'View Projects',
       btnEmail: 'Send Email',
-      badgeCrashfree: 'Crash-Free Stability on POS',
-      badgeLatency: 'Interbank Switch Latency (ISO 8583)',
-      terminalTitle: 'kehreba-pos-daemon :: AIDL /dev/ttyS1',
-      terminalStatus: 'ONLINE',
-      terminalCommand: 'connect-pos --device Pax-A920Pro --protocol ISO8583',
-      terminalOutputs: [
-        '[INFO] AIDL Service Bound: com.pax.service.AIDLService',
-        '[INFO] Shaparak Kehroba NFC: HCE Listener Attached',
-        '[INFO] TCP Socket Pool: KeepAlive sub-200ms to Switch',
-        '[INFO] Cryptogram: Java Card APDU 00A4040008A0000000031010',
-      ],
-      simHeader: 'Banking Transaction / NFC Simulator',
-      simBadge: 'READY',
-      simBtn: 'Tap Kehroba Card (NFC Tap & EMV)',
-      simReady: '> Ready to receive transaction payload...',
-      simProcessing: '> Processing Kehroba APDU payload...',
-      simSuccess: '> Transaction approved [ISO 8583 0210 RC:00] (148ms)',
+      badgeUsers: '2.5M+ Active Users',
+      badgeUsersSub: 'National-Scale Biometric eKYC',
+      badgeStability: '99.8% Crash-Free',
+      badgeStabilitySub: 'Across 1,000+ Device Models',
+      studioTab: 'MobileArchitecture.kt',
+      studioStatus: 'BUILD SUCCESSFUL',
     },
     stats: [
       {
@@ -1038,20 +1010,20 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       ],
     },
     labSection: {
-      eyebrow: 'Interactive Hardware & POS Lab',
-      title: 'Live Payment Protocol Simulator',
-      subtitle: 'Simulate ISO 8583 interbank switches, contactless smart card NFC taps, and thermal receipt printing in real time.',
-      controlsTitle: 'Send Commands to POS Terminal Daemon',
-      controlsDesc: 'Select an operation to transmit low-level hardware commands and generate live ISO 8583 packets or binary streams:',
-      terminalDevice: 'PAX A920PRO',
+      eyebrow: 'Hardware & Embedded Protocols Lab',
+      title: 'Low-Level Hardware & Payment Protocols Simulator',
+      subtitle: 'Demonstrating low-level capabilities across TCP sockets, AIDL peripheral drivers, and binary protocol frames.',
+      controlsTitle: 'Send Commands to Hardware Layer Daemon',
+      controlsDesc: 'Select an operation to transmit low-level commands and simulate AIDL drivers, contactless RF fields, or ISO 8583 streams:',
+      terminalDevice: 'PAX A920PRO / AIDL DAEMON',
       initialStatus: '[STATUS] System Initialized. AIDL peripheral listener listening.',
-      initialNfc: '[NFC] Kehroba Contactless RF Field: READY',
-      initialPrompt: 'Select an action above to simulate low-level POS event stream...',
+      initialNfc: '[NFC] Contactless RF Field: READY',
+      initialPrompt: 'Select an action above to simulate low-level event stream...',
       resetLabel: 'Clear Terminal Logs',
       actions: [
         {
           id: 'tap_card',
-          label: 'Tap Kehroba Smart Card (NFC Contactless)',
+          label: 'NFC Contactless & Smart Card APDU Handshake',
           subLabel: 'APDU 00A40400',
           icon: '💳',
           badgeColor: 'var(--accent)',
@@ -1059,12 +1031,12 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             { text: '[RF FIELD] Contactless Card Detected (ISO/IEC 14443 Type A)', color: '#10b981', delay: 100 },
             { text: '[AIDL] Dispatching Kehroba APDU payload: 00A4040008A0000000031010', color: '#06b6d4', delay: 350 },
             { text: '[CRYPTO] Applet Response: 9000 (Success) | Cryptogram Generated', color: '#f59e0b', delay: 600 },
-            { text: '[SUCCESS] NFC Kehroba Card Read completed in 142ms. Ready to send ISO packet.', color: '#10b981', delay: 850 },
+            { text: '[SUCCESS] NFC Card Read completed in 142ms. Ready to send ISO packet.', color: '#10b981', delay: 850 },
           ],
         },
         {
           id: 'balance',
-          label: 'Interbank Switch Balance Inquiry (ISO 8583 MTI 0100)',
+          label: 'Interbank Switch Socket Stream (ISO 8583 MTI 0100)',
           subLabel: '< 180ms Latency',
           icon: '⚡',
           badgeColor: 'var(--cyan)',
