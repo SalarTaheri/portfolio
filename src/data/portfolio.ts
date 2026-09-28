@@ -15,6 +15,9 @@ export interface Project {
   badgeType: 'fintech' | 'biometrics' | 'web';
   impact: string;
   desc: string;
+  problem?: string;
+  architecture?: string;
+  isBentoLarge?: boolean;
   tech: { name: string; featured?: boolean }[];
   footerMeta: string;
   linkText?: string;
@@ -61,6 +64,7 @@ export interface PortfolioContent {
     projects: string;
     contact: string;
     collaborate: string;
+    downloadCv: string;
   };
   hero: {
     status: string;
@@ -71,6 +75,9 @@ export interface PortfolioContent {
     bio: string;
     btnProjects: string;
     btnEmail: string;
+    downloadCv: string;
+    copyEmail: string;
+    emailCopied: string;
     badgeUsers: string;
     badgeUsersSub: string;
     badgeStability: string;
@@ -132,6 +139,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       projects: 'پروژه‌های شاخص',
       contact: 'تماس',
       collaborate: 'همکاری',
+      downloadCv: 'دانلود رزومه',
     },
     hero: {
       status: 'آماده همکاری و موقعیت‌های ارشد (Remote / Hybrid / Relocation)',
@@ -142,6 +150,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       bio: 'بیش از ۱۰ سال تجربه تخصصی در توسعه اپلیکیشن‌های مدرن اندروید با کاتلین و Jetpack Compose، طراحی و پیاده‌سازی معماری Clean و MVI، و رهبری پایپ‌لاین‌های بیومتریک (eKYC) برای بیش از ۲.۵ میلیون کاربر فعال، در کنار تخصص عمیق در لایه‌های سخت‌افزاری و ارتباطات امن.',
       btnProjects: 'مشاهده پروژه‌ها',
       btnEmail: 'ارسال ایمیل',
+      downloadCv: 'دریافت رزومه (PDF)',
+      copyEmail: 'کپی ایمیل',
+      emailCopied: 'ایمیل کپی شد!',
       badgeUsers: '۲.۵M+ کاربر فعال',
       badgeUsersSub: 'احراز هویت بیومتریک در مقیاس ملی',
       badgeStability: '۹۹.۸% پایداری بدون کرش',
@@ -387,45 +398,52 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       subtitle: 'ترکیب دانش عمیق فین‌تک، پروتکل‌های سطح پایین و توسعه سرویس‌های پرسرعت تحت وب.',
       projects: [
         {
+          id: 'ekyc-sdk',
+          title: 'کیت احراز هویت دیجیتال بیومتریک یوآیدی (UID eKYC)',
+          tagline: 'پایپ‌لاین بدون تاخیر استریم ویدیوی چهره و تشخیص زنده بودن تصویر',
+          period: '2018 – 2022',
+          badge: 'FLAGSHIP · IDENTITY & EKYC',
+          badgeType: 'biometrics',
+          isBentoLarge: true,
+          impact: '👥 احراز هویت بیش از ۲.۵ میلیون کاربر فعال در بورس و سیستم بانکی',
+          desc: 'زیرساخت مقیاس‌بالای احراز هویت دیجیتال کشور با بیش از ۲.۵ میلیون کاربر فعال؛ استریم همزمان فریم‌های ویدیویی چهره، کاهش ۴۲ درصدی افت فریم روی اینترنت ضعیف 3G و نرخ پایداری ۹۹.۹٪ در بیش از ۱۰۰۰ مدل تلفن همراه.',
+          problem: 'چالش اصلی: استریم و پردازش بلادرنگ فریم‌های ویدیویی با وضوح بالا روی شبکه‌های متغیر موبایل (3G/4G) همراه با جلوگیری از جعل هویت (Anti-Spoofing) و خطای نشت حافظه (OOM) روی دستگاه‌های اقتصادی.',
+          architecture: 'طراحی خط لوله صفر-تاخیر با CameraX و فشرده‌سازی تطبیقی، استریم دوطرفه با پروتکل WebSockets، تفکیک لایه‌ها به MVVM کاتلین، و امن‌سازی سرتاسری با Android Keystore و قوانین مبهم‌سازی پیشرفته R8.',
+          tech: [
+            { name: 'Kotlin', featured: true },
+            { name: 'CameraX', featured: true },
+            { name: 'WebSockets', featured: true },
+            { name: 'ProGuard/R8' },
+            { name: 'Android Keystore' },
+            { name: 'AI Liveness' },
+          ],
+          footerMeta: 'National Scale · 2.5M+ Users',
+          linkText: 'Case Study',
+          filter: ['sdk'],
+        },
+        {
           id: 'pos-banking',
           title: 'سامانه جامع پذیرش بانکی و پرداخت بدون تماس کهربا',
           tagline: 'اپلیکیشن جامع تراکنش‌های بانکی روی پایانه‌های هوشمند پوز',
           period: '2024 – 2025',
-          badge: 'FINTECH & HARDWARE',
+          badge: 'FLAGSHIP · FINTECH & HARDWARE',
           badgeType: 'fintech',
+          isBentoLarge: true,
           impact: '⚡ پیاده‌سازی کامل استانداردهای شاپرک و بسته باینری ISO 8583',
-          desc: 'اپلیکیشن جامع تراکنش‌های بانکی روی پایانه‌های هوشمند پوز شامل خرید، مانده‌گیری، شارژ سیم‌کارت و کالابرگ الکترونیک با پشتیبانی کامل از پرداخت بدون تماس کهربا (NFC HCE) و دستورات درایورهای سخت‌افزاری AIDL.',
+          desc: 'کلاینت مستقل تراکنش‌های بانکی روی پایانه‌های هوشمند پوز شامل خرید، مانده‌گیری، شارژ سیم‌کارت و کالابرگ الکترونیک با پشتیبانی کامل از پرداخت بدون تماس کهربا (NFC HCE) و درایورهای AIDL.',
+          problem: 'چالش اصلی: پردازش بسته‌های باینری بانکی ISO 8583 با تأخیر زیر ۲۰۰ میلی‌ثانیه، ارتباط با درایورهای سخت‌افزاری ناپایدار پوز بدون مسدود کردن ترد اصلی (Main Thread)، و گذر از ممیزی‌های فوق‌سخت‌گیرانه امنیتی افتا.',
+          architecture: 'توسعه موتور دیکودر/اینکودر بیت‌مپ ISO 8583 بر بستر سوکت‌های KeepAlive، صف‌بندی غیرمسدودکننده با Coroutines، ادغام درایورهای AIDL و تولید کریپتوگرام ARQC از طریق اپلت‌های Java Card.',
           tech: [
             { name: 'Kotlin', featured: true },
-            { name: 'ISO 8583' },
-            { name: 'Shaparak Kehroba' },
+            { name: 'ISO 8583', featured: true },
+            { name: 'Shaparak Kehroba', featured: true },
             { name: 'NFC HCE' },
             { name: 'Java Card APDU' },
             { name: 'Compose' },
           ],
-          footerMeta: 'Pax & Amp POS',
+          footerMeta: 'Pax & Amp POS · sub-200ms',
           linkText: 'Enterprise SDK',
           filter: ['fintech'],
-        },
-        {
-          id: 'ekyc-sdk',
-          title: 'کیت احراز هویت دیجیتال بیومتریک یوآیدی (UID eKYC)',
-          tagline: 'اولین پایپ‌لاین تشخیص هویت بیومتریک دیجیتال در ایران',
-          period: '2018 – 2022',
-          badge: 'IDENTITY & EKYC',
-          badgeType: 'biometrics',
-          impact: '👥 احراز هویت بیش از ۲.۵ میلیون کاربر در سامانه سجام و بانک‌ها',
-          desc: 'پایپ‌لاین بدون تاخیر استریم ویدیوی چهره با وب‌سوکت همراه با تشخیص زنده بودن تصویر (Liveness Detection)، پیاده‌سازی بهینه CameraX و فشرده‌سازی بسته‌ها با الگوریتم‌های رمزنگاری سخت‌افزاری.',
-          tech: [
-            { name: 'Kotlin', featured: true },
-            { name: 'CameraX' },
-            { name: 'WebSockets' },
-            { name: 'ProGuard/R8' },
-            { name: 'Android Keystore' },
-          ],
-          footerMeta: 'National Scale',
-          linkText: '2.5M+ Active Users',
-          filter: ['sdk'],
         },
         {
           id: 'nanino',
@@ -545,6 +563,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       projects: 'Projects',
       contact: 'Contact',
       collaborate: 'Collaborate',
+      downloadCv: 'Download CV',
     },
     hero: {
       status: 'Available for Senior & Lead Roles (Remote / Hybrid / Relocation)',
@@ -555,6 +574,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       bio: 'Over 10 years of production engineering experience architecting modern Android applications with Kotlin & Jetpack Compose, implementing Clean Architecture & MVI, and engineering biometric eKYC pipelines serving 2.5M+ active users, alongside deep expertise in peripheral hardware orchestration and banking switches.',
       btnProjects: 'View Projects',
       btnEmail: 'Send Email',
+      downloadCv: 'Download CV (PDF)',
+      copyEmail: 'Copy Email',
+      emailCopied: 'Copied to Clipboard!',
       badgeUsers: '2.5M+ Active Users',
       badgeUsersSub: 'National-Scale Biometric eKYC',
       badgeStability: '99.8% Crash-Free',
@@ -800,45 +822,52 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       subtitle: 'Combining deep fintech domain expertise, low-level protocols, and high-performance web systems.',
       projects: [
         {
+          id: 'ekyc-sdk',
+          title: 'UID Biometric eKYC SDK',
+          tagline: 'Zero-latency facial video streaming & automated biometric liveness detection',
+          period: '2018 – 2022',
+          badge: 'FLAGSHIP · IDENTITY & EKYC',
+          badgeType: 'biometrics',
+          isBentoLarge: true,
+          impact: '👥 2.5M+ active users authenticated across banking & stock exchange (Sejam)',
+          desc: 'High-scale national digital identity SDK serving 2.5M+ active users; zero-latency video frame streaming via WebSockets, 42% reduction in frame drops over constrained 3G mobile networks, and 99.9% crash-free stability maintained across 1,000+ Android device models.',
+          problem: 'Technical Challenge: Real-time high-resolution facial video frame streaming and anti-spoofing verification over unstable cellular connections, while preventing Out-Of-Memory (OOM) errors and frame drops on budget hardware.',
+          architecture: 'Engineered a zero-overhead CameraX pipeline with adaptive frame compression, duplex WebSockets streaming, Kotlin MVVM architecture, and cryptographic payload protection via hardware Android Keystore and custom R8 obfuscation rules.',
+          tech: [
+            { name: 'Kotlin', featured: true },
+            { name: 'CameraX', featured: true },
+            { name: 'WebSockets', featured: true },
+            { name: 'ProGuard/R8' },
+            { name: 'Android Keystore' },
+            { name: 'AI Liveness' },
+          ],
+          footerMeta: 'National Scale · 2.5M+ Users',
+          linkText: 'Case Study',
+          filter: ['sdk'],
+        },
+        {
           id: 'pos-banking',
           title: 'Android POS Banking & Kehroba Contactless System',
           tagline: 'Independent full-featured banking transaction client for smart POS terminals',
           period: '2024 – 2025',
-          badge: 'FINTECH & HARDWARE',
+          badge: 'FLAGSHIP · FINTECH & HARDWARE',
           badgeType: 'fintech',
+          isBentoLarge: true,
           impact: '⚡ Full implementation of Shaparak Kehroba NFC and raw ISO 8583 binary packets',
-          desc: 'Comprehensive banking transaction app for smart POS terminals (Purchase, Balance Inquiry, Mobile Top-Up, Kala Barg vouchers) with Shaparak Kehroba NFC HCE and vendor AIDL hardware drivers.',
+          desc: 'Standalone banking transaction client for smart POS terminals (Pax A920Pro, Amp8000) supporting Purchase, Balance Inquiry, Top-Up, and food subsidy vouchers with Shaparak Kehroba contactless NFC (HCE) and vendor AIDL hardware drivers.',
+          problem: 'Technical Challenge: Processing low-latency ISO 8583 binary packets within <200ms roundtrip, interfacing with volatile POS vendor hardware drivers without blocking the main UI thread, and passing national AFTA cybersecurity audits.',
+          architecture: 'Developed an asynchronous ISO 8583 bitmap encoder/decoder over persistent TCP socket pools, non-blocking coroutine queues, Pax/Amp AIDL service bridges, and Java Card APDU applet integration for ARQC cryptograms.',
           tech: [
             { name: 'Kotlin', featured: true },
-            { name: 'ISO 8583' },
-            { name: 'Shaparak Kehroba' },
+            { name: 'ISO 8583', featured: true },
+            { name: 'Shaparak Kehroba', featured: true },
             { name: 'NFC HCE' },
             { name: 'Java Card APDU' },
             { name: 'Compose' },
           ],
-          footerMeta: 'Pax & Amp POS',
+          footerMeta: 'Pax & Amp POS · sub-200ms',
           linkText: 'Enterprise SDK',
           filter: ['fintech'],
-        },
-        {
-          id: 'ekyc-sdk',
-          title: 'UID Biometric eKYC SDK',
-          tagline: 'National-scale digital identity and biometric verification SDK',
-          period: '2018 – 2022',
-          badge: 'IDENTITY & EKYC',
-          badgeType: 'biometrics',
-          impact: '👥 2.5M+ active users authenticated across banking & stock exchange (Sejam)',
-          desc: 'Zero-latency video frame streaming via persistent WebSockets, automated facial liveness detection, optimized CameraX pipeline, and client security hardening with ProGuard/R8.',
-          tech: [
-            { name: 'Kotlin', featured: true },
-            { name: 'CameraX' },
-            { name: 'WebSockets' },
-            { name: 'ProGuard/R8' },
-            { name: 'Android Keystore' },
-          ],
-          footerMeta: 'National Scale',
-          linkText: '2.5M+ Active Users',
-          filter: ['sdk'],
         },
         {
           id: 'nanino',

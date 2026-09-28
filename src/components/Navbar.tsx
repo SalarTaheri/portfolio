@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe, Sun, Moon, ArrowUpRight } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
@@ -130,6 +130,17 @@ export default function Navbar() {
             )}
           </button>
 
+          {/* CV Download CTA */}
+          <a
+            href="/resume.pdf"
+            download="Salar_Taheri_Resume.pdf"
+            className="hidden md:inline-flex items-center gap-1.5 h-[38px] px-3.5 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[13px] font-medium transition-all duration-200 hover:-translate-y-0.5"
+            title={t.downloadCv}
+          >
+            <Download className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>{t.downloadCv}</span>
+          </a>
+
           {/* Collaborate CTA Button */}
           <a
             href="#contact"
@@ -179,7 +190,15 @@ export default function Navbar() {
                 </button>
               ))}
 
-              <div className="pt-3 border-t border-[var(--border)]">
+              <div className="pt-3 border-t border-[var(--border)] flex flex-col gap-2">
+                <a
+                  href="/resume.pdf"
+                  download="Salar_Taheri_Resume.pdf"
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius)] bg-[var(--surface-hover)] border border-[var(--border)] text-[var(--fg)] text-[14px] font-medium"
+                >
+                  <Download className="w-4 h-4 text-[var(--accent)]" />
+                  <span>{t.downloadCv}</span>
+                </a>
                 <a
                   href="#contact"
                   onClick={(e) => {

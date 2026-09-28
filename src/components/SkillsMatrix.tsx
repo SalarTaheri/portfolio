@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content, SkillFilter } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
+import SpotlightCard from '@/components/SpotlightCard';
 
 export default function SkillsMatrix() {
   const { locale } = useLanguage();
@@ -62,19 +63,19 @@ export default function SkillsMatrix() {
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
                 transition={{ duration: 0.3 }}
-                className="rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--border-light)] p-5 sm:p-6 shadow-[var(--card-shadow)] hover:-translate-y-1 transition-all duration-200 flex flex-col justify-between"
               >
-                <div>
-                  {/* Category Header */}
-                  <div className="flex items-center gap-3 mb-4">
-                    <div
-                      className="w-10 h-10 rounded-[10px] flex items-center justify-center text-lg flex-shrink-0"
-                      style={{ backgroundColor: cat.colorBg }}
-                    >
-                      <span>{cat.icon}</span>
+                <SpotlightCard className="p-5 sm:p-6 shadow-[var(--card-shadow)] hover:-translate-y-1 transition-all duration-200 h-full flex flex-col justify-between">
+                  <div>
+                    {/* Category Header */}
+                    <div className="flex items-center gap-3 mb-4">
+                      <div
+                        className="w-10 h-10 rounded-[10px] flex items-center justify-center text-lg flex-shrink-0"
+                        style={{ backgroundColor: cat.colorBg }}
+                      >
+                        <span>{cat.icon}</span>
+                      </div>
+                      <h3 className="font-bold text-[16px] text-[var(--fg)]">{cat.title}</h3>
                     </div>
-                    <h3 className="font-bold text-[16px] text-[var(--fg)]">{cat.title}</h3>
-                  </div>
 
                   {/* Tech Tags */}
                   <div className="flex flex-wrap gap-2">
@@ -92,7 +93,8 @@ export default function SkillsMatrix() {
                     ))}
                   </div>
                 </div>
-              </motion.div>
+              </SpotlightCard>
+            </motion.div>
             ))}
           </AnimatePresence>
         </motion.div>

@@ -1,13 +1,23 @@
 'use client';
 
+import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Mail, ExternalLink, ArrowUpRight } from 'lucide-react';
+import { Mail, ExternalLink, ArrowUpRight, Copy, Check } from 'lucide-react';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Contact() {
   const { locale, isRTL } = useLanguage();
   const contact = content[locale].contactSection;
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(contact.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2400);
+    } catch {}
+  };
 
   return (
     <section id="contact" className="py-16 md:py-24 relative">
@@ -42,14 +52,29 @@ export default function Contact() {
 
           {/* Contact Badges */}
           <div className="flex flex-wrap items-center justify-center gap-3.5 mb-9">
-            {/* Email Badge */}
-            <a
-              href={`mailto:${contact.email}`}
-              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] text-[var(--fg)] font-semibold text-[14px] transition-all duration-200 hover:-translate-y-0.5 [direction:ltr]"
-            >
-              <Mail className="w-4 h-4 text-[var(--accent)]" />
-              <span>{contact.email}</span>
-            </a>
+            {/* Email Badge with 1-Click Copy */}
+            <div className="inline-flex items-center rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] transition-all duration-200 hover:-translate-y-0.5 overflow-hidden [direction:ltr]">
+              <a
+                href={`mailto:${contact.email}`}
+                className="inline-flex items-center gap-2.5 px-4 py-3 text-[var(--fg)] font-semibold text-[14px] hover:text-[var(--accent)] transition-colors"
+              >
+                <Mail className="w-4 h-4 text-[var(--accent)]" />
+                <span>{contact.email}</span>
+              </a>
+              <button
+                type="button"
+                onClick={handleCopy}
+                className="px-3.5 py-3 border-s border-[var(--border)] text-[var(--muted)] hover:text-[var(--accent)] hover:bg-[var(--surface-hover)] transition-colors"
+                title={copied ? (locale === 'fa' ? 'ایمیل کپی شد!' : 'Copied!') : (locale === 'fa' ? 'کپی ایمیل' : 'Copy email')}
+                aria-label="Copy email address"
+              >
+                {copied ? (
+                  <Check className="w-4 h-4 text-[var(--accent)]" />
+                ) : (
+                  <Copy className="w-4 h-4" />
+                )}
+              </button>
+            </div>
 
             {/* LinkedIn Badge */}
             <a

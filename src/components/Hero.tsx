@@ -1,17 +1,41 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
-import { ArrowUpRight, Mail, Shield, Smartphone, Layers, CheckCircle2, Terminal, Code2 } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+import {
+  ArrowUpRight,
+  Shield,
+  Smartphone,
+  Layers,
+  CheckCircle2,
+  Code2,
+  Download,
+  Copy,
+  Check,
+  Cpu,
+} from 'lucide-react';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
+
+type TabType = 'profile' | 'domain' | 'scale';
 
 export default function Hero() {
   const { locale, isRTL } = useLanguage();
   const hero = content[locale].hero;
   const contact = content[locale].contactSection;
 
-  const [activeTab, setActiveTab] = useState<'code' | 'architecture'>('code');
+  const [activeTab, setActiveTab] = useState<TabType>('profile');
+  const [copied, setCopied] = useState(false);
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(contact.email);
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2400);
+    } catch {
+      // Fallback if clipboard API is unavailable
+    }
+  };
 
   return (
     <section id="about" className="relative pt-10 sm:pt-14 md:pt-20 pb-16 md:pb-24 overflow-hidden">
@@ -56,7 +80,8 @@ export default function Hero() {
             </p>
 
             {/* Action Buttons & Social Icons */}
-            <div className="flex flex-wrap items-center gap-4 mb-8 w-full sm:w-auto">
+            <div className="flex flex-wrap items-center gap-3.5 mb-8 w-full sm:w-auto">
+              {/* Primary: View Projects */}
               <a
                 href="#projects"
                 className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-[var(--radius)] bg-[var(--accent)] text-white text-[14.5px] font-semibold shadow-[0_4px_16px_var(--accent-glow)] hover:shadow-[0_6px_22px_var(--accent-glow)] hover:-translate-y-0.5 transition-all duration-200"
@@ -65,13 +90,36 @@ export default function Hero() {
                 <ArrowUpRight className="w-4 h-4" />
               </a>
 
+              {/* Direct CV Download */}
               <a
-                href={`mailto:${contact.email}`}
-                className="inline-flex items-center justify-center gap-2 h-11 px-5 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[14.5px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+                href="/resume.pdf"
+                download="Salar_Taheri_Resume.pdf"
+                className="inline-flex items-center justify-center gap-2 h-11 px-4.5 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[14px] font-semibold transition-all duration-200 hover:-translate-y-0.5"
+                title={hero.downloadCv}
               >
-                <Mail className="w-4 h-4 text-[var(--accent)]" />
-                <span>{hero.btnEmail}</span>
+                <Download className="w-4 h-4 text-[var(--accent)]" />
+                <span>{hero.downloadCv}</span>
               </a>
+
+              {/* 1-Click Copy Email Button */}
+              <button
+                type="button"
+                onClick={handleCopyEmail}
+                className="inline-flex items-center justify-center gap-2 h-11 px-4 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[13.5px] font-medium transition-all duration-200 hover:-translate-y-0.5"
+                title={hero.copyEmail}
+              >
+                {copied ? (
+                  <>
+                    <Check className="w-4 h-4 text-[var(--accent)]" />
+                    <span className="text-[var(--accent)] font-semibold">{hero.emailCopied}</span>
+                  </>
+                ) : (
+                  <>
+                    <Copy className="w-4 h-4 text-[var(--muted)]" />
+                    <span>{hero.copyEmail}</span>
+                  </>
+                )}
+              </button>
 
               {/* Social Icons */}
               <div className="flex items-center gap-2.5">
@@ -111,7 +159,7 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            {/* Floating Metric Badge 1 (Top-Right on LTR, Top-Left on RTL) */}
+            {/* Floating Metric Badge 1 */}
             <div className="hidden sm:flex absolute -top-5 -end-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow">
               <div className="w-9 h-9 rounded-lg bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center">
                 <Smartphone className="w-5 h-5" />
@@ -126,7 +174,7 @@ export default function Hero() {
               </div>
             </div>
 
-            {/* Floating Metric Badge 2 (Bottom-Left on LTR, Bottom-Right on RTL) */}
+            {/* Floating Metric Badge 2 */}
             <div className="hidden sm:flex absolute -bottom-5 -start-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow [animation-delay:2s]">
               <div className="w-9 h-9 rounded-lg bg-[var(--cyan-soft)] text-[var(--cyan)] flex items-center justify-center">
                 <Shield className="w-5 h-5" />
@@ -151,68 +199,191 @@ export default function Hero() {
                   <span className="w-2.5 h-2.5 rounded-full bg-[#10b981]" />
                 </div>
 
-                {/* Editor File Tab */}
-                <div className="flex items-center gap-2 px-3 py-1 rounded-md bg-[var(--surface)] border border-[var(--border)] text-[12px] font-mono [direction:ltr]">
-                  <span className="w-2 h-2 rounded-full bg-[#a855f7]" />
-                  <span className="text-[var(--fg-soft)] font-medium">{hero.studioTab}</span>
+                {/* Editor File Tabs */}
+                <div className="flex items-center gap-1.5 [direction:ltr]">
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('profile')}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11.5px] font-mono transition-all duration-200 ${
+                      activeTab === 'profile'
+                        ? 'bg-[var(--surface)] border border-[var(--border)] text-[var(--fg)] shadow-sm'
+                        : 'text-[var(--muted)] hover:text-[var(--fg-soft)]'
+                    }`}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[#a855f7]" />
+                    <span>ProfileScreen.kt</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('domain')}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11.5px] font-mono transition-all duration-200 ${
+                      activeTab === 'domain'
+                        ? 'bg-[var(--surface)] border border-[var(--border)] text-[var(--fg)] shadow-sm'
+                        : 'text-[var(--muted)] hover:text-[var(--fg-soft)]'
+                    }`}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[var(--cyan)]" />
+                    <span>DomainFlow.kt</span>
+                  </button>
+
+                  <button
+                    type="button"
+                    onClick={() => setActiveTab('scale')}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 rounded-md text-[11.5px] font-mono transition-all duration-200 ${
+                      activeTab === 'scale'
+                        ? 'bg-[var(--surface)] border border-[var(--border)] text-[var(--fg)] shadow-sm'
+                        : 'text-[var(--muted)] hover:text-[var(--fg-soft)]'
+                    }`}
+                  >
+                    <span className="w-2 h-2 rounded-full bg-[var(--accent)]" />
+                    <span>SystemScale.kt</span>
+                  </button>
                 </div>
 
                 {/* Build Status Indicator */}
-                <div className="inline-flex items-center gap-1.5 text-[11px] font-mono text-[var(--accent)] font-semibold [direction:ltr]">
+                <div className="hidden sm:inline-flex items-center gap-1.5 text-[11px] font-mono text-[var(--accent)] font-semibold [direction:ltr]">
                   <CheckCircle2 className="w-3.5 h-3.5" />
-                  <span>{hero.studioStatus}</span>
+                  <span>BUILD SUCCESSFUL</span>
                 </div>
               </div>
 
               {/* Window Body: Clean Kotlin Architecture Snippet */}
-              <div className="p-5 font-mono text-[12.5px] sm:text-[13px] [direction:ltr] text-left leading-relaxed overflow-x-auto">
-                <div className="text-[#64748b]">{'// Android Clean Architecture & Compose Stack'}</div>
-                <div className="mt-1">
-                  <span className="text-[#f59e0b]">@Composable</span>
-                </div>
-                <div>
-                  <span className="text-[#06b6d4]">fun</span>{' '}
-                  <span className="text-[var(--fg)] font-semibold">MobileArchitectProfile</span>() {'{'}
-                </div>
+              <div className="p-5 font-mono text-[12.5px] sm:text-[13px] [direction:ltr] text-left leading-relaxed overflow-x-auto min-h-[265px]">
+                <AnimatePresence mode="wait">
+                  {activeTab === 'profile' && (
+                    <motion.div
+                      key="profile"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="text-[#64748b]">{'// Android Clean Architecture & Compose Stack'}</div>
+                      <div className="mt-1">
+                        <span className="text-[#f59e0b]">@Composable</span>
+                      </div>
+                      <div>
+                        <span className="text-[#06b6d4]">fun</span>{' '}
+                        <span className="text-[var(--fg)] font-semibold">MobileArchitectProfile</span>() {'{'}
+                      </div>
 
-                <div className="ps-4 space-y-0.5 my-1 text-[var(--fg-soft)]">
-                  <div>
-                    <span className="text-[#64748b]">val</span> uiState <span className="text-[#06b6d4]">by</span> viewModel.state.<span className="text-[#10b981]">collectAsStateWithLifecycle</span>()
-                  </div>
+                      <div className="ps-4 space-y-0.5 my-1 text-[var(--fg-soft)]">
+                        <div>
+                          <span className="text-[#64748b]">val</span> uiState <span className="text-[#06b6d4]">by</span> viewModel.state.<span className="text-[#10b981]">collectAsStateWithLifecycle</span>()
+                        </div>
 
-                  <div className="pt-1.5">
-                    <span className="text-[var(--accent)] font-semibold">CleanArchitectureStack</span>(
-                  </div>
-                  <div className="ps-4 space-y-0.5 text-[12px]">
-                    <div>
-                      <span className="text-[#06b6d4]">ui</span> = JetpackCompose + Material3,
-                    </div>
-                    <div>
-                      <span className="text-[#06b6d4]">core</span> = Coroutines + StateFlow + MVI,
-                    </div>
-                    <div>
-                      <span className="text-[#06b6d4]">domain</span> = UseCases + DomainDrivenDesign,
-                    </div>
-                    <div>
-                      <span className="text-[#06b6d4]">data</span> = RoomDB + KtorClient + OfflineFirst,
-                    </div>
-                    <div>
-                      <span className="text-[#06b6d4]">scale</span> = ProductionScale(
-                    </div>
-                    <div className="ps-4 text-[11.5px] text-[var(--muted)]">
-                      <div>verifiedUsers = <span className="text-[#10b981]">&quot;2.5M+ Active&quot;</span>,</div>
-                      <div>stabilityRate = <span className="text-[#10b981]">&quot;99.8% Crash-Free&quot;</span>,</div>
-                      <div>security = AndroidKeystore + R8</div>
-                    </div>
-                    <div>)</div>
-                  </div>
-                  <div>)</div>
-                </div>
+                        <div className="pt-1">
+                          <span className="text-[var(--accent)] font-semibold">CleanArchitectureStack</span>(
+                        </div>
+                        <div className="ps-4 space-y-0.5 text-[12px]">
+                          <div>
+                            <span className="text-[#06b6d4]">ui</span> = JetpackCompose + Material3,
+                          </div>
+                          <div>
+                            <span className="text-[#06b6d4]">core</span> = Coroutines + StateFlow + MVI,
+                          </div>
+                          <div>
+                            <span className="text-[#06b6d4]">domain</span> = UseCases + DomainDrivenDesign,
+                          </div>
+                          <div>
+                            <span className="text-[#06b6d4]">data</span> = RoomDB + KtorClient + OfflineFirst,
+                          </div>
+                          <div>
+                            <span className="text-[#06b6d4]">scale</span> = ProductionScale(
+                          </div>
+                          <div className="ps-4 text-[11.5px] text-[var(--muted)]">
+                            <div>verifiedUsers = <span className="text-[#10b981]">&quot;2.5M+ Active&quot;</span>,</div>
+                            <div>stabilityRate = <span className="text-[#10b981]">&quot;99.8% Crash-Free&quot;</span>,</div>
+                            <div>security = AndroidKeystore + R8</div>
+                          </div>
+                          <div>)</div>
+                        </div>
+                        <div>)</div>
+                      </div>
 
-                <div>{'}'}</div>
+                      <div>{'}'}</div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === 'domain' && (
+                    <motion.div
+                      key="domain"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="text-[#64748b]">{'// Domain-Driven Design & High-Throughput Flows'}</div>
+                      <div className="mt-1">
+                        <span className="text-[#06b6d4]">class</span>{' '}
+                        <span className="text-[var(--fg)] font-semibold">VerifyBiometricUseCase</span>{' '}
+                        <span className="text-[#f59e0b]">@Inject</span> constructor(
+                      </div>
+                      <div className="ps-4 text-[12px] text-[var(--fg-soft)]">
+                        <div><span className="text-[#64748b]">private val</span> cryptoRepo: CryptoRepository,</div>
+                        <div><span className="text-[#64748b]">private val</span> dispatcher: CoroutineDispatcher = Dispatchers.IO</div>
+                      </div>
+                      <div>) {'{'}</div>
+                      <div className="ps-4 space-y-0.5 my-1 text-[var(--fg-soft)]">
+                        <div>
+                          <span className="text-[#06b6d4]">operator fun</span> <span className="text-[var(--accent)] font-semibold">invoke</span>(payload: BiometricPacket): Flow&lt;AuthResult&gt; =
+                        </div>
+                        <div className="ps-4 space-y-0.5 text-[12px]">
+                          <div><span className="text-[#06b6d4]">flow</span> {'{'}</div>
+                          <div className="ps-4">
+                            <div><span className="text-[#10b981]">emit</span>(AuthResult.ValidatingHardware)</div>
+                            <div><span className="text-[#64748b]">val</span> envelope = cryptoRepo.<span className="text-[#10b981]">signWithKeystore</span>(payload)</div>
+                            <div><span className="text-[#64748b]">val</span> result = cryptoRepo.<span className="text-[#10b981]">verifyNationalSwitch</span>(envelope)</div>
+                            <div><span className="text-[#10b981]">emit</span>(AuthResult.Success(result.sessionToken))</div>
+                          </div>
+                          <div>{'}'}.<span className="text-[#06b6d4]">flowOn</span>(dispatcher)</div>
+                        </div>
+                      </div>
+                      <div>{'}'}</div>
+                    </motion.div>
+                  )}
+
+                  {activeTab === 'scale' && (
+                    <motion.div
+                      key="scale"
+                      initial={{ opacity: 0, y: 6 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -6 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <div className="text-[#64748b]">{'// Production Scale & Security Hardening Telemetry'}</div>
+                      <div className="mt-1">
+                        <span className="text-[#06b6d4]">object</span>{' '}
+                        <span className="text-[var(--fg)] font-semibold">ProductionSystemMetrics</span> {'{'}
+                      </div>
+                      <div className="ps-4 space-y-1 my-1 text-[12px] text-[var(--fg-soft)]">
+                        <div>
+                          <span className="text-[#64748b]">const val</span> EKYC_ACTIVE_USERS = <span className="text-[#10b981]">&quot;2,500,000+&quot;</span>
+                        </div>
+                        <div>
+                          <span className="text-[#64748b]">const val</span> CRASH_FREE_RATE = <span className="text-[#10b981]">&quot;99.8% over 1,000+ models&quot;</span>
+                        </div>
+                        <div>
+                          <span className="text-[#64748b]">const val</span> INTERBANK_LATENCY = <span className="text-[#10b981]">&quot;&lt;200ms ISO 8583&quot;</span>
+                        </div>
+                        <div className="pt-1.5">
+                          <span className="text-[#64748b]">val</span> SecurityGuards = <span className="text-[#06b6d4]">listOf</span>(
+                        </div>
+                        <div className="ps-4 text-[11.5px] text-[var(--muted)]">
+                          <div>HardwareSecurity.ANDROID_KEYSTORE_TEE,</div>
+                          <div>CodeIntegrity.PROGUARD_R8_OBFUSCATION,</div>
+                          <div>NetworkSecurity.CERTIFICATE_PINNING_TLS</div>
+                        </div>
+                        <div>)</div>
+                      </div>
+                      <div>{'}'}</div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
 
                 {/* Telemetry Architecture Badges */}
-                <div className="mt-4 pt-3.5 border-t border-[var(--border)] flex flex-wrap gap-2 text-[11px] font-sans">
+                <div className="mt-5 pt-3.5 border-t border-[var(--border)] flex flex-wrap gap-2 text-[11px] font-sans">
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--accent-soft)] text-[var(--accent)] border border-[rgba(var(--accent-rgb),0.2)] font-medium">
                     <Code2 className="w-3.5 h-3.5" />
                     <span>Jetpack Compose</span>
