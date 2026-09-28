@@ -101,6 +101,11 @@ const jsonLdPerson = {
     'ISO 8583',
     'Biometric eKYC',
     'Jetpack Compose',
+    'AIDL',
+    'Java Card',
+    'Linux',
+    'Docker',
+    'CI/CD',
   ],
 };
 
@@ -109,7 +114,7 @@ const jsonLdSoftwareProjects = projects.map((p) => ({
   '@type': 'SoftwareSourceCode',
   name: p.title,
   description: p.tagline,
-  programmingLanguage: p.stack,
+  programmingLanguage: p.tech.map((t) => t.name),
   author: {
     '@type': 'Person',
     name: profile.name,
@@ -122,10 +127,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="fa" dir="rtl" className="dark" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="alternate icon" href="/favicon.ico" />
+        <meta name="color-scheme" content="dark light" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
@@ -139,7 +145,7 @@ export default function RootLayout({
         ))}
       </head>
       <body
-        className={`${jakarta.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} font-sans bg-background text-text-primary antialiased`}
+        className={`${jakarta.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} font-fa bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-[rgba(16,185,129,0.25)] selection:text-[var(--fg)]`}
       >
         <LanguageProvider>
           <ThemeProvider>

@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: 'class',
+  darkMode: ['class', '[data-theme="dark"]'],
   content: [
     './src/pages/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -10,51 +10,61 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        background: 'rgb(var(--color-background) / <alpha-value>)',
-        surface: 'rgb(var(--color-surface) / <alpha-value>)',
-        'surface-2': 'rgb(var(--color-surface-2) / <alpha-value>)',
-        border: 'rgb(var(--color-border) / <alpha-value>)',
-        'border-bright': 'rgb(var(--color-border-bright) / <alpha-value>)',
-        accent: {
-          blue: '#4F46E5',
-          'blue-light': '#6366F1',
-          'blue-dark': '#3730A3',
-          cyan: '#4F46E5',
-          'cyan-light': '#6366F1',
-          'cyan-dark': '#3730A3',
+        background: {
+          DEFAULT: 'var(--bg)',
+          elevated: 'var(--bg-elevated)',
         },
+        surface: {
+          DEFAULT: 'var(--surface)',
+          hover: 'var(--surface-hover)',
+          glass: 'var(--surface-glass)',
+        },
+        foreground: {
+          DEFAULT: 'var(--fg)',
+          soft: 'var(--fg-soft)',
+        },
+        muted: 'var(--muted)',
+        border: {
+          DEFAULT: 'var(--border)',
+          light: 'var(--border-light)',
+        },
+        accent: {
+          DEFAULT: 'var(--accent)',
+          glow: 'var(--accent-glow)',
+          soft: 'var(--accent-soft)',
+        },
+        cyan: {
+          DEFAULT: 'var(--cyan)',
+          soft: 'var(--cyan-soft)',
+        },
+        amber: {
+          DEFAULT: 'var(--amber)',
+          soft: 'var(--amber-soft)',
+        },
+        // Backwards compatibility aliases
         text: {
-          primary: 'rgb(var(--color-text-primary) / <alpha-value>)',
-          secondary: 'rgb(var(--color-text-secondary) / <alpha-value>)',
-          muted: 'rgb(var(--color-text-muted) / <alpha-value>)',
+          primary: 'var(--fg)',
+          secondary: 'var(--fg-soft)',
+          muted: 'var(--muted)',
         },
       },
       fontFamily: {
-        sans: ['var(--font-jakarta)', 'system-ui', 'sans-serif'],
-        vazir: ['var(--font-vazirmatn)', 'system-ui', 'sans-serif'],
-        mono: ['var(--font-jetbrains)', 'monospace'],
+        fa: ['var(--font-vazirmatn)', 'Vazirmatn', 'system-ui', 'sans-serif'],
+        en: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-jetbrains)', 'Fira Code', 'JetBrains Mono', 'monospace'],
+        sans: ['var(--font-jakarta)', 'Plus Jakarta Sans', 'system-ui', 'sans-serif'],
       },
-      backgroundImage: {
-        'grid-pattern': 'none',
-        'hero-radial': 'none',
-        'blue-glow': 'none',
-        'cyan-glow': 'none',
+      borderRadius: {
+        DEFAULT: '12px',
+        lg: '20px',
+        full: '9999px',
       },
-      backgroundSize: {
-        grid: '48px 48px',
+      maxWidth: {
+        container: '1200px',
       },
-      keyframes: {
-        'slide-in-left': {
-          '0%': { transform: 'translateX(-100%)', opacity: '0' },
-          '100%': { transform: 'translateX(0)', opacity: '1' },
-        },
-      },
-      animation: {},
       boxShadow: {
-        'glow-blue': 'none',
-        'glow-cyan': 'none',
-        glass: '0 1px 3px rgba(0, 0, 0, 0.08)',
-        card: '0 1px 3px rgba(0, 0, 0, 0.06)',
+        card: 'var(--card-shadow)',
+        'accent-glow': '0 4px 16px var(--accent-glow)',
       },
     },
   },

@@ -17,23 +17,35 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const [theme, setThemeState] = useState<Theme>('dark');
   const [mounted, setMounted] = useState(false);
 
+  const applyTheme = (t: Theme) => {
+    const root = document.documentElement;
+    root.setAttribute('data-theme', t);
+    if (t === 'dark') {
+      root.classList.add('dark');
+      root.classList.remove('light');
+    } else {
+      root.classList.add('light');
+      root.classList.remove('dark');
+    }
+  };
+
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('portfolio_theme') as Theme | null;
     if (saved && (saved === 'light' || saved === 'dark')) {
       setThemeState(saved);
-      document.documentElement.classList.toggle('dark', saved === 'dark');
+      applyTheme(saved);
     } else {
-      // Default to dark as primary engineering identity
+      // Default to dark mode as primary cyber fintech identity
       setThemeState('dark');
-      document.documentElement.classList.add('dark');
+      applyTheme('dark');
     }
   }, []);
 
   const setTheme = (newTheme: Theme) => {
     setThemeState(newTheme);
     localStorage.setItem('portfolio_theme', newTheme);
-    document.documentElement.classList.toggle('dark', newTheme === 'dark');
+    applyTheme(newTheme);
   };
 
   const toggleTheme = () => {

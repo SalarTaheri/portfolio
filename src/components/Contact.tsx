@@ -1,108 +1,105 @@
 'use client';
 
-import { Mail, Linkedin, Github, MapPin, ExternalLink } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Mail, ExternalLink, ArrowUpRight } from 'lucide-react';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
 
 export default function Contact() {
-  const { locale } = useLanguage();
-  const section = content[locale].contactSection;
-  const currentProfile = content[locale].profile;
-
-  const socials = [
-    {
-      label: section.emailLabel,
-      icon: Mail,
-      href: `mailto:${currentProfile.email}`,
-      text: currentProfile.email,
-      color: 'blue' as const,
-    },
-    {
-      label: section.linkedinLabel,
-      icon: Linkedin,
-      href: currentProfile.linkedin,
-      text: 'linkedin.com/in/salar-taheri',
-      color: 'cyan' as const,
-      external: true,
-    },
-    {
-      label: section.githubLabel,
-      icon: Github,
-      href: currentProfile.github,
-      text: 'github.com/salartaheri',
-      color: 'blue' as const,
-      external: true,
-    },
-  ];
+  const { locale, isRTL } = useLanguage();
+  const contact = content[locale].contactSection;
 
   return (
-    <section id="contact" className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <h2 className="text-3xl sm:text-4xl font-bold text-text-primary tracking-tight">
-            {section.title}
-          </h2>
-          <p className="mt-2 text-text-secondary max-w-lg mx-auto text-base">
-            {section.subtitle}
-          </p>
-        </div>
+    <section id="contact" className="py-16 md:py-24 relative">
+      <div className="max-w-[var(--container)] mx-auto px-6">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-50px' }}
+          transition={{ duration: 0.6 }}
+          className="relative rounded-[var(--radius-lg)] bg-gradient-to-br from-[var(--surface)] to-[var(--bg-elevated)] border border-[var(--border-light)] p-8 sm:p-14 md:p-16 text-center shadow-[var(--card-shadow)] overflow-hidden"
+        >
+          {/* Top Radial Glow */}
+          <div
+            aria-hidden="true"
+            className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[radial-gradient(circle,var(--accent-glow)_0%,transparent_70%)] blur-[50px] pointer-events-none"
+          />
 
-        {/* Contact cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-12">
-          {socials.map((social) => {
-            const Icon = social.icon;
-            return (
-              <a
-                key={social.label + locale}
-                href={social.href}
-                target={social.external ? '_blank' : undefined}
-                rel={social.external ? 'noopener noreferrer' : undefined}
-                className="glass-card rounded-xl p-5 flex flex-col items-center gap-3 group text-center hover:border-border-bright transition-colors"
-              >
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-surface-2 border border-border text-accent-blue">
-                  <Icon size={18} />
-                </div>
-                <div>
-                  <div className="text-xs font-medium text-text-muted mb-0.5">{social.label}</div>
-                  <div className="text-xs sm:text-sm font-medium text-text-primary group-hover:text-accent-blue transition-colors flex items-center justify-center gap-1 dir-ltr">
-                    <span className="truncate max-w-[180px]">{social.text}</span>
-                    {social.external && <ExternalLink size={11} className="flex-shrink-0 opacity-60" />}
-                  </div>
-                </div>
-              </a>
-            );
-          })}
-        </div>
-
-        {/* Location & Education */}
-        <div className="flex flex-wrap items-center justify-center gap-6 mb-14 text-xs sm:text-sm text-text-muted">
-          <span className="flex items-center gap-1.5">
-            <MapPin size={14} className="text-accent-blue" />
-            {section.location}
-          </span>
-          <span className="w-px h-4 bg-border hidden sm:block" />
-          <span>{section.degree}</span>
-          <span className="w-px h-4 bg-border hidden sm:block" />
-          <span className="flex items-center gap-1.5">
-            <span className="w-2 h-2 rounded-full bg-emerald-500" />
-            {section.status}
-          </span>
-        </div>
-
-        {/* Footer */}
-        <footer className="border-t border-border pt-8 text-center">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-text-muted">
-            <div className="flex items-center gap-2">
-              <div className="w-6 h-6 rounded-md bg-accent-blue flex items-center justify-center">
-                <span className="font-mono font-bold text-[10px] text-white">ST</span>
-              </div>
-              <span className="font-medium text-text-secondary">{currentProfile.name}</span>
-            </div>
-            <div>{section.builtWith}</div>
-            <div>© {new Date().getFullYear()} {section.copyright}</div>
+          {/* Eyebrow */}
+          <div className="inline-flex items-center gap-2 font-mono text-[12.5px] uppercase tracking-wider text-[var(--accent)] bg-[var(--accent-soft)] px-3.5 py-1.5 rounded-full border border-[rgba(var(--accent-rgb),0.25)] mb-5">
+            {contact.eyebrow}
           </div>
-        </footer>
+
+          {/* Title */}
+          <h2 className="text-2xl sm:text-4xl md:text-[42px] font-extrabold text-[var(--fg)] tracking-tight mb-4">
+            {contact.title}
+          </h2>
+
+          {/* Description */}
+          <p className="text-[15.5px] sm:text-[17px] text-[var(--muted)] max-w-[620px] mx-auto mb-10 leading-relaxed">
+            {contact.desc}
+          </p>
+
+          {/* Contact Badges */}
+          <div className="flex flex-wrap items-center justify-center gap-3.5 mb-9">
+            {/* Email Badge */}
+            <a
+              href={`mailto:${contact.email}`}
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] text-[var(--fg)] font-semibold text-[14px] transition-all duration-200 hover:-translate-y-0.5 [direction:ltr]"
+            >
+              <Mail className="w-4 h-4 text-[var(--accent)]" />
+              <span>{contact.email}</span>
+            </a>
+
+            {/* LinkedIn Badge */}
+            <a
+              href={contact.linkedinUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] text-[var(--fg)] font-semibold text-[14px] transition-all duration-200 hover:-translate-y-0.5 [direction:ltr]"
+            >
+              <svg className="w-4 h-4 fill-current text-[var(--cyan)]" viewBox="0 0 24 24">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+              </svg>
+              <span>{contact.linkedinDisplay}</span>
+            </a>
+
+            {/* GitHub Badge */}
+            <a
+              href={contact.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] text-[var(--fg)] font-semibold text-[14px] transition-all duration-200 hover:-translate-y-0.5 [direction:ltr]"
+            >
+              <svg className="w-4 h-4 fill-current text-[var(--fg-soft)]" viewBox="0 0 24 24">
+                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z" />
+              </svg>
+              <span>{contact.githubDisplay}</span>
+            </a>
+
+            {/* Website Badge */}
+            <a
+              href={contact.websiteUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2.5 px-5 py-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] hover:border-[var(--accent)] hover:shadow-[0_4px_16px_var(--accent-glow)] text-[var(--fg)] font-semibold text-[14px] transition-all duration-200 hover:-translate-y-0.5 [direction:ltr]"
+            >
+              <ExternalLink className="w-4 h-4 text-[var(--amber)]" />
+              <span>{contact.websiteDisplay}</span>
+            </a>
+          </div>
+
+          {/* Direct CTA Button */}
+          <div>
+            <a
+              href={`mailto:${contact.email}?subject=Job%20Inquiry%20/%20Collaboration`}
+              className="inline-flex items-center gap-2.5 px-8 py-3.5 rounded-[var(--radius)] bg-[var(--accent)] text-white text-[15.5px] font-bold shadow-[0_4px_20px_var(--accent-glow)] hover:shadow-[0_6px_28px_var(--accent-glow)] hover:-translate-y-0.5 transition-all duration-200"
+            >
+              <span>{contact.directMsgBtn}</span>
+              <ArrowUpRight className="w-5 h-5" />
+            </a>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

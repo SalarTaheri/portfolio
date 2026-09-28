@@ -1,21 +1,29 @@
+import AmbientCanvas from '@/components/AmbientCanvas';
 import Navbar from '@/components/Navbar';
 import Hero from '@/components/Hero';
-import RecruiterQuickView from '@/components/RecruiterQuickView';
-import TechStack from '@/components/TechStack';
-import Projects from '@/components/Projects';
-import Timeline from '@/components/Timeline';
+import StatsGrid from '@/components/StatsGrid';
+import SkillsMatrix from '@/components/SkillsMatrix';
+import ExperienceTimeline from '@/components/ExperienceTimeline';
+import FeaturedProjects from '@/components/FeaturedProjects';
+import POSLabSimulator from '@/components/POSLabSimulator';
 import Contact from '@/components/Contact';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   return (
-    <main className="relative min-h-screen bg-background text-text-primary transition-colors duration-200">
+    <>
+      <AmbientCanvas />
       <Navbar />
-      <Hero />
-      <RecruiterQuickView />
-      <TechStack />
-      <Projects />
-      <Timeline />
-      <Contact />
-    </main>
+      <main id="content" className="relative z-10">
+        <Hero />
+        <StatsGrid />
+        <SkillsMatrix />
+        <ExperienceTimeline />
+        <FeaturedProjects />
+        <POSLabSimulator />
+        <Contact />
+      </main>
+      <Footer />
+    </>
   );
 }

@@ -9,40 +9,37 @@ interface LanguageContextType {
   setLocale: (locale: Locale) => void;
   toggleLocale: () => void;
   isRTL: boolean;
+  mounted: boolean;
 }
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('en');
+  const [locale, setLocaleState] = useState<Locale>('fa');
   const [mounted, setMounted] = useState(false);
+
+  const applyLocale = (l: Locale) => {
+    document.documentElement.lang = l;
+    document.documentElement.dir = l === 'fa' ? 'rtl' : 'ltr';
+  };
 
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('portfolio_locale') as Locale | null;
     if (saved && (saved === 'en' || saved === 'fa')) {
       setLocaleState(saved);
-      document.documentElement.lang = saved;
-      document.documentElement.dir = saved === 'fa' ? 'rtl' : 'ltr';
+      applyLocale(saved);
     } else {
-      // Default to English or check browser language
-      const browserLang = navigator.language?.toLowerCase();
-      if (browserLang.startsWith('fa')) {
-        setLocaleState('fa');
-        document.documentElement.lang = 'fa';
-        document.documentElement.dir = 'rtl';
-      } else {
-        document.documentElement.lang = 'en';
-        document.documentElement.dir = 'ltr';
-      }
+      // Default to Persian (fa / RTL) matching reference design
+      setLocaleState('fa');
+      applyLocale('fa');
     }
   }, []);
 
   const setLocale = (newLocale: Locale) => {
     setLocaleState(newLocale);
     localStorage.setItem('portfolio_locale', newLocale);
-    document.documentElement.lang = newLocale;
-    document.documentElement.dir = newLocale === 'fa' ? 'rtl' : 'ltr';
+    applyLocale(newLocale);
   };
 
   const toggleLocale = () => {
@@ -52,7 +49,7 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const isRTL = locale === 'fa';
 
   return (
-    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, isRTL }}>
+    <LanguageContext.Provider value={{ locale, setLocale, toggleLocale, isRTL, mounted }}>
       {children}
     </LanguageContext.Provider>
   );
