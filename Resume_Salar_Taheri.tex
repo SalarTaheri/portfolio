@@ -1,10 +1,10 @@
 %-------------------------
 % Resume for Salar Taheri — Senior Android & Mobile Systems Engineer
-% Layout: Optimized for ATS + human readability (2-page, 7-section)
+% Layout: Optimized for ATS + human readability (2-page, balanced)
 %-------------------------
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage[margin=0.45in, top=0.4in, bottom=0.4in]{geometry}
+\usepackage[margin=0.4in, top=0.32in, bottom=0.32in]{geometry}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -32,13 +32,12 @@
 \titleformat{\section}
   {\normalsize\bfseries\color{accent}}
   {}{0em}{}[\color{accent}\titlerule]
-\titlespacing{\section}{0pt}{6pt}{3pt}
+\titlespacing{\section}{0pt}{3pt}{1pt}
 
-% Remove paragraph indent
+% Remove paragraph indent & set list defaults
 \setlength{\parindent}{0pt}
-
-% Tighter paragraph spacing
 \setlength{\parskip}{0pt}
+\setlist[itemize]{leftmargin=*, noitemsep, topsep=1pt, parsep=0pt, partopsep=0pt}
 
 % Custom commands
 \newcommand{\resumeItem}[1]{
@@ -58,8 +57,8 @@
       fill=metricbg,
       rounded corners=2pt,
       minimum width=3.1cm,
-      minimum height=0.85cm,
-      inner sep=3pt,
+      minimum height=0.78cm,
+      inner sep=2pt,
       align=center
     ] {
       \begin{tabular}{c}
@@ -76,13 +75,12 @@
 % 1. HEADER
 %==========================================================
 \begin{center}
-  {\Huge\bfseries\color{darktext} SALAR TAHERI} \\[4pt]
-  {\large\color{lightgray} Senior Android \& Mobile Systems Engineer} \\[6pt]
+  {\Huge\bfseries\color{darktext} SALAR TAHERI} \\[2pt]
+  {\large\color{lightgray} Senior Android \& Mobile Systems Engineer} \\[4pt]
   \faEnvelope\ \href{mailto:salar.taheri.mirani@gmail.com}{salar.taheri.mirani@gmail.com} \quad
   \faLinkedin\ \href{https://www.linkedin.com/in/salar-taheri}{linkedin.com/in/salar-taheri} \quad
-  \faGithub\ \href{https://github.com/salartaheri}{github.com/salartaheri} \\[2pt]
-  \faMapMarker*\ Tehran, Iran {\color{lightgray}\small(Open to Relocation)} \quad
-  \faGlobe\ \href{https://salartaheri.dev}{salartaheri.dev}
+  \faGithub\ \href{https://github.com/salartaheri}{github.com/salartaheri} \quad
+  \faMapMarker*\ Tehran, Iran {\color{lightgray}\small(Open to Relocation / Remote)}
 \end{center}
 
 \vspace{1pt}
@@ -92,7 +90,7 @@
 %==========================================================
 \section{Professional Summary}
 
-Senior Android \& Mobile Systems Engineer with over 10 years of production engineering experience specializing in Fintech, Android POS hardware integration, and high-scale enterprise applications. Demonstrated track record in developing secure payment SDKs, biometric eKYC pipelines serving \textbf{2.5M+ active users}, and real-time transaction processing compliant with national central banking standards (ISO 8583, Shaparak Kehroba contactless NFC). Proven mastery of modern Android architectures (Jetpack Compose, Kotlin Coroutines \& Flow, Clean Architecture, Domain-Driven Design) combined with low-level peripheral communication (AIDL, serial/thermal printers, smart card readers, Java Card applets).
+Senior Android \& Mobile Systems Engineer with over \textbf{10 years of production experience} specializing in Fintech architectures, Android POS hardware integration, low-level systems communication, and high-scale enterprise ecosystems. Track record architecting mission-critical biometric eKYC pipelines serving \textbf{2.5M+ active users}, payment SDKs processing \textbf{100k+ daily transactions}, and real-time transaction processing strictly compliant with central banking standards (ISO 8583, Shaparak Kehroba contactless NFC -- EMV / Apple Pay equivalent protocol). Deep expertise spanning modern Android engineering (Jetpack Compose, Kotlin Coroutines \& Flow, Clean Architecture, DDD) and low-level peripheral systems (C/C++ via JNI/NDK, AIDL, serial/RS232/USB SPP protocols, APDU, Java Card applets). Proven technical leader establishing CI/CD automation, setting code review standards, mentoring engineers, and leveraging AI-assisted engineering workflows (Cursor, Copilot, Agentic Tooling) for automated test scaffolding and boilerplate elimination.
 
 %==========================================================
 % 3. KEY HIGHLIGHTS
@@ -103,7 +101,7 @@ Senior Android \& Mobile Systems Engineer with over 10 years of production engin
   \hspace{4pt}
   \metricBox{2.5M+ Users}{Biometric eKYC SDK}
   \hspace{4pt}
-  \metricBox{5+ Platforms}{POS Hardware}
+  \metricBox{$<$200ms Latency}{ISO 8583 Socket Clearance}
   \hspace{4pt}
   \metricBox{99.8\%}{Crash-Free Rate}
 \end{center}
@@ -114,13 +112,14 @@ Senior Android \& Mobile Systems Engineer with over 10 years of production engin
 %==========================================================
 \section{Technical Skills}
 
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{\textbf{Languages:} Kotlin, Java, Dart, SQL, Bash}
-  \resumeItem{\textbf{Android Core \& UI:} Jetpack Compose, Android SDK, View System \& 2D Canvas, AIDL, Navigation Component, Material Design 3, CameraX, Host Card Emulation (HCE)}
-  \resumeItem{\textbf{Architecture \& Concurrency:} Clean Architecture, Domain-Driven Design (DDD), MVVM, MVI, Multi-Module Gradle, Kotlin Coroutines, Kotlin Flows, RxJava, Thread Pooling}
-  \resumeItem{\textbf{Fintech \& Hardware:} ISO 8583, JPOS, Shaparak Kehroba (NFC Contactless), Java Card (Applets), APDU Protocol, Pax \& Amp POS SDKs, ESC/POS Thermal Printers, Serial/Bluetooth SPP, Smart Card Readers, PIN-pad Integration}
-  \resumeItem{\textbf{Networking \& Data:} Ktor Client, Retrofit, OkHttp, WebSockets, TCP Sockets, REST APIs, Protobuf, Room Database, SQLite, DataStore, Hilt, Koin}
-  \resumeItem{\textbf{Security, DevOps \& Tools:} ProGuard/R8, Android Keystore, Anti-Tamper/Root Detection, Git, Linux, Docker, CI/CD, Sentry}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{Languages:} Kotlin, Java, C/C++ (JNI / NDK), Dart, SQL, Bash}
+  \resumeItem{\textbf{Android Core \& Systems:} Android SDK, Jetpack Compose, View System \& 2D Canvas, AIDL, Host Card Emulation (HCE), CameraX, Navigation Component, Material Design 3, Linux Kernel Tuning, In-Memory Bitmap Rendering}
+  \resumeItem{\textbf{Architecture \& Concurrency:} Clean Architecture, Domain-Driven Design (DDD), MVVM, Multi-Module Gradle, Kotlin Coroutines, Kotlin Flow, RxJava, Asynchronous Thread Pooling, Memory \& GC Pause Optimization}
+  \resumeItem{\textbf{Fintech \& Hardware Protocols:} ISO 8583, JPOS, Shaparak Kehroba (NFC Contactless / EMV Equivalent), Java Card (Applets), APDU Protocol, Pax \& Amp POS SDKs, ESC/POS Thermal Printers, Serial / RS232 / USB / Bluetooth SPP, Smart Card Readers, PIN-pad Integration}
+  \resumeItem{\textbf{Networking \& Data:} Asynchronous TCP Sockets, WebSockets, Ktor Client, Retrofit, OkHttp, REST APIs, Protobuf, Room Database, SQLite, DataStore, Hilt, Koin}
+  \resumeItem{\textbf{Testing, QA \& Mocking:} JUnit 5, MockK, Robolectric, Turbine, Hardware-in-the-Loop (HIL) Emulation, Mock TCP \& APDU Sockets, Simulated Peripheral Drivers, End-to-End Payment Integration Testing}
+  \resumeItem{\textbf{Security, DevOps \& AI Tools:} Android Keystore, Anti-Tamper / Root Detection, ProGuard / R8 Obfuscation, CI/CD (GitHub Actions), Docker, Git, Linux, Sentry, AI-Assisted Development (Cursor, GitHub Copilot, Agentic Tooling), Prompt Engineering for Automated Testing \& Scaffolding}
 \end{itemize}
 
 %==========================================================
@@ -129,36 +128,43 @@ Senior Android \& Mobile Systems Engineer with over 10 years of production engin
 \section{Professional Experience}
 
 \jobEntry{Senior Android Developer}{AvaParsi}{Mar 2023}{Present}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Architected and scaled an offline-first Android POS application for supermarkets and restaurants, utilizing \textbf{Room Persistence} and multi-tier local caching to manage large product catalogs with zero-latency lookups.}
-  \resumeItem{Engineered \textbf{AmnPardaz Electronic Invoicing System} in \textbf{Flutter}, enabling corporate merchants to submit cryptographically signed tax invoices to the national tax authority via smart POS terminals and smartphones (\textbf{50k+ invoices} submitted with 100\% acceptance).}
-  \resumeItem{Designed queue management and ticketing workflows by interfacing with weight scales, barcode scanners, and thermal receipt printers via \textbf{AIDL} and serial protocols.}
-  \resumeItem{Led architectural refactoring toward \textbf{Domain-Driven Design (DDD)} and modular packaging, sustaining a \textbf{99.8\% crash-free rate} across fragmented Android POS device vendors.}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{Offline-First POS Architecture \& Memory Tuning:} Architected and scaled offline-first Android POS app for supermarkets and restaurants; utilized Room Persistence, multi-tier in-memory caching, and GC optimization to handle 50k+ product catalogs with zero-latency lookups.}
+  \resumeItem{\textbf{Cryptographic Tax Compliance System:} Engineered the AmnPardaz Electronic Invoicing System in Flutter/Android, enabling corporate merchants to submit cryptographically signed tax invoices to the national tax authority via smart POS terminals (\textbf{50k+ invoices}, 100\% acceptance).}
+  \resumeItem{\textbf{Hardware Integration \& AIDL:} Designed queue management and ticketing workflows by interfacing directly with digital weight scales, barcode scanners, and ESC/POS thermal receipt printers via AIDL, USB SPP, and RS232 serial protocols.}
+  \resumeItem{\textbf{Hardware-in-the-Loop (HIL) Emulation \& Mock Sockets:} Built simulated serial drivers and mock APDU/TCP server environments to test peripheral responses and transaction sequences in CI pipelines without physical POS hardware, expanding automated test coverage by 40\%.}
+  \resumeItem{\textbf{DDD Architecture \& Cross-Vendor Stability:} Led architectural refactoring toward Domain-Driven Design (DDD) and modular multi-module Gradle packaging, sustaining a \textbf{99.8\% crash-free rate} across fragmented Android POS device vendors (Pax, Amp, Newpos, Centerm).}
+  \resumeItem{\textbf{Engineering Leadership \& AI Workflows:} Mentored junior and mid-level engineers in Kotlin Coroutines, reactive Flow pipelines, and Clean Architecture standards; integrated AI-assisted workflows (Cursor, Copilot) to accelerate unit test scaffolding and eliminate boilerplate.}
 \end{itemize}
 
-\vspace{3pt}
+\newpage
+
 \jobEntry{Android Developer (Fintech \& POS)}{Omidpay}{Sep 2022}{Mar 2023}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Developed low-level banking transaction SDKs for Android smart POS terminals (Pax A920Pro, Amp8000), supporting magnetic stripe cards, smart IC cards, and secure PIN-pad interaction.}
-  \resumeItem{Implemented strict \textbf{ISO 8583} protocol decoders/encoders, JPOS standards, and asynchronous \textbf{TCP Socket} streaming, achieving \textbf{sub-200ms latency} for high-reliability interbank transaction clearance.}
-  \resumeItem{Delivered the Android POS client for the \textbf{Nanino Smart Bakery Platform}, empowering thousands of bakeries to execute government-subsidized transactions at scale (\textbf{100k+ daily transactions}, zero data loss).}
-  \resumeItem{Hardened payment applications against tampering and reverse-engineering, successfully passing national cybersecurity audits (\textbf{AFTA}).}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{Low-Level Banking Transaction SDKs:} Engineered low-level banking SDKs for Android smart POS terminals (Pax A920Pro, Amp8000), implementing direct communication layers for magnetic stripe cards, EMV smart IC cards, and hardware-secured PIN-pads.}
+  \resumeItem{\textbf{ISO 8583 Protocol \& Sub-200ms Clearance:} Implemented strict ISO 8583 message encoders/decoders, JPOS standards, and asynchronous TCP socket streaming, optimizing network buffers and thread pools to achieve \textbf{sub-200ms latency} for interbank transaction clearance.}
+  \resumeItem{\textbf{Nanino Smart Bakery Platform:} Shipped the Android POS client for the Nanino platform -- a nationwide smart bakery retail transaction infrastructure -- powering thousands of merchants to process \textbf{100k+ daily transactions} with zero data loss.}
+  \resumeItem{\textbf{Automated Socket \& APDU Mock Testing:} Built automated mock TCP socket suites and APDU response emulators with JUnit 5 and Robolectric to validate ISO financial messaging and edge-case network dropouts in CI pipelines without physical POS hardware.}
+  \resumeItem{\textbf{Cybersecurity Hardening \& Certification:} Hardened payment binaries with anti-hooking/anti-tamper detection, native C/C++ checks, and Android Keystore encryption, successfully passing rigorous banking security audits by the National Cybersecurity Certification Body (AFTA).}
+  \resumeItem{\textbf{OEM \& Cross-Functional Collaboration:} Partnered closely with hardware OEMs (Pax, Amp) to resolve low-level firmware quirks and collaborated with backend architects to streamline financial switch payloads.}
 \end{itemize}
 
-\vspace{3pt}
-\jobEntry{Android Developer}{UID}{Sep 2018}{Sep 2022}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Engineered the core client SDK for Iran's premier digital identity verification platform, enabling automated liveness detection, AI-driven facial verification, and real-time video streaming over \textbf{WebSockets} for \textbf{2.5M+ active users} across major banks and brokerage firms (Sejam).}
-  \resumeItem{Spearheaded legacy refactoring from Java/MVP to \textbf{Kotlin/MVVM}, reducing APK footprint by \textbf{35\%} and drastically cutting external runtime dependencies.}
-  \resumeItem{Configured custom \textbf{ProGuard/R8} obfuscation rules, anti-hooking detection, and Android Keystore payload encryption to protect biometric data in transit and at rest.}
+\vspace{2pt}
+
+\jobEntry{Android Developer (eKYC Platform)}{UID}{Sep 2018}{Sep 2022}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{National-Scale Biometric eKYC SDK:} Engineered the core client SDK for Iran's premier digital identity verification platform, enabling automated liveness detection, AI-driven facial verification, and real-time video streaming over WebSockets for \textbf{2.5M+ active users} across major banks and national capital market onboarding (Sejam).}
+  \resumeItem{\textbf{Architecture Modernization \& Performance:} Spearheaded legacy codebase refactoring from Java/MVP to Kotlin/MVVM and Coroutines, reducing APK footprint by \textbf{35\%}, optimizing memory allocation, and drastically cutting external runtime dependencies.}
+  \resumeItem{\textbf{Biometric Security \& Obfuscation:} Configured custom ProGuard/R8 bytecode obfuscation rules, anti-hooking detection, and Android Keystore payload encryption to protect biometric telemetry in transit and at rest.}
+  \resumeItem{\textbf{Developer Integration Experience:} Authored technical integration documentation, client SDK sample implementations, and sandbox test harnesses, accelerating enterprise integration across 30+ financial institutions.}
 \end{itemize}
 
-\vspace{3pt}
+\vspace{2pt}
 \jobEntry{Android Developer}{Freelance (Softwaria / Varna Marlik)}{2016}{2018}
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{Built the \textbf{Tonekabon Municipal Taxi System}: in-memory Canvas rendering engine streaming dynamic receipts as bitmaps over Bluetooth/Serial to Bixolon thermal printers (\textbf{$<$800ms} print latency, 100\% field adoption).}
-  \resumeItem{Designed and shipped \textbf{Dolme} — a native Persian puzzle game on CafeBazaar with \textbf{60 FPS} gameplay via custom Canvas Views and animation loops without external game engines (50k+ downloads, 4.7/5 rating).}
-  \resumeItem{Built and deployed on-demand food ordering, classifieds, and developer utility applications for client businesses.}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{Municipal Fleet Dispatch \& Printing Engine:} Built the Tonekabon Municipal Taxi System featuring an in-memory 2D Canvas rendering engine streaming dynamic receipts as bitmaps over Bluetooth/Serial SPP to Bixolon thermal printers (\textbf{$<$800ms} print latency, 100\% field adoption).}
+  \resumeItem{\textbf{Native 2D Canvas Game Engine:} Designed and shipped \textit{Dolme} -- a native Persian puzzle game on CafeBazaar (regional Android marketplace with 40M+ active users) with 60 FPS gameplay via custom Canvas Views and animation loops without third-party game engines (\textbf{50k+ downloads, 4.7/5 rating}).}
+  \resumeItem{\textbf{Commercial Mobile Solutions:} Built and deployed on-demand food ordering, classifieds, and developer utility applications for regional commercial clients.}
 \end{itemize}
 
 %==========================================================
@@ -167,31 +173,31 @@ Senior Android \& Mobile Systems Engineer with over 10 years of production engin
 \section{Key Projects}
 
 \textbf{Android POS Banking \& Kehroba Contactless System} \hfill \textit{\small\color{lightgray}Sep 2024 -- Mar 2025} \\
-{\small Independently engineered a full-featured banking application for smart POS terminals. Implemented ISO 8583 binary protocol over raw TCP sockets, Java Card APDU smart card authorization, and Shaparak Kehroba contactless NFC payments via Host Card Emulation (HCE). Achieved \textbf{sub-200ms transaction latency} and \textbf{100\% central banking compliance}.}
+{\small Independently architected and implemented a complete banking application for smart POS terminals. Implemented ISO 8583 binary protocol over raw TCP sockets, Java Card APDU smart card authorization, and contactless NFC transactions via Host Card Emulation (HCE) compliant with Shaparak Kehroba (\textit{National Central Bank contactless payment scheme, EMV / Apple Pay equivalent protocol}). Achieved \textbf{sub-200ms transaction clearance latency} and \textbf{100\% central banking compliance}.}
 
-\vspace{4pt}
-\textbf{\href{https://linuxnetwork.ir}{LinuxNetwork.ir} — Linux Network \& Kernel Tuning Toolbox} \hfill \textit{\small\color{lightgray}2025} \\
-{\small High-performance bilingual web toolbox (React, TypeScript, Tailwind CSS) for Linux kernel tuning (\texttt{sysctl}, BBR TCP congestion), WireGuard VPN configuration, and CIDR subnet calculation. \textbf{100/100 Lighthouse score}, sub-100ms edge delivery via Cloudflare Pages, thousands of monthly DevOps visitors.}
+\vspace{3pt}
+\textbf{\href{https://linuxnetwork.ir}{LinuxNetwork.ir} -- Linux Network \& Kernel Tuning Toolbox} \hfill \textit{\small\color{lightgray}2025} \\
+{\small High-performance bilingual web engineering toolbox (React, TypeScript, Tailwind CSS) for Linux kernel tuning (\texttt{sysctl}, BBR TCP congestion control), WireGuard VPN configuration, and CIDR subnet calculation. \textbf{100/100 Lighthouse score}, sub-100ms edge delivery via Cloudflare Pages, thousands of monthly DevOps visitors.}
 
-\vspace{4pt}
-\textbf{\href{https://vira.linuxnetwork.ir}{Vira} — Smart Document Image Processing Service} \hfill \textit{\small\color{lightgray}2025} \\
-{\small Intelligent client-side document photo standardization platform using HTML5 Canvas. Processed \textbf{20,000+ applicant photos} for educational institutions, reducing rejection rate from 18\% to \textbf{$<$0.2\%} ($<$50ms in-browser latency, zero server upload).}
+\vspace{3pt}
+\textbf{\href{https://vira.linuxnetwork.ir}{Vira} -- Smart Document Image Processing Service} \hfill \textit{\small\color{lightgray}2025} \\
+{\small Intelligent client-side document photo normalization platform built with HTML5 Canvas and Web Workers. Processed \textbf{20,000+ applicant photos} for educational institutions, reducing rejection rate from 18\% to \textbf{$<$0.2\%} ($<$50ms in-browser latency, zero server upload privacy guarantee).}
 
 %==========================================================
 % 7. EDUCATION
 %==========================================================
 \section{Education}
 
-\textbf{Bachelor of Science in Software Engineering} \hfill \textit{\color{lightgray}2013 -- 2018} \\
+\textbf{Bachelor of Science (B.Sc.) in Software Engineering} \hfill \textit{\color{lightgray}2013 -- 2018} \\
 University of Guilan, Iran
 
 %==========================================================
-% 8. CERTIFICATIONS & COMPLIANCE
+% 8. CERTIFICATIONS \& COMPLIANCE
 %==========================================================
 \section{Certifications \& Compliance}
 
-\begin{itemize}[leftmargin=*, noitemsep, topsep=2pt]
-  \resumeItem{\textbf{National Cybersecurity Compliance (AFTA):} Certified secure payment application development and anti-tamper hardening for banking POS terminals.}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{National Cybersecurity Compliance (AFTA):} Certified secure payment application development, cryptographic key management, and anti-tamper hardening for banking POS terminals.}
   \resumeItem{\textbf{Central Banking Payment Standards:} Verified implementation of Shaparak Kehroba contactless NFC payment protocol and ISO 8583 banking switch integrations.}
 \end{itemize}
 
@@ -200,6 +206,6 @@ University of Guilan, Iran
 %==========================================================
 \section{Languages}
 
-\textbf{Persian} — Native \quad | \quad \textbf{English} — Professional Working Proficiency
+\textbf{Persian} -- Native \quad | \quad \textbf{English} -- Professional Working Proficiency (Technical Documentation, Team Collaboration)
 
 \end{document}

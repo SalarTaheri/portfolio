@@ -142,7 +142,7 @@ The download button and inline preview will automatically reflect the updated fi
 After deploying to Cloudflare Pages:
 
 1. Go to your Pages project → **Custom domains** → **Set up a custom domain**.
-2. Enter your domain (e.g., `salartaheri.dev`).
+2. Enter your domain (e.g., `yourdomain.com`).
 3. Update the DNS records as instructed.
 4. Update `seoMeta.url` in `src/data/portfolio.ts` to your live domain.
 

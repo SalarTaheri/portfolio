@@ -1,3 +1,3 @@
 User-agent: *
 Allow: /
-Sitemap: https://salartaheri.dev/sitemap.xml
+Sitemap: https://salar-portfolio.pages.dev/sitemap.xml

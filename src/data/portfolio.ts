@@ -115,8 +115,8 @@ export interface PortfolioContent {
     linkedinDisplay: string;
     githubUrl: string;
     githubDisplay: string;
-    websiteUrl: string;
-    websiteDisplay: string;
+    websiteUrl?: string;
+    websiteDisplay?: string;
   };
   footer: {
     name: string;
@@ -147,7 +147,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       name: 'سالار طاهری',
       titleSuffix: 'هستم.',
       role: 'مهندس ارشد اندروید و معمار سیستم‌های موبایل',
-      bio: 'بیش از ۱۰ سال تجربه تخصصی در توسعه اپلیکیشن‌های مدرن اندروید با کاتلین و Jetpack Compose، طراحی و پیاده‌سازی معماری Clean و MVI، و رهبری پایپ‌لاین‌های بیومتریک (eKYC) برای بیش از ۲.۵ میلیون کاربر فعال، در کنار تخصص عمیق در لایه‌های سخت‌افزاری و ارتباطات امن.',
+      bio: 'بیش از ۱۰ سال تجربه تخصصی در توسعه اپلیکیشن‌های مدرن اندروید با کاتلین و Jetpack Compose، طراحی و پیاده‌سازی معماری Clean و MVVM، و رهبری پایپ‌لاین‌های بیومتریک (eKYC) برای بیش از ۲.۵ میلیون کاربر فعال، در کنار تخصص عمیق در لایه‌های سخت‌افزاری و ارتباطات امن.',
       btnProjects: 'مشاهده پروژه‌ها',
       btnEmail: 'ارسال ایمیل',
       downloadCv: 'دریافت رزومه (PDF)',
@@ -222,9 +222,10 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'Jetpack Compose', featured: true },
             { name: 'Kotlin Coroutines & Flow', featured: true },
+            { name: 'C/C++ (JNI / NDK)', featured: true },
             { name: 'Material Design 3' },
             { name: 'CameraX Pipeline' },
-            { name: 'Custom 2D Canvas' },
+            { name: 'Custom 2D Canvas & In-Memory Bitmaps' },
             { name: 'Navigation Component' },
           ],
         },
@@ -238,7 +239,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'Clean Architecture', featured: true },
             { name: 'Domain-Driven Design (DDD)', featured: true },
-            { name: 'MVI & MVVM' },
+            { name: 'MVVM Architecture', featured: true },
             { name: 'Multi-Module Gradle' },
             { name: 'Hilt & Koin DI' },
             { name: 'Offline-First Caching' },
@@ -270,9 +271,10 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'AIDL Peripheral Driver', featured: true },
             { name: 'Java Card & APDU Commands', featured: true },
+            { name: 'شبیه‌سازی سخت‌افزار (HIL Emulation)', featured: true },
             { name: 'Pax A920Pro & Amp8000 SDK' },
             { name: 'ESC/POS Thermal Printing' },
-            { name: 'Serial / Bluetooth SPP' },
+            { name: 'Serial / RS232 / USB / Bluetooth SPP' },
             { name: 'PIN-pad & Magnetic Stripe' },
           ],
         },
@@ -301,7 +303,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           colorFg: '#10b981',
           tags: [
             { name: 'گواهی افتا (AFTA Certified)', featured: true },
+            { name: 'تست خودکار (JUnit 5, MockK, Robolectric)', featured: true },
             { name: 'Android Keystore Encryption', featured: true },
+            { name: 'توسعه با هوش مصنوعی (Cursor, Copilot)', featured: true },
             { name: 'Anti-Tamper & Root Detect' },
             { name: 'ProGuard / R8 Obfuscation' },
             { name: 'Linux Kernel Tuning (BBR)', featured: true },
@@ -324,7 +328,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             'اکوسیستم صندوق و فروشگاه اندرویدی: طراحی و مقیاس‌پذیری اپلیکیشن آفلاین-فرست پوز اندروید برای سوپرمارکت‌ها و رستوران‌ها با Room DB و کش چندلایه جهت جستجوی آنی بدون تاخیر میان ده‌ها هزار کالا.',
             'سامانه مودیان و صدور صورت‌حساب امن‌پرداز: طراحی سامانه مالیاتی با فلاتر و اتصال مستقیم به سرورهای سازمان امور مالیاتی کشور با امضای نامتقارن کریپتوگرافیک (ارسال موفق بیش از ۵۰,۰۰۰ صورت‌حساب با تاییدیه ۱۰۰٪).',
             'اتصال سخت‌افزارها و تجهیزات جانبی: پیاده‌سازی جریان‌های صف و چاپ بلیت با برقراری ارتباط پایدار با ترازوهای دیجیتال، بارکد اسکنرها و پرینترهای حرارتی از طریق درایورهای AIDL و پروتکل‌های سریال.',
+            'شبیه‌سازی سخت‌افزار (HIL) و موک سوکت‌ها: ایجاد درایورهای شبیه‌سازی سریال و محیط‌های موک APDU/TCP جهت تست رفتار تجهیزات جانبی و سناریوهای تراکنش در پایپ‌لاین‌های CI بدون نیاز به سخت‌افزار فیزیکی (افزایش ۴۰ درصدی پوشش تست‌ها).',
             'معماری و پایداری محصول: بازطراحی ساختار کد بر پایه Domain-Driven Design (DDD) و ایجاد ماژول‌های مستقل که منجر به حفظ نرخ پایداری ۹۹.۸٪ بدون کرش در انواع مدل‌های پوز شد.',
+            'رهبری فنی و جریان‌های توسعه هوش مصنوعی: منتورینگ مهندسان در الگوهای Clean Architecture و Coroutines/Flow، تدوین راهنماهای Code Review و پیاده‌سازی متدولوژی‌های AI-assisted (Cursor, Copilot) برای تولید تست‌های واحد و تسریع توسعه.',
           ],
           chips: [
             { name: 'Jetpack Compose', featured: true },
@@ -332,7 +338,8 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             { name: 'Room DB' },
             { name: 'AIDL' },
             { name: 'DDD' },
-            { name: 'Cryptographic Signing' },
+            { name: 'HIL & Mocking' },
+            { name: 'AI Workflows' },
           ],
         },
         {
@@ -342,14 +349,16 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           period: 'سپتامبر ۲۰۲۲ – مارس ۲۰۲۳',
           bullets: [
             'توسعه SDK هسته پرداخت پوز: برنامه‌نویسی SDK سطح پایین تراکنش‌های بانکی برای پایانه‌های هوشمند Pax A920Pro و Amp8000 با پشتیبانی از کارت‌های مغناطیسی، تراشه‌های هوشمند IC و صفحه کلید امن ورود رمز (PIN-pad).',
-            'پروتکل APDU و اپلت‌های Java Card: توسعه اپلت‌های جاواکارت جهت عملیات EMV، اشتقاق کلیدهای امنیتی، تایید پین و تولید کریپتوگرام رمزنگاری‌شده درون چیپ کارت.',
             'پروتکل‌های سوئیچ بانکی: پیاده‌سازی اینکودر و دیکودر دقیق پروتکل ISO 8583، استانداردهای JPOS و استریم آسنکرون سوکت‌های TCP با تأخیر پاسخ زیر ۲۰۰ میلی‌ثانیه.',
             'طرح ملی نانینو (سامانه هوشمند یارانه نان): تحویل نرم‌افزار سمت پوز نانینو در هزاران نانوایی سراسر کشور و پردازش بیش از ۱۰۰,۰۰۰ تراکنش روزانه بدون کوچک‌ترین خطای داده‌ای.',
+            'تست خودکار سوکت و APDU: توسعه مجموعه‌های تست خودکار موک TCP و شبیه‌سازهای پاسخ APDU با JUnit 5 و Robolectric برای اعتبارسنجی پیام‌های بانکی ISO و قطعی‌های ناگهانی شبکه در CI بدون سخت‌افزار پوز.',
             'استانداردهای امنیت سایبری: مقاوم‌سازی اپلیکیشن‌های پرداخت در برابر مهندسی معکوس و گذر موفق از ممیزی‌های امنیتی ملی افتا (AFTA).',
+            'تعامل با سازندگان سخت‌افزار (OEMs): همکاری مستقیم با تولیدکنندگان پایانه‌ها (Pax, Amp) جهت رفع باگ‌های فرم‌ور لایه‌های پایین و همگام‌سازی پروتکل با معماران بک‌اند سوئیچ بانکی.',
           ],
           chips: [
             { name: 'ISO 8583', featured: true },
             { name: 'Java Card / APDU', featured: true },
+            { name: 'Mock Testing (JUnit 5)', featured: true },
             { name: 'Pax SDK' },
             { name: 'TCP Sockets' },
             { name: 'AFTA Security' },
@@ -365,6 +374,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             'مدرن‌سازی معماری: رهبری بازنویسی زیرساخت قدیمی از Java/MVP به کاتلین و MVVM که منجر به کاهش ۳۵ درصدی حجم فایل نصبی APK و به حداقل رساندن وابستگی‌های خارجی شد.',
             'پایپ‌لاین دوربین با CameraX: پیاده‌سازی پردازش بدون افت فریم ویدیو با CameraX و کاهش ۴۲ درصدی افت فریم روی شبکه‌های ضعیف اینترنت 3G همراه با ثبت نرخ پایداری ۹۹.۹٪ در بیش از ۱۰۰۰ مدل تلفن همراه.',
             'امن‌سازی پکیج کلاینت: اعمال قوانین پیشرفته مبهم‌سازی با ProGuard/R8، محافظت در برابر ابزارهای هوک مثل Frida و رمزنگاری داده‌های حساس با کلیدهای سخت‌افزاری Android Keystore.',
+            'مستندات و تجربه توسعه‌دهندگان (DX): نگارش مستندات فنی، کدهای نمونه ادغام SDK و محیط‌های تست سندباکس برای تسریع اتصال بیش از ۳۰ موسسه مالی و کارگزاری.',
           ],
           chips: [
             { name: 'eKYC & Biometrics', featured: true },
@@ -540,8 +550,6 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       linkedinDisplay: 'linkedin.com/in/salar-taheri',
       githubUrl: 'https://github.com/salartaheri',
       githubDisplay: 'github.com/salartaheri',
-      websiteUrl: 'https://salartaheri.dev',
-      websiteDisplay: 'salartaheri.dev',
     },
     footer: {
       name: 'Salar Taheri',
@@ -571,7 +579,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       name: 'Salar Taheri',
       titleSuffix: '.',
       role: 'Senior Android & Mobile Systems Engineer',
-      bio: 'Over 10 years of production engineering experience architecting modern Android applications with Kotlin & Jetpack Compose, implementing Clean Architecture & MVI, and engineering biometric eKYC pipelines serving 2.5M+ active users, alongside deep expertise in peripheral hardware orchestration and banking switches.',
+      bio: 'Over 10 years of production engineering experience architecting modern Android applications with Kotlin & Jetpack Compose, implementing Clean Architecture & MVVM, and engineering biometric eKYC pipelines serving 2.5M+ active users, alongside deep expertise in peripheral hardware orchestration and banking switches.',
       btnProjects: 'View Projects',
       btnEmail: 'Send Email',
       downloadCv: 'Download CV (PDF)',
@@ -646,9 +654,10 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'Jetpack Compose', featured: true },
             { name: 'Kotlin Coroutines & Flow', featured: true },
+            { name: 'C/C++ (JNI / NDK)', featured: true },
             { name: 'Material Design 3' },
             { name: 'CameraX Pipeline' },
-            { name: 'Custom 2D Canvas' },
+            { name: 'Custom 2D Canvas & In-Memory Bitmaps' },
             { name: 'Navigation Component' },
           ],
         },
@@ -662,7 +671,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'Clean Architecture', featured: true },
             { name: 'Domain-Driven Design (DDD)', featured: true },
-            { name: 'MVI & MVVM' },
+            { name: 'MVVM Architecture', featured: true },
             { name: 'Multi-Module Gradle' },
             { name: 'Hilt & Koin DI' },
             { name: 'Offline-First Caching' },
@@ -694,9 +703,10 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           tags: [
             { name: 'AIDL Peripheral Driver', featured: true },
             { name: 'Java Card & APDU Commands', featured: true },
+            { name: 'Hardware-in-the-Loop (HIL) Emulation', featured: true },
             { name: 'Pax A920Pro & Amp8000 SDK' },
             { name: 'ESC/POS Thermal Printing' },
-            { name: 'Serial / Bluetooth SPP' },
+            { name: 'Serial / RS232 / USB / Bluetooth SPP' },
             { name: 'PIN-pad & Magnetic Stripe' },
           ],
         },
@@ -725,7 +735,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           colorFg: '#10b981',
           tags: [
             { name: 'AFTA Security Certified', featured: true },
+            { name: 'JUnit 5, MockK & Robolectric', featured: true },
             { name: 'Android Keystore Encryption', featured: true },
+            { name: 'AI-Assisted Dev (Cursor, Copilot)', featured: true },
             { name: 'Anti-Tamper & Root Detect' },
             { name: 'ProGuard / R8 Obfuscation' },
             { name: 'Linux Kernel Tuning (BBR)', featured: true },
@@ -748,7 +760,9 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             'Retail & POS Cashier Ecosystem: Architected and scaled an offline-first Android POS application for supermarkets and restaurants, utilizing Room Persistence and multi-tier local caching to manage large product catalogs with zero-latency lookups.',
             'AmnPardaz Electronic Invoicing System: Engineered a comprehensive tax reporting application in Flutter, enabling corporate merchants to submit cryptographically signed tax invoices directly to the national tax authority via smart POS terminals (50,000+ invoices with 100% acceptance).',
             'Hardware & Peripherals Orchestration: Designed queue management and ticketing workflows by interfacing with weight scales, barcode scanners, and thermal receipt printers via AIDL and serial communication protocols.',
+            'Hardware-in-the-Loop (HIL) & Mock Sockets: Built simulated serial drivers and mock APDU/TCP server environments to test peripheral responses and transaction sequences in CI/CD without physical POS devices, increasing automated test coverage by 40%.',
             'Stability & Architecture: Led the architectural refactoring toward Domain-Driven Design (DDD) and modular packaging, sustaining a 99.8% crash-free rate across fragmented Android POS device vendors.',
+            'Engineering Leadership & AI Workflows: Mentored junior and mid-level engineers on Kotlin Coroutines, reactive Flow pipelines, and Clean Architecture standards; integrated AI-assisted workflows (Cursor, Copilot) to accelerate unit test scaffolding and boilerplate elimination.',
           ],
           chips: [
             { name: 'Jetpack Compose', featured: true },
@@ -756,7 +770,8 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             { name: 'Room DB' },
             { name: 'AIDL' },
             { name: 'DDD' },
-            { name: 'Cryptographic Signing' },
+            { name: 'HIL & Mock Sockets' },
+            { name: 'AI Workflows' },
           ],
         },
         {
@@ -766,14 +781,16 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
           period: 'Sep 2022 – Mar 2023',
           bullets: [
             'Core Payment SDK: Developed low-level banking transaction SDKs for Android smart POS terminals (Pax A920Pro, Amp8000), supporting magnetic stripe cards, smart IC cards, and secure PIN-pad interaction.',
-            'Java Card & APDU Protocol: Authored Java Card applets for EMV smart card operations — implementing APDU command handlers for secure key derivation, PIN verification, and cryptogram generation on-card.',
             'Banking Switch Protocols: Implemented strict ISO 8583 protocol decoders/encoders, JPOS standards, and asynchronous TCP Socket streaming, achieving sub-200ms latency for high-reliability interbank transaction clearance.',
             'Nationwide Subsidies (Nanino Platform): Delivered the Android POS client for the Nanino Smart Bakery Platform, empowering thousands of bakeries across the country to execute government-subsidized transactions at massive scale (100k+ daily transactions, zero data loss).',
+            'Automated Socket & APDU Mock Testing: Built automated mock TCP socket suites and APDU response emulators with JUnit 5 and Robolectric to validate ISO financial messaging and edge-case network dropouts in CI pipelines without physical POS hardware.',
             'Cybersecurity Compliance: Hardened payment applications against tampering, reverse-engineering, and cryptographic injection, successfully passing national cybersecurity audits (AFTA).',
+            'OEM & Cross-Functional Collaboration: Partnered closely with hardware OEMs (Pax, Amp) to resolve low-level firmware quirks and collaborated with backend architects to streamline financial switch payloads.',
           ],
           chips: [
             { name: 'ISO 8583', featured: true },
             { name: 'Java Card / APDU', featured: true },
+            { name: 'Mock Testing (JUnit 5)', featured: true },
             { name: 'Pax SDK' },
             { name: 'TCP Sockets' },
             { name: 'AFTA Security' },
@@ -789,6 +806,7 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
             'System Modernization: Spearheaded legacy refactoring from Java/MVP to Kotlin/MVVM, reducing APK footprint by 35% and drastically reducing external runtime dependencies.',
             'Camera & Streaming Optimization: Built a zero-overhead camera pipeline with CameraX, cutting frame drop rates by 42% on low-bandwidth 3G connections and sustaining a 99.9% crash-free rate across 1,000+ Android device models.',
             'Security Hardening: Configured custom ProGuard/R8 obfuscation rules, anti-hooking detection, and Android Keystore payload encryption to protect biometric payloads in transit and at rest.',
+            'Developer Integration Experience: Authored developer documentation, integration SDK samples, and sandbox harnesses, accelerating enterprise client integration across 30+ financial institutions.',
           ],
           chips: [
             { name: 'eKYC & Biometrics', featured: true },
@@ -964,8 +982,6 @@ export const content: Record<'fa' | 'en', PortfolioContent> = {
       linkedinDisplay: 'linkedin.com/in/salar-taheri',
       githubUrl: 'https://github.com/salartaheri',
       githubDisplay: 'github.com/salartaheri',
-      websiteUrl: 'https://salartaheri.dev',
-      websiteDisplay: 'salartaheri.dev',
     },
     footer: {
       name: 'Salar Taheri',
@@ -983,7 +999,6 @@ export const profile = {
   email: 'salar.taheri.mirani@gmail.com',
   linkedin: 'https://linkedin.com/in/salar-taheri',
   github: 'https://github.com/salartaheri',
-  website: 'https://salartaheri.dev',
 };
 
 export const projects = content.en.projectsSection.projects;
@@ -992,7 +1007,7 @@ export const seoMeta = {
   title: 'Salar Taheri · Senior Android & Mobile Systems Engineer | Salar Taheri Portfolio',
   description:
     'Senior Android & Mobile Systems Engineer with over 10 years of experience in Fintech, POS hardware integration, ISO 8583 banking protocols, and biometric eKYC pipelines.',
-  url: 'https://salartaheri.dev',
+  url: 'https://salar-portfolio.pages.dev',
   ogImage: '/og-image.png',
   keywords: [
     'Android Developer',

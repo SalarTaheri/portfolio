@@ -5,7 +5,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   ArrowUpRight,
   Shield,
-  Smartphone,
   Layers,
   CheckCircle2,
   Code2,
@@ -185,36 +184,6 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
             className="relative"
           >
-            {/* Floating Metric Badge 1 */}
-            <div className="hidden sm:flex absolute -top-5 -end-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow">
-              <div className="w-9 h-9 rounded-lg bg-[var(--accent-soft)] text-[var(--accent)] flex items-center justify-center">
-                <Smartphone className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="font-mono font-bold text-lg text-[var(--fg)] leading-none dir-ltr">
-                  {hero.badgeUsers}
-                </div>
-                <div className="text-[11px] text-[var(--muted)] mt-1 font-medium">
-                  {hero.badgeUsersSub}
-                </div>
-              </div>
-            </div>
-
-            {/* Floating Metric Badge 2 */}
-            <div className="hidden sm:flex absolute -bottom-5 -start-4 items-center gap-3 px-4 py-2.5 rounded-[var(--radius)] bg-[var(--surface-glass)] backdrop-blur-md border border-[var(--border-light)] shadow-[var(--card-shadow)] z-20 animate-float-slow [animation-delay:2s]">
-              <div className="w-9 h-9 rounded-lg bg-[var(--cyan-soft)] text-[var(--cyan)] flex items-center justify-center">
-                <Shield className="w-5 h-5" />
-              </div>
-              <div>
-                <div className="font-mono font-bold text-lg text-[var(--fg)] leading-none dir-ltr">
-                  {hero.badgeStability}
-                </div>
-                <div className="text-[11px] text-[var(--muted)] mt-1 font-medium">
-                  {hero.badgeStabilitySub}
-                </div>
-              </div>
-            </div>
-
             {/* Android Studio / Kotlin Architecture Window */}
             <div className="rounded-[var(--radius-lg)] bg-[var(--surface)] border border-[var(--border-light)] hover:border-[rgba(var(--accent-rgb),0.4)] shadow-[var(--card-shadow)] hover:shadow-[0_20px_40px_-15px_var(--accent-glow)] overflow-hidden transition-all duration-300">
               {/* Window Header */}
@@ -307,7 +276,7 @@ export default function Hero() {
                             <span className="text-[#06b6d4]">ui</span> = JetpackCompose + Material3,
                           </div>
                           <div>
-                            <span className="text-[#06b6d4]">core</span> = Coroutines + StateFlow + MVI,
+                            <span className="text-[#06b6d4]">core</span> = Coroutines + StateFlow + MVVM,
                           </div>
                           <div>
                             <span className="text-[#06b6d4]">domain</span> = UseCases + DomainDrivenDesign,
@@ -417,7 +386,7 @@ export default function Hero() {
 
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--cyan-soft)] text-[var(--cyan)] border border-[rgba(6,182,212,0.2)] font-medium">
                     <Layers className="w-3.5 h-3.5" />
-                    <span>Clean Architecture & MVI</span>
+                    <span>Clean Architecture & MVVM</span>
                   </span>
 
                   <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded bg-[var(--bg)] text-[var(--fg-soft)] border border-[var(--border)] font-medium">
