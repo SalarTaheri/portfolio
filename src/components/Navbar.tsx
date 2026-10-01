@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download, Search } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download, Search, Mail } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
@@ -170,6 +170,20 @@ export default function Navbar() {
             <span>{t.downloadCv}</span>
           </a>
 
+          {/* Contact CTA Button */}
+          <a
+            href="#contact"
+            onClick={(e) => {
+              e.preventDefault();
+              handleNavClick('#contact');
+            }}
+            className="hidden md:inline-flex items-center gap-1.5 h-[38px] px-3.5 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[13px] font-medium transition-all duration-200 hover:-translate-y-0.5"
+            title={t.contact}
+          >
+            <Mail className="w-3.5 h-3.5 text-[var(--accent)]" />
+            <span>{t.contact}</span>
+          </a>
+
           {/* Collaborate CTA Button */}
           <a
             href="#contact"
@@ -238,6 +252,17 @@ export default function Navbar() {
                 >
                   <Download className="w-4 h-4 text-[var(--accent)]" />
                   <span>{t.downloadCv}</span>
+                </a>
+                <a
+                  href="#contact"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    handleNavClick('#contact');
+                  }}
+                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius)] bg-[var(--surface-hover)] border border-[var(--border)] text-[var(--fg)] text-[14px] font-medium"
+                >
+                  <Mail className="w-4 h-4 text-[var(--accent)]" />
+                  <span>{t.contact}</span>
                 </a>
                 <a
                   href="#contact"
