@@ -1,0 +1,48 @@
+# ========================================================
+# Cloudflare Pages Custom HTTP Headers
+# Optimized caching & security headers for Next.js Static Export
+# ========================================================
+
+# 1. Default for all HTML pages and routes
+# Ensures browsers and CDN edge always revalidate with the origin,
+# so clients immediately receive the newest index.html and avoid stale chunk loads.
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 2. Explicit rule for all HTML files
+/*.html
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
+
+# 3. Next.js immutable static assets (JavaScript chunks, CSS bundles)
+# These files have content hashes in their filename (e.g. chunk-a1b2c3d4.js).
+# They can safely be cached permanently (1 year) by both browsers and Cloudflare CDN.
+/_next/static/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+
+# 4. Web Fonts (woff2)
+/fonts/*
+  ! Cache-Control
+  Cache-Control: public, max-age=31536000, immutable
+  Access-Control-Allow-Origin: *
+
+# 5. Non-hashed static assets that change across builds (Must revalidate)
+/resume.pdf
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
+
+/sitemap.xml
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
+
+/robots.txt
+  ! Cache-Control
+  Cache-Control: public, max-age=0, must-revalidate
+
+/favicon.svg
+  ! Cache-Control
+  Cache-Control: public, max-age=86400, must-revalidate

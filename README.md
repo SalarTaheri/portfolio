@@ -103,6 +103,7 @@ To activate it:
 2. Add the following repository secrets:
    - `CLOUDFLARE_API_TOKEN`: Create in Cloudflare Dashboard under **My Profile** → **API Tokens** → **Create Token** → use template **Edit Cloudflare Workers**.
    - `CLOUDFLARE_ACCOUNT_ID`: Found on your Cloudflare dashboard right-hand sidebar.
+   - `CLOUDFLARE_ZONE_ID`: *(Optional)* If your portfolio uses a custom domain managed by Cloudflare, add the Zone ID here to automatically purge the Cloudflare Edge Cache on every deployment.
 3. Push to `main` and GitHub Actions will automatically build and deploy!
 
 ---
