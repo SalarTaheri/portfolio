@@ -36,7 +36,16 @@
   * **Hardware & Peripherals Orchestration:** Designed queue management and ticketing workflows by interfacing with weight scales, barcode scanners, and thermal receipt printers via **AIDL** and serial protocols.
   * **Stability & Architecture:** Led the architectural refactoring toward **Domain-Driven Design (DDD)** and modular packaging, sustaining a 99.8% crash-free rate across fragmented Android POS device vendors.
 
-#### 2. Android Developer (Fintech & POS) — Omidpay
+#### 2. Android Systems Consultant (Part-Time / Advisory) — GSS (GSS International)
+* **Duration:** October 2023 – Present
+* **Location:** Tehran, Iran
+* **Key Achievements & Impact:**
+  * **GMS-Free POS Fleet Supervision:** Architected a sovereign, Google-independent real-time supervisory service on smart Android POS devices using a customized **ActiveMQ / MQTT-STOMP** client connected to an Apache ActiveMQ broker, eliminating dependence on Google Mobile Services (FCM) across closed banking and commercial networks.
+  * **Resilient Background Service & Power Tuning:** Built an ultra-reliable background Foreground Service with partial WakeLocks, exponential backoff auto-reconnection, and low-bandwidth payload optimization, sustaining **99.9% socket uptime** under volatile cellular networks.
+  * **Bi-Directional File Transfer & OTA Distribution:** Implemented reliable chunked binary file streaming over socket connections to support remote silent APK deployments, OTA firmware distribution, and automated crash/diagnostic log harvesting.
+  * **Nationwide Fleet Telemetry:** Orchestrated real-time hardware health monitoring (battery health, thermal status, 4G/Wi-Fi RSSI signal quality, printer/IC peripheral status) across **10,000+ Android POS terminals** with sub-second alert and remote maintenance command dispatch.
+
+#### 3. Android Developer (Fintech & POS) — Omidpay
 * **Duration:** September 2022 – March 2023
 * **Location:** Tehran, Iran
 * **Key Achievements & Impact:**
@@ -45,7 +54,7 @@
   * **Nationwide Subsidies (Nanino Platform):** Delivered the Android POS client for the **Nanino Smart Bakery Platform**, empowering thousands of bakeries across the country to execute government-subsidized bread transactions at massive scale.
   * **Cybersecurity Compliance:** Hardened payment applications against tampering, reverse-engineering, and cryptographic injection, successfully passing national cybersecurity audits (AFTA).
 
-#### 3. Android Developer — UID
+#### 4. Android Developer — UID
 * **Duration:** September 2018 – September 2022
 * **Location:** Tehran, Iran
 * **Key Achievements & Impact:**
@@ -53,7 +62,7 @@
   * **System Modernization:** Spearheaded legacy refactoring from Java/MVP to **Kotlin/MVVM**, reducing APK footprint by 35% and drastically reducing external runtime dependencies.
   * **Security Hardening:** Configured custom **ProGuard/R8** obfuscation rules, anti-hooking detection, and secure keystore operations to protect biometric payloads in transit and at rest.
 
-#### 4. Android Developer — Freelance & Early Projects (Softwaria / Varna Marlik)
+#### 5. Android Developer — Freelance & Early Projects (Softwaria / Varna Marlik)
 * **Duration:** 2016 – 2018
 * **Key Achievements & Impact:**
   * **Tonekabon Municipal Taxi Receipt System (Softwaria):** Developed a violation management mobile client; built an in-memory Canvas rendering engine to draw dynamic receipts and stream them as high-speed bitmaps over Bluetooth/Serial to **Bixolon thermal printers**.
@@ -123,7 +132,19 @@ Use these rich case study blocks to populate project cards or dedicated modal pa
   * Integrated payment switch drivers (Pax A920Pro / Amp8000) using JPOS and TCP Sockets.
 * **Stack:** Java/Kotlin, JPOS, TCP Sockets, Room Database, POS Terminal SDKs.
 
-### Project 4: AmnPardaz Electronic Invoicing System
+### Project 4: GMS-Independent Android POS Fleet Monitoring & ActiveMQ Telemetry Engine
+* **Tagline:** Sovereign real-time socket supervision, hardware telemetry, and remote management for POS fleets without Google Mobile Services.
+* **Category:** `Fleet Management` | `Embedded Android` | `Enterprise Telemetry`
+* **Impact:** 10,000+ Android POS terminals monitored nationwide with 99.9% socket connection uptime and zero GMS/FCM dependency.
+* **Problem:** Banking and retail POS terminals deployed in isolated or restricted networks lack Google Play Services (GMS/FCM). Fleet administrators needed a secure, low-latency mechanism to monitor device operational health, stream binary logs, push OTA software/firmware updates, and dispatch emergency commands in real time.
+* **Engineering Solution:**
+  * Replaced Google FCM with a resilient custom client communicating over STOMP/MQTT protocols connected to an enterprise **Apache ActiveMQ** broker.
+  * Designed an always-on background **Foreground Service** with customized partial WakeLock management and exponential backoff auto-reconnect, ensuring minimal battery and mobile data consumption.
+  * Implemented bidirectional chunked file transfer over socket channels for automated crash/diagnostic log extraction and remote silent APK/firmware deployments.
+  * Streamed real-time hardware telemetry (battery health, thermal status, 4G/Wi-Fi RSSI signal quality, printer/smart-card peripheral status) and sub-second instant alert/command dispatch.
+* **Stack:** Kotlin, Apache ActiveMQ, MQTT / STOMP, Foreground Service, Partial WakeLock, Coroutines, Linux/Docker.
+
+### Project 5: AmnPardaz Electronic Invoicing System
 * **Tagline:** Cross-platform tax compliance tool for retail and corporate merchants.
 * **Category:** `Cross-Platform` | `Enterprise` | `POS`
 * **Problem:** Businesses needed a fast way to issue standardized invoices compliant with the national tax agency without purchasing expensive specialized hardware.
@@ -132,7 +153,7 @@ Use these rich case study blocks to populate project cards or dedicated modal pa
   * Implemented local cryptographic signature generation for invoice payloads.
 * **Stack:** Flutter, Dart, BLoC, REST API, SQLite.
 
-### Project 5: Dolme Native Word Game
+### Project 6: Dolme Native Word Game
 * **Tagline:** Lightweight Persian word puzzle game published on CafeBazaar.
 * **Category:** `Mobile Game` | `Native Performance` | `Creative UI`
 * **Problem:** Achieving high-performance animations and responsive touch interactions without the heavy APK size or memory footprint of game engines like Unity.
@@ -140,7 +161,7 @@ Use these rich case study blocks to populate project cards or dedicated modal pa
   * Handcrafted game loops, touch detection, and particle animations natively using custom Android Views and 2D Canvas rendering at consistent 60 FPS.
 * **Stack:** Native Kotlin/Java, Custom Canvas Views, Android Property Animators.
 
-### Project 6: Tonekabon Municipal Taxi Ticketing System
+### Project 7: Tonekabon Municipal Taxi Ticketing System
 * **Tagline:** Field inspection and instant thermal receipt printing suite.
 * **Category:** `IoT` | `Embedded Hardware` | `Field Operations`
 * **Problem:** Field inspectors required immediate violation receipt printing onto portable battery-operated thermal printers without layout distortions.

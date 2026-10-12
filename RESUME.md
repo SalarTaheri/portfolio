@@ -28,7 +28,7 @@ Senior Android & Mobile Systems Engineer with over **10 years of production engi
 - **Android Core & Systems:** Android SDK, Jetpack Compose, View System & 2D Canvas, AIDL, Host Card Emulation (HCE), CameraX, Navigation Component, Material Design 3, Linux Kernel Tuning, In-Memory Bitmap Rendering
 - **Architecture & Concurrency:** Clean Architecture, Domain-Driven Design (DDD), MVVM, Multi-Module Gradle, Kotlin Coroutines, Kotlin Flow, RxJava, Asynchronous Thread Pooling, Memory & GC Pause Optimization
 - **Fintech & Hardware Protocols:** ISO 8583, JPOS, Shaparak Kehroba (NFC Contactless / EMV Equivalent), Java Card (Applets), APDU Protocol, Pax & Amp POS SDKs, ESC/POS Thermal Printers, Serial / RS232 / USB / Bluetooth SPP, Smart Card (IC) Readers, PIN-pad Integration
-- **Networking & Data:** Asynchronous TCP Sockets, WebSockets, Ktor Client, Retrofit, OkHttp, REST APIs, Protocol Buffers (Protobuf), Room Database, SQLite, DataStore, Hilt, Koin
+- **Networking & Data:** Asynchronous TCP Sockets, WebSockets, Apache ActiveMQ, MQTT, STOMP, Ktor Client, Retrofit, OkHttp, REST APIs, Protocol Buffers (Protobuf), Room Database, SQLite, DataStore, Hilt, Koin
 - **Testing, QA & Mocking:** JUnit 5, MockK, Robolectric, Turbine, Hardware-in-the-Loop (HIL) Emulation, Mock TCP & APDU Sockets, Simulated Peripheral Drivers, End-to-End Payment Integration Testing
 - **Security, DevOps & AI Tooling:** Android Keystore, Anti-Tamper / Root & Hook Detection, ProGuard / R8 Obfuscation, CI/CD (GitHub Actions), Docker, Git, Linux, Sentry, AI-Assisted Development (Cursor, GitHub Copilot, Claude/Gemini API Tooling), Prompt Engineering for Automated Testing & Scaffolding, AI Agent Workflows
 
@@ -46,6 +46,17 @@ Senior Android & Mobile Systems Engineer with over **10 years of production engi
 - **Hardware-in-the-Loop (HIL) Emulation & Mock Sockets:** Containerized mock APDU/TCP server environments and simulated serial drivers using Docker, enabling engineers to test peripheral responses and transaction sequences in CI/CD pipelines without physical POS devices, increasing automated test coverage by 40%.
 - **DDD Architecture & Cross-Vendor Stability:** Led architectural refactoring toward Domain-Driven Design (DDD) and modular multi-module Gradle packaging, sustaining a **99.8% crash-free rate** across fragmented Android POS device vendors (Pax, Amp, Newpos, Centerm).
 - **Engineering Leadership & AI Workflows:** Mentored junior and mid-level engineers on Kotlin Coroutines, reactive Flow pipelines, and Clean Architecture standards; integrated AI-assisted workflows (Cursor, Copilot) to accelerate unit test scaffolding and boilerplate elimination.
+
+---
+
+### Android Systems Consultant (Part-Time / Advisory) | GSS (GSS International)
+*Oct 2023 – Present · Tehran, Iran*
+*(Banking Hardware & Payment Automation Ecosystem)*
+
+- **GMS-Free Sovereign POS Supervision:** Architected a Google-independent real-time supervision and notification client on Android POS devices utilizing a customized STOMP/MQTT client communicating with an Apache ActiveMQ broker, eliminating dependencies on Google Play Services (FCM) across secure enterprise banking networks.
+- **Resilient Background Service Architecture:** Engineered an always-on Foreground Service with granular Partial WakeLock management, thread pooling, and exponential backoff auto-reconnect, sustaining a **99.9% socket connection uptime** while drastically conserving battery and cellular data.
+- **Bi-Directional Socket File Transfer & Remote Updates:** Implemented chunked binary file streaming over ActiveMQ socket channels for automated crash/diagnostic log harvesting and remote silent APK/firmware deployments.
+- **Nationwide Fleet Telemetry & Instant Control:** Streamed real-time hardware health metrics (battery levels, thermal sensors, 4G/Wi-Fi RSSI signal quality, printer/IC reader diagnostics) across **10,000+ Android POS terminals** with sub-second alert and remote maintenance command dispatch.
 
 ---
 
@@ -89,6 +100,11 @@ Senior Android & Mobile Systems Engineer with over **10 years of production engi
 - Independently architected and implemented a complete banking application for smart POS terminals.
 - Implemented ISO 8583 binary protocol over raw TCP sockets, Java Card APDU smart card authorization, and contactless NFC transactions via Host Card Emulation (HCE) compliant with Shaparak Kehroba (*National Central Bank contactless payment scheme, EMV / Apple Pay equivalent protocol*).
 - Achieved sub-200ms transaction clearance latency and 100% central banking certification compliance.
+
+### GMS-Independent Android POS Fleet Monitoring & ActiveMQ Telemetry Engine
+*Oct 2023 – Present*
+- Architected a Google-independent real-time supervision, telemetry, and remote management platform for **10,000+ Android POS terminals** nationwide.
+- Built a resilient STOMP/MQTT client over an enterprise Apache ActiveMQ broker with **99.9% socket connection uptime**, handling bi-directional binary file transfers (crash/diagnostic logs, silent OTA APK rollouts) and sub-second push notifications without Google FCM/Play Services.
 
 ### LinuxNetwork.ir — Linux Network & Kernel Tuning Toolbox
 *2025*

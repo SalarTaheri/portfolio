@@ -4,7 +4,7 @@
 %-------------------------
 \documentclass[letterpaper,10pt]{article}
 
-\usepackage[margin=0.4in, top=0.32in, bottom=0.32in]{geometry}
+\usepackage[margin=0.38in, top=0.28in, bottom=0.28in]{geometry}
 \usepackage{hyperref}
 \usepackage{enumitem}
 \usepackage{titlesec}
@@ -117,7 +117,7 @@ Senior Android \& Mobile Systems Engineer with over \textbf{10 years of producti
   \resumeItem{\textbf{Android Core \& Systems:} Android SDK, Jetpack Compose, View System \& 2D Canvas, AIDL, Host Card Emulation (HCE), CameraX, Navigation Component, Material Design 3, Linux Kernel Tuning, In-Memory Bitmap Rendering}
   \resumeItem{\textbf{Architecture \& Concurrency:} Clean Architecture, Domain-Driven Design (DDD), MVVM, Multi-Module Gradle, Kotlin Coroutines, Kotlin Flow, RxJava, Asynchronous Thread Pooling, Memory \& GC Pause Optimization}
   \resumeItem{\textbf{Fintech \& Hardware Protocols:} ISO 8583, JPOS, Shaparak Kehroba (NFC Contactless / EMV Equivalent), Java Card (Applets), APDU Protocol, Pax \& Amp POS SDKs, ESC/POS Thermal Printers, Serial / RS232 / USB / Bluetooth SPP, Smart Card Readers, PIN-pad Integration}
-  \resumeItem{\textbf{Networking \& Data:} Asynchronous TCP Sockets, WebSockets, Ktor Client, Retrofit, OkHttp, REST APIs, Protobuf, Room Database, SQLite, DataStore, Hilt, Koin}
+  \resumeItem{\textbf{Networking \& Data:} Asynchronous TCP Sockets, WebSockets, Apache ActiveMQ, MQTT, STOMP, Ktor Client, Retrofit, OkHttp, REST APIs, Protobuf, Room Database, SQLite, DataStore, Hilt, Koin}
   \resumeItem{\textbf{Testing, QA \& Mocking:} JUnit 5, MockK, Robolectric, Turbine, Hardware-in-the-Loop (HIL) Emulation, Mock TCP \& APDU Sockets, Simulated Peripheral Drivers, End-to-End Payment Integration Testing}
   \resumeItem{\textbf{Security, DevOps \& AI Tools:} Android Keystore, Anti-Tamper / Root Detection, ProGuard / R8 Obfuscation, CI/CD (GitHub Actions), Docker, Git, Linux, Sentry, AI-Assisted Development (Cursor, GitHub Copilot, Agentic Tooling), Prompt Engineering for Automated Testing \& Scaffolding}
 \end{itemize}
@@ -134,7 +134,15 @@ Senior Android \& Mobile Systems Engineer with over \textbf{10 years of producti
   \resumeItem{\textbf{Hardware Integration \& AIDL:} Designed queue management and ticketing workflows by interfacing directly with digital weight scales, barcode scanners, and ESC/POS thermal receipt printers via AIDL, USB SPP, and RS232 serial protocols.}
   \resumeItem{\textbf{Hardware-in-the-Loop (HIL) Emulation \& Mock Sockets:} Containerized mock APDU/TCP server environments and simulated serial drivers using Docker to test peripheral responses and transaction sequences in CI pipelines without physical POS hardware, expanding automated test coverage by 40\%.}
   \resumeItem{\textbf{DDD Architecture \& Cross-Vendor Stability:} Led architectural refactoring toward Domain-Driven Design (DDD) and modular multi-module Gradle packaging, sustaining a \textbf{99.8\% crash-free rate} across fragmented Android POS device vendors (Pax, Amp, Newpos, Centerm).}
-  \resumeItem{\textbf{Engineering Leadership \& AI Workflows:} Mentored junior and mid-level engineers in Kotlin Coroutines, reactive Flow pipelines, and Clean Architecture standards; integrated AI-assisted workflows (Cursor, Copilot) to accelerate unit test scaffolding and eliminate boilerplate.}
+\end{itemize}
+
+\vspace{2pt}
+
+\jobEntry{Android Systems Consultant (Part-Time / Advisory)}{GSS (GSS International)}{Oct 2023}{Present}
+\begin{itemize}[leftmargin=*, noitemsep, topsep=1pt]
+  \resumeItem{\textbf{GMS-Free Sovereign POS Supervision:} Architected Google-independent real-time supervision and alert service for Android POS devices utilizing a custom STOMP/MQTT client over Apache ActiveMQ, eliminating Google FCM dependencies across banking networks.}
+  \resumeItem{\textbf{Resilient Background Architecture \& Power Tuning:} Engineered an always-on Foreground Service with Partial WakeLocks and exponential backoff auto-reconnect, sustaining \textbf{99.9\% socket uptime} with minimal battery and cellular bandwidth consumption.}
+  \resumeItem{\textbf{Nationwide Telemetry \& Bi-Directional File Updates:} Streamed hardware diagnostics (battery, thermal, 4G RSSI, peripherals) and executed chunked file transfers (crash logs, OTA silent APKs) across \textbf{10,000+ Android POS terminals} with sub-second alert delivery.}
 \end{itemize}
 
 \newpage
