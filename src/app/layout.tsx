@@ -45,6 +45,9 @@ export const metadata: Metadata = {
   keywords: seoMeta.keywords,
   authors: [{ name: profile.name }],
   creator: profile.name,
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'profile',
     url: seoMeta.url,
@@ -79,47 +82,48 @@ export const metadata: Metadata = {
   },
 };
 
-const jsonLdPerson = {
+const jsonLdGraph = {
   '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: profile.name,
-  jobTitle: profile.title,
-  url: seoMeta.url,
-  email: profile.email,
-  address: {
-    '@type': 'PostalAddress',
-    addressLocality: 'Tehran',
-    addressCountry: 'IR',
-  },
-  sameAs: [profile.linkedin, profile.github],
-  description: seoMeta.description,
-  knowsAbout: [
-    'Android Development',
-    'Kotlin',
-    'POS Systems',
-    'Fintech',
-    'ISO 8583',
-    'Biometric eKYC',
-    'Jetpack Compose',
-    'AIDL',
-    'Java Card',
-    'Linux',
-    'Docker',
-    'CI/CD',
+  '@graph': [
+    {
+      '@type': 'Person',
+      name: profile.name,
+      jobTitle: profile.title,
+      url: seoMeta.url,
+      email: profile.email,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Tehran',
+        addressCountry: 'IR',
+      },
+      sameAs: [profile.linkedin, profile.github],
+      description: seoMeta.description,
+      knowsAbout: [
+        'Android Development',
+        'Kotlin',
+        'Smart POS Systems',
+        'Fintech Architecture',
+        'ISO 8583',
+        'Biometric eKYC',
+        'Jetpack Compose',
+        'AIDL',
+        'Java Card APDU',
+        'Apache ActiveMQ',
+        'Docker HIL Testing',
+      ],
+    },
+    ...projects.map((p) => ({
+      '@type': 'SoftwareSourceCode',
+      name: p.title,
+      description: p.tagline,
+      programmingLanguage: p.tech.map((t) => t.name),
+      author: {
+        '@type': 'Person',
+        name: profile.name,
+      },
+    })),
   ],
 };
-
-const jsonLdSoftwareProjects = projects.map((p) => ({
-  '@context': 'https://schema.org',
-  '@type': 'SoftwareSourceCode',
-  name: p.title,
-  description: p.tagline,
-  programmingLanguage: p.tech.map((t) => t.name),
-  author: {
-    '@type': 'Person',
-    name: profile.name,
-  },
-}));
 
 export default function RootLayout({
   children,
@@ -127,10 +131,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="fa" dir="rtl" className="dark" data-theme="dark" suppressHydrationWarning>
+    <html lang="en" dir="ltr" className="dark" data-theme="dark" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="alternate icon" href="/favicon.ico" />
         <meta name="color-scheme" content="dark light" />
         <script
           dangerouslySetInnerHTML={{
@@ -139,15 +142,14 @@ export default function RootLayout({
                 var savedTheme = localStorage.getItem('portfolio_theme');
                 var theme = (savedTheme === 'light' || savedTheme === 'dark') ? savedTheme : 'dark';
                 document.documentElement.setAttribute('data-theme', theme);
-                if (theme === 'dark') {
-                  document.documentElement.classList.add('dark');
-                  document.documentElement.classList.remove('light');
-                } else {
-                  document.documentElement.classList.add('light');
-                  document.documentElement.classList.remove('dark');
-                }
+                document.documentElement.classList.toggle('dark', theme === 'dark');
+                document.documentElement.classList.toggle('light', theme === 'light');
+
                 var savedLocale = localStorage.getItem('portfolio_locale');
-                var locale = (savedLocale === 'en' || savedLocale === 'fa') ? savedLocale : 'fa';
+                var browserFa = navigator.language && navigator.language.toLowerCase().startsWith('fa');
+                var locale = (savedLocale === 'en' || savedLocale === 'fa')
+                  ? savedLocale
+                  : (browserFa ? 'fa' : 'en');
                 document.documentElement.lang = locale;
                 document.documentElement.dir = locale === 'fa' ? 'rtl' : 'ltr';
               } catch (e) {}
@@ -156,18 +158,11 @@ export default function RootLayout({
         />
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdPerson) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLdGraph) }}
         />
-        {jsonLdSoftwareProjects.map((schema, i) => (
-          <script
-            key={i}
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
-          />
-        ))}
       </head>
       <body
-        className={`${jakarta.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} font-fa bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-[rgba(16,185,129,0.25)] selection:text-[var(--fg)]`}
+        className={`${jakarta.variable} ${jetbrainsMono.variable} ${vazirmatn.variable} bg-[var(--bg)] text-[var(--fg)] antialiased selection:bg-[rgba(16,185,129,0.25)] selection:text-[var(--fg)]`}
       >
         <LanguageProvider>
           <ThemeProvider>

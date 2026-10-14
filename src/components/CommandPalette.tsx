@@ -246,6 +246,9 @@ export default function CommandPalette({ isOpen, onClose }: CommandPaletteProps)
 
           {/* Dialog Container */}
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-label={locale === 'fa' ? 'پالت دستورات سریع' : 'Command Palette'}
             initial={{ opacity: 0, scale: 0.96, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}

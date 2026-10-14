@@ -1,6 +1,9 @@
-# Salar Taheri — Personal Portfolio Website
+# Salar Taheri — Personal Portfolio & Technical Resume
 
-A production-ready, fully static personal portfolio for a **Senior Android & Embedded POS Engineer**, built with Next.js 14 App Router, Tailwind CSS, and Framer Motion.
+A production-ready, high-performance static portfolio and resume for a **Senior Android & Mobile Systems Engineer** (Fintech, Smart POS & High-Scale SDKs), built with Next.js 14 App Router, Tailwind CSS, and Framer Motion.
+
+- **Live Canonical URL:** [https://salar.miranmahaleh.ir](https://salar.miranmahaleh.ir)
+- **Repository:** [https://github.com/SalarTaheri/portfolio](https://github.com/SalarTaheri/portfolio)
 
 ---
 
@@ -8,43 +11,58 @@ A production-ready, fully static personal portfolio for a **Senior Android & Emb
 
 | Layer | Technology |
 |---|---|
-| Framework | Next.js 14 (App Router, static export) |
-| Styling | Tailwind CSS 3 |
+| Framework | Next.js 14 (App Router, static export `out/`) |
+| Language | TypeScript |
+| Styling | Tailwind CSS 3 (Dark/Light mode via CSS variables) |
 | Animations | Framer Motion 11 |
 | Icons | Lucide React |
-| Fonts | Plus Jakarta Sans + JetBrains Mono (via Next/Font) |
-| Deployment | Cloudflare Pages |
+| Fonts | Plus Jakarta Sans (LTR) + Vazirmatn (RTL) + JetBrains Mono (Code/Numbers) |
+| Resume | LaTeX (`pdflatex` via Docker / ATS-Safe format) |
+| Deployment | Cloudflare Pages (via GitHub Actions CI/CD) |
 
 ---
 
 ## 📁 Project Structure
 
 ```
-portfolio2/
+portfolio/
+├── .github/
+│   └── workflows/
+│       └── deploy.yml        ← Automated Cloudflare Pages build & deployment
 ├── public/
-│   ├── resume.pdf          ← Your CV (replace this file to update)
-│   ├── favicon.svg
-│   ├── sitemap.xml
-│   └── robots.txt
+│   ├── fonts/                ← Self-hosted WOFF2 fonts
+│   ├── resume.pdf            ← Canonical CV download asset
+│   ├── favicon.svg           ← Modern SVG favicon
+│   ├── sitemap.xml           ← Canonical sitemap
+│   └── robots.txt            ← Crawler indexing directives
 ├── src/
 │   ├── app/
-│   │   ├── layout.tsx      ← SEO, fonts, JSON-LD schema
-│   │   ├── page.tsx        ← Page composition
-│   │   └── globals.css     ← Global styles, glassmorphism utilities
+│   │   ├── layout.tsx        ← Root HTML shell, JSON-LD @graph, canonical SEO
+│   │   ├── page.tsx          ← Page composition
+│   │   └── globals.css       ← Theme variables, typography & WCAG AA contrast tokens
 │   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Hero.tsx
-│   │   ├── ImpactHighlights.tsx
-│   │   ├── AnimatedCounter.tsx
-│   │   ├── TechStack.tsx
-│   │   ├── Projects.tsx
-│   │   ├── ProjectCard.tsx
-│   │   ├── ProjectModal.tsx
-│   │   ├── Timeline.tsx
-│   │   ├── ResumeDownload.tsx
-│   │   └── Contact.tsx
+│   │   ├── AmbientCanvas.tsx ← High-performance background particle field (prefers-reduced-motion safe)
+│   │   ├── AnimatedCounter.tsx ← Smooth rolling numbers for metric highlights
+│   │   ├── CommandPalette.tsx ← Accessible (Cmd+K) interactive quick-navigation modal
+│   │   ├── Contact.tsx       ← Direct contact CTAs and social channels
+│   │   ├── ExperienceTimeline.tsx ← Career trajectory with aligned vertical node track
+│   │   ├── FeaturedProjects.tsx ← Filterable case studies with technical architecture deep-dives
+│   │   ├── Footer.tsx        ← Site footer and copyright
+│   │   ├── Hero.tsx          ← Executive profile header with interactive architecture preview
+│   │   ├── Navbar.tsx        ← Sticky navigation header, locale switcher, and theme toggle
+│   │   ├── SkillsMatrix.tsx  ← Categorized technical competencies
+│   │   ├── SpotlightCard.tsx ← Interactive mouse-tracking radial highlight card
+│   │   └── StatsGrid.tsx     ← 2/3-column responsive engineering metrics
+│   ├── context/
+│   │   ├── LanguageContext.tsx ← Bilingual state (en/fa) with auto-detection
+│   │   └── ThemeContext.tsx  ← Dark/Light theme state
 │   └── data/
-│       └── portfolio.ts    ← ✏️ Edit all content here
+│       └── portfolio.ts      ← Single Source of Truth for all portfolio content
+├── Dockerfile.resume         ← Dockerized TeX Live environment for PDF resume compilation
+├── Resume_Salar_Taheri.tex   ← ATS-optimized master LaTeX resume source
+├── RESUME.md                 ← Markdown version of the resume
+├── scripts/
+│   └── build-resume.sh       ← Script to compile LaTeX resume to public/resume.pdf
 ├── next.config.js
 ├── tailwind.config.ts
 └── tsconfig.json
@@ -57,7 +75,7 @@ portfolio2/
 ### Prerequisites
 
 - Node.js 18+ (LTS)
-- npm 9+ (or pnpm / yarn)
+- npm 9+
 
 ### Install & Run
 
@@ -78,84 +96,25 @@ npm run dev
 npm run build
 ```
 
-This generates a fully static site in the **`out/`** directory (via `output: 'export'` in `next.config.js`), ready for Cloudflare Pages.
+This exports a fully static site to the **`out/`** directory (via `output: 'export'` in `next.config.js`), optimized for static hosting on Cloudflare Pages.
 
 ---
 
-## ☁️ Deploy to Cloudflare Pages
+## 📄 Compiling the Resume PDF
 
-### Option 1 — Direct Upload (one-time)
+To compile `Resume_Salar_Taheri.tex` into `public/resume.pdf`:
 
 ```bash
-npm run build
-# Upload the out/ folder via Cloudflare Pages dashboard → "Direct Upload"
+npm run build:resume
 ```
 
-### Option 2 — Cloudflare Pages Git Integration
-1. Push this repository to GitHub.
-2. In the [Cloudflare Dashboard](https://dash.cloudflare.com) → **Pages** → **Connect to Git**.
-3. Set build command: `npm run build`, output directory: `out`.
-
-### Option 3 — Automated GitHub Actions CI/CD (Workflow Included)
-The repository includes an automated workflow at `.github/workflows/deploy.yml`.
-To activate it:
-1. In your GitHub repository, go to **Settings** → **Secrets and variables** → **Actions**.
-2. Add the following repository secrets:
-   - `CLOUDFLARE_API_TOKEN`: Create in Cloudflare Dashboard under **My Profile** → **API Tokens** → **Create Token** → use template **Edit Cloudflare Workers**.
-   - `CLOUDFLARE_ACCOUNT_ID`: Found on your Cloudflare dashboard right-hand sidebar.
-   - `CLOUDFLARE_ZONE_ID`: *(Optional)* If your portfolio uses a custom domain managed by Cloudflare, add the Zone ID here to automatically purge the Cloudflare Edge Cache on every deployment.
-3. Push to `main` and GitHub Actions will automatically build and deploy!
+*(Requires Docker. The script uses `Dockerfile.resume` to build a minimal TeX Live container and output directly to `public/resume.pdf`.)*
 
 ---
 
-## ✏️ Updating Content
+## ☁️ Deployment
 
-All portfolio content lives in a single file:
-
-```
-src/data/portfolio.ts
-```
-
-Edit this file to update:
-- **Profile** info (name, email, LinkedIn, GitHub)
-- **Stats** (years, users, crash-free rate)
-- **Tech stack** categories and skills
-- **Projects** (title, tagline, problem, solution, stack)
-- **Career timeline** entries
-- **Education** and languages
-
----
-
-## 📄 Updating Your Resume PDF
-
-Replace `public/resume.pdf` with your new PDF:
-
-```bash
-cp /path/to/new/resume.pdf public/resume.pdf
-```
-
-The download button and inline preview will automatically reflect the updated file.
-
----
-
-## 🌐 Custom Domain
-
-After deploying to Cloudflare Pages:
-
-1. Go to your Pages project → **Custom domains** → **Set up a custom domain**.
-2. Enter your domain (e.g., `yourdomain.com`).
-3. Update the DNS records as instructed.
-4. Update `seoMeta.url` in `src/data/portfolio.ts` to your live domain.
-
----
-
-## 📋 Checklist Before Going Live
-
-- [ ] Replace `public/resume.pdf` with your latest CV
-- [ ] Update `profile.github` in `src/data/portfolio.ts` with your real GitHub URL
-- [ ] Update `seoMeta.url` with your live domain
-- [ ] Add an Open Graph image at `public/og-image.png` (1200×630 px)
-- [ ] Update `public/sitemap.xml` with your real domain
+Deployments to Cloudflare Pages are automated via GitHub Actions on every push to `main` (`.github/workflows/deploy.yml`).
 
 ---
 

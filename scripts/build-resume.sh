@@ -15,11 +15,10 @@ fi
 echo "Running pdflatex compilation..."
 docker run --rm -v "$DIR:/work" -w /work salar-resume-builder pdflatex -interaction=nonstopmode Resume_Salar_Taheri.tex
 
-echo "Updating public/resume.pdf and Resume.pdf..."
+echo "Updating public/resume.pdf..."
 cp -f Resume_Salar_Taheri.pdf public/resume.pdf
-cp -f Resume_Salar_Taheri.pdf Resume.pdf
 
 # Clean up auxiliary latex files
 rm -f Resume_Salar_Taheri.aux Resume_Salar_Taheri.log Resume_Salar_Taheri.out
 
-echo "✅ Resume successfully compiled and synced to public/resume.pdf and Resume.pdf!"
+echo "✅ Resume successfully compiled and synced to public/resume.pdf!"

@@ -15,7 +15,7 @@ interface LanguageContextType {
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
 export function LanguageProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = useState<Locale>('fa');
+  const [locale, setLocaleState] = useState<Locale>('en');
   const [mounted, setMounted] = useState(false);
 
   const applyLocale = (l: Locale) => {
@@ -26,13 +26,16 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const saved = localStorage.getItem('portfolio_locale') as Locale | null;
-    if (saved && (saved === 'en' || saved === 'fa')) {
+    if (saved === 'en' || saved === 'fa') {
       setLocaleState(saved);
       applyLocale(saved);
     } else {
-      // Default to Persian (fa / RTL) matching reference design
-      setLocaleState('fa');
-      applyLocale('fa');
+      const browserFa =
+        typeof navigator !== 'undefined' &&
+        navigator.language?.toLowerCase().startsWith('fa');
+      const initial: Locale = browserFa ? 'fa' : 'en';
+      setLocaleState(initial);
+      applyLocale(initial);
     }
   }, []);
 

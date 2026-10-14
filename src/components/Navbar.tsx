@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download, Search, Mail } from 'lucide-react';
+import { Menu, X, Globe, Sun, Moon, ArrowUpRight, Download, Search } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { content } from '@/data/portfolio';
 import { useLanguage } from '@/context/LanguageContext';
@@ -12,7 +12,7 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState('about');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isCommandOpen, setIsCommandOpen] = useState(false);
-  const { locale, toggleLocale, isRTL } = useLanguage();
+  const { locale, toggleLocale } = useLanguage();
   const { theme, toggleTheme } = useTheme();
 
   const t = content[locale].nav;
@@ -25,7 +25,6 @@ export default function Navbar() {
     { href: '#contact', label: t.contact, id: 'contact' },
   ];
 
-  // Cmd+K / Ctrl+K keyboard shortcut
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === 'k') {
@@ -70,7 +69,6 @@ export default function Navbar() {
   return (
     <header className="sticky top-0 z-50 w-full bg-[var(--surface-glass)] backdrop-blur-xl border-b border-[var(--border)] transition-colors duration-300">
       <div className="max-w-[var(--container)] mx-auto px-6 h-[72px] flex items-center justify-between">
-        {/* Brand Logo */}
         <a
           href="#about"
           onClick={(e) => {
@@ -87,13 +85,12 @@ export default function Navbar() {
               {locale === 'fa' ? 'سالار طاهری' : 'Salar Taheri'}
             </div>
             <div className="text-[11px] font-mono text-[var(--muted)] font-medium">
-              Mobile & Embedded
+              Mobile &amp; Fintech Systems
             </div>
           </div>
         </a>
 
-        {/* Desktop Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-7">
+        <nav aria-label="Primary Navigation" className="hidden lg:flex items-center gap-7">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -117,9 +114,7 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Controls: Command Palette, Language, Theme, CTA, Mobile Menu */}
-        <div className="flex items-center gap-2 sm:gap-3">
-          {/* Command Palette Trigger */}
+        <div className="flex items-center gap-2 sm:gap-2.5">
           <button
             type="button"
             onClick={() => setIsCommandOpen(true)}
@@ -128,14 +123,13 @@ export default function Navbar() {
             aria-label="Open command palette"
           >
             <Search className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span className="hidden xl:inline text-[12px]">{locale === 'fa' ? 'دستورات' : 'Search'}</span>
-            <kbd className="hidden sm:inline-flex items-center text-[10.5px] font-mono px-1 py-0.5 rounded bg-[var(--bg)] border border-[var(--border)] text-[var(--muted)] [direction:ltr]">
+            <kbd className="hidden sm:inline-flex items-center text-[10.5px] font-mono px-1.5 py-0.5 rounded bg-[var(--bg)] border border-[var(--border)] text-[var(--muted)] [direction:ltr]">
               ⌘K
             </kbd>
           </button>
 
-          {/* Language Switcher */}
           <button
+            type="button"
             onClick={toggleLocale}
             className="inline-flex items-center justify-center gap-1.5 h-[38px] px-3 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[13px] font-mono font-semibold transition-all duration-200 hover:-translate-y-0.5"
             title={locale === 'fa' ? 'Switch to English' : 'تغییر به فارسی'}
@@ -145,11 +139,11 @@ export default function Navbar() {
             <span>{locale === 'fa' ? 'EN' : 'فا'}</span>
           </button>
 
-          {/* Theme Switcher */}
           <button
+            type="button"
             onClick={toggleTheme}
             className="inline-flex items-center justify-center w-[38px] h-[38px] rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] transition-all duration-200 hover:-translate-y-0.5"
-            title={theme === 'dark' ? 'حالت روشن' : 'حالت تیره'}
+            title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             aria-label="Toggle theme"
           >
             {theme === 'dark' ? (
@@ -159,7 +153,6 @@ export default function Navbar() {
             )}
           </button>
 
-          {/* CV Download CTA */}
           <a
             href="/resume.pdf"
             download="Salar_Taheri_Resume.pdf"
@@ -170,45 +163,30 @@ export default function Navbar() {
             <span>{t.downloadCv}</span>
           </a>
 
-          {/* Contact CTA Button */}
           <a
             href="#contact"
             onClick={(e) => {
               e.preventDefault();
               handleNavClick('#contact');
             }}
-            className="hidden md:inline-flex items-center gap-1.5 h-[38px] px-3.5 rounded-[var(--radius)] bg-[var(--surface)] border border-[var(--border)] text-[var(--fg-soft)] hover:text-[var(--fg)] hover:bg-[var(--surface-hover)] hover:border-[var(--border-light)] text-[13px] font-medium transition-all duration-200 hover:-translate-y-0.5"
-            title={t.contact}
-          >
-            <Mail className="w-3.5 h-3.5 text-[var(--accent)]" />
-            <span>{t.contact}</span>
-          </a>
-
-          {/* Collaborate CTA Button */}
-          <a
-            href="#contact"
-            onClick={(e) => {
-              e.preventDefault();
-              handleNavClick('#contact');
-            }}
-            className="hidden sm:inline-flex items-center gap-2 h-[38px] px-4 rounded-[var(--radius)] bg-[var(--accent)] text-white text-[14px] font-semibold shadow-[0_4px_16px_var(--accent-glow)] hover:shadow-[0_6px_22px_var(--accent-glow)] hover:-translate-y-0.5 transition-all duration-200"
+            className="hidden sm:inline-flex items-center gap-1.5 h-[38px] px-4 rounded-[var(--radius)] bg-[var(--accent)] text-white text-[13.5px] font-semibold shadow-[0_4px_16px_var(--accent-glow)] hover:shadow-[0_6px_22px_var(--accent-glow)] hover:-translate-y-0.5 transition-all duration-200"
           >
             <span>{t.collaborate}</span>
             <ArrowUpRight className="w-4 h-4" />
           </a>
 
-          {/* Mobile Menu Toggle */}
           <button
+            type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden inline-flex items-center justify-center w-[38px] h-[38px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] hover:bg-[var(--surface-hover)] transition-colors"
+            aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
+            className="lg:hidden inline-flex items-center justify-center w-[38px] h-[38px] rounded-[var(--radius)] border border-[var(--border)] bg-[var(--surface)] text-[var(--fg)] hover:bg-[var(--surface-hover)] transition-colors"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
         </div>
       </div>
 
-      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
@@ -243,7 +221,7 @@ export default function Navbar() {
                   className="flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius)] bg-[var(--surface-hover)] border border-[var(--border)] text-[var(--fg)] text-[14px] font-medium"
                 >
                   <Search className="w-4 h-4 text-[var(--accent)]" />
-                  <span>{locale === 'fa' ? 'جستجو و پالت دستورات (⌘K)' : 'Command Palette (⌘K)'}</span>
+                  <span>{locale === 'fa' ? 'پالت دستورات سریع (⌘K)' : 'Command Palette (⌘K)'}</span>
                 </button>
                 <a
                   href="/resume.pdf"
@@ -252,17 +230,6 @@ export default function Navbar() {
                 >
                   <Download className="w-4 h-4 text-[var(--accent)]" />
                   <span>{t.downloadCv}</span>
-                </a>
-                <a
-                  href="#contact"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    handleNavClick('#contact');
-                  }}
-                  className="flex items-center justify-center gap-2 w-full py-2.5 rounded-[var(--radius)] bg-[var(--surface-hover)] border border-[var(--border)] text-[var(--fg)] text-[14px] font-medium"
-                >
-                  <Mail className="w-4 h-4 text-[var(--accent)]" />
-                  <span>{t.contact}</span>
                 </a>
                 <a
                   href="#contact"
@@ -281,7 +248,6 @@ export default function Navbar() {
         )}
       </AnimatePresence>
 
-      {/* Global Command Palette Dialog */}
       <CommandPalette isOpen={isCommandOpen} onClose={() => setIsCommandOpen(false)} />
     </header>
   );
